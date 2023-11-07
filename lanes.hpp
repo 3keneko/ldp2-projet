@@ -1,6 +1,30 @@
 #ifndef LANE_H_
 #define LANE_H_
 #include <cstdint>
+#include "frog.hpp"
+
+class MovingObject {
+    protected:
+        int speed;
+        std::uint8_t head;
+    public:
+        MovingObject(int speed, std::uint8_t head):
+            speed(speed), head(head) {};
+        virtual bool collide(Frog& frog);
+        void move();
+        int getSpeed();
+        ~MovingObject() {};
+};
+
+class Car: public MovingObject {
+    private:
+        std::uint8_t size;
+    public:
+        Car(int speed, std::uint8_t head, std::uint8_t size) :
+            MovingObject(speed, head), size(size) {};
+        bool collide(Frog frog);
+        ~Car() {};
+};
 
 class Lane {
     private:
@@ -14,6 +38,10 @@ class Lane {
 };
 
 class RoadLane: public Lane {
+    private:
+        std::uint8_t car_by_pack;
+        std::uint8_t space_between_cars;
+
     public:
         RoadLane();
         ~RoadLane();
