@@ -26,6 +26,28 @@ class Car: public MovingObject {
         ~Car() {};
 };
 
+class Turtle: public MovingObject {
+    private:
+        bool diving;
+    public:
+        Turtle(int speed, std::uint8_t head):
+            MovingObject(speed, head), diving(false) {};
+        void dive();
+        void undive();
+        bool collide(Frog frog);
+        ~Turtle() {};
+};
+
+class Log: public MovingObject {
+    private:
+        std::uint8_t size;
+    public:
+        Log(int speed, std::uint8_t head, std::uint8_t size):
+            MovingObject(speed, head), size(size) {};
+        bool collide(Frog frog);
+        ~Log() {};
+};
+
 class Lane {
     private:
         std::uint8_t id_num;
