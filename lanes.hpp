@@ -4,12 +4,12 @@
 
 class Lane {
     private:
-        uint8_t id_num;
-        uint8_t length;
+        std::uint8_t id_num;
+        std::uint8_t length;
     public:
-        Lane(uint8_t id_num, uint8_t length):
+        Lane(std::uint8_t id_num, std::uint8_t length):
             id_num(id_num), length(length) {};
-        uint8_t getId();
+        std::uint8_t getId();
         ~Lane() {};
 };
 
