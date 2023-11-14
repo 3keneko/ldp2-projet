@@ -6,6 +6,8 @@
 // and calls the corresponding functions from view.hpp to edit
 // user's interface
 
+// ? Il faudrait une classe controlleur
+// On travaille avec MVC
 void goLeft(Frog frog);
 void goRight(Frog frog);
 void goFrwrd(Frog frog);

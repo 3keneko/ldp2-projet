@@ -1,6 +1,6 @@
 #include "lanes.hpp"
 
-int MovingObject::getSpeed() {
+ const int MovingObject::getSpeed() const {
     return speed;
 }
 

@@ -5,15 +5,15 @@
 
 class MovingObject {
     protected:
-        int speed;
+        const int speed;
         std::uint8_t head;
     public:
         MovingObject(int speed, std::uint8_t head):
             speed(speed), head(head) {};
-        virtual bool collide(Frog& frog);
+        virtual bool collide(Frog& frog)=0;
         void move();
-        int getSpeed();
-        ~MovingObject() {};
+        const int getSpeed() const;
+        virtual ~MovingObject() {};
 };
 
 class Car: public MovingObject {
@@ -22,7 +22,7 @@ class Car: public MovingObject {
     public:
         Car(int speed, std::uint8_t head, std::uint8_t size) :
             MovingObject(speed, head), size(size) {};
-        bool collide(Frog frog);
+        bool collide(Frog& frog) override;
         ~Car() {};
 };
 
@@ -34,7 +34,7 @@ class Turtle: public MovingObject {
             MovingObject(speed, head), diving(false) {};
         void dive();
         void undive();
-        bool collide(Frog frog);
+        bool collide(Frog& frog) final override;
         ~Turtle() {};
 };
 
@@ -44,7 +44,7 @@ class Log: public MovingObject {
     public:
         Log(int speed, std::uint8_t head, std::uint8_t size):
             MovingObject(speed, head), size(size) {};
-        bool collide(Frog frog);
+        bool collide(Frog& frog) override;
         ~Log() {};
 };
 
