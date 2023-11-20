@@ -2,10 +2,42 @@
 
 /*----------------------------------------------------------------------------------
 
+Rectangle class
+-----------------------------------------------------------------------------------*/
+
+Rectangle::Rectangle(Point center, int w, int h, Fl_Color frameColor,
+                     Fl_Color fillColor)
+    : center{center},
+      w{w},
+      h{h},
+      fillColor{fillColor},
+      frameColor{frameColor} {}
+
+void Rectangle::draw() {
+  fl_draw_box(FL_FLAT_BOX, center.x - w / 2, center.y - h / 2, w, h, fillColor);
+  fl_draw_box(FL_BORDER_FRAME, center.x - w / 2, center.y - h / 2, w, h,
+              frameColor);
+}
+
+void Rectangle::setFillColor(Fl_Color newFillColor) {
+  fillColor = newFillColor;
+}
+
+void Rectangle::setFrameColor(Fl_Color newFrameColor) {
+  frameColor = newFrameColor;
+}
+
+bool Rectangle::contains(Point p) {
+  return p.x >= center.x - w / 2 && p.x < center.x + w / 2 &&
+         p.y >= center.y - h / 2 && p.y < center.y + h / 2;
+}
+
+/*----------------------------------------------------------------------------------
+
 Text class
 -----------------------------------------------------------------------------------*/
 
-Text::Text(std::string &&s, Point center, int fontSize = 10, Fl_Color color = FL_BLACK)
+Text::Text(std::string &&s, Point center, int fontSize /*= 10 */, Fl_Color color /*= FL_BLACK */)
     : center{center}, s{s}, fontSize{fontSize}, color{color} {}
 
 void Text::draw() {
@@ -25,10 +57,10 @@ void Text::draw() {
 Translation class
 -----------------------------------------------------------------------------------*/
 
-explicit Translation::Translation(Point p) {
+Translation::Translation(Point p) {
     fl_push_matrix();
     fl_translate(p.x, p.y);
-  }
+}
 
 /*----------------------------------------------------------------------------------
 
@@ -40,79 +72,4 @@ Rotation::Rotation(Point center, double angle) {
     fl_translate(center.x, center.y);
     fl_rotate(angle);
     fl_translate(-1 * center.x, -1 * center.y);
-  }
-
-/*----------------------------------------------------------------------------------
-
-Polygon class
------------------------------------------------------------------------------------*/
-
-Polygon::Polygon(const std::vector<Point> &vertexes, Point center,
-                 Fl_Color frameColor, Fl_Color fillColor)
-    : vertexes{vertexes}, center{center}, fillColor{fillColor},
-      frameColor{frameColor} {}
-
-void Polygon::draw() const {
-  const Point v0 = vertexes.at(0);
-  fl_color(fillColor);
-  fl_begin_polygon();
-  for (auto &point : vertexes) {
-    fl_vertex(point.x, point.y);
-  }
-  fl_vertex(v0.x, v0.y);
-  fl_end_polygon();
-  fl_color(frameColor);
-  fl_begin_line();
-  for (auto &point : vertexes) {
-    fl_vertex(point.x, point.y);
-  }
-  fl_vertex(v0.x, v0.y);
-  fl_end_line();
-}
-
-/*-----------------------------------------------------------------------------------
-
-Canvas class
-------------------------------------------------------------------------------------*/
-
-void Canvas::keyPressed(int keyCode) {
-  switch (keyCode) {
-  case 'q':
-    exit(0);
-  }
-}
-
-/*-----------------------------------------------------------------------------------
-
-MainWindow class
-------------------------------------------------------------------------------------*/
-
-MainWindow::MainWindow() : Fl_Window(500, 500, windowWidth, windowHeight, "Lab 7") {
-    Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
-    resizable(this);
-}
-
-void MainWindow::draw() {
-    Fl_Window::draw();
-    canvas.draw();
-}
-
-int MainWindow::handle(int event) {
-    switch (event) {
-    case FL_PUSH:
-      canvas.mouseClick(Point{Fl::event_x(), Fl::event_y()});
-      return 1;
-    case FL_KEYDOWN:
-      canvas.keyPressed(Fl::event_key());
-      return 1;
-    default:
-      return 0;
-    }
-    return 0;
-  }
-
-void MainWindow::Timer_CB(void *userdata) {
-    MainWindow *o = static_cast<MainWindow *>(userdata);
-    o->redraw();
-    Fl::repeat_timeout(1.0 / refreshPerSecond, Timer_CB, userdata);
 }

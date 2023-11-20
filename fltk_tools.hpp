@@ -1,7 +1,6 @@
 //Contains some classes and functions to use fltk easily.
 //These functions and classes come from the labs.
 
-
 #ifndef FLTK_TOOLS_HPP
 #define FLTK_TOOLS_HPP
 
@@ -16,8 +15,8 @@
 #include <string>
 #include <vector>
 
-const int windowWidth = 450;
-const int windowHeight = 450;
+const int windowWidth = 650;
+const int windowHeight = 650;
 const double refreshPerSecond = 60;
 
 /*----------------------------------------------------------------------------------
@@ -27,6 +26,32 @@ Point class
 
 struct Point {
     int x, y;
+};
+
+/*----------------------------------------------------------------------------------
+
+Rectangle class
+-----------------------------------------------------------------------------------*/
+
+class Rectangle {
+  Point    center;
+  int      w, h;
+  Fl_Color fillColor, frameColor;
+
+ public:
+  Rectangle(Point center, int w, int h, Fl_Color frameColor = FL_BLACK,
+            Fl_Color fillColor = FL_WHITE);
+  void     draw();
+  void     setFillColor(Fl_Color newFillColor);
+  Fl_Color getFillColor() { return fillColor; }
+  void     setFrameColor(Fl_Color newFrameColor);
+  Fl_Color getFrameColor() { return frameColor; }
+  void     setWidth(int neww) { w = neww; }
+  void     setHeight(int newh) { h = newh; }
+  int      getWidth() { return w; }
+  int      getHeight() { return h; }
+  bool     contains(Point p);
+  Point    getCenter() { return center; }
 };
 
 /*----------------------------------------------------------------------------------
@@ -67,62 +92,8 @@ Rotation class
 -----------------------------------------------------------------------------------*/
 
 struct Rotation {
-  Rotation(Point center, double angle) {
-    fl_push_matrix();
-    fl_translate(center.x, center.y);
-    fl_rotate(angle);
-    fl_translate(-1 * center.x, -1 * center.y);
-  }
+  Rotation(Point center, double angle);
   ~Rotation() { fl_pop_matrix(); }
 };
-
-/*-----------------------------------------------------------------------------------
-
-Polygon class
-------------------------------------------------------------------------------------*/
-
-class Polygon {
-  const std::vector<Point> vertexes;
-  Point center;
-  Fl_Color fillColor, frameColor;
-
- public:
-  Polygon(const std::vector<Point> &vertexes, Point center,
-          Fl_Color frameColor = FL_BLACK, Fl_Color fillColor = FL_WHITE);
-
-  std::vector<Point> getVertexes();
-  Point getCenter();
-  void draw() const;
-};
-
-/*-----------------------------------------------------------------------------------
-
-Canvas class
-------------------------------------------------------------------------------------*/
-
-class Canvas {
-
- public:
-  Canvas();
-  void draw();
-  void mouseClick(Point mouseLoc);
-  void keyPressed(int keyCode);
-};
-
-/*-----------------------------------------------------------------------------------
-
-MainWindow class
-------------------------------------------------------------------------------------*/
-
-class MainWindow : public Fl_Window {
-  Canvas canvas;
-
- public:
-  MainWindow();
-  void draw() override;
-  int handle(int event) override;
-  static void Timer_CB(void *userdata);
-  };
-
 
 #endif
