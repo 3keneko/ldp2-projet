@@ -2,6 +2,19 @@
 
 /*----------------------------------------------------------------------------------
 
+Point class
+-----------------------------------------------------------------------------------*/
+
+unsigned int Point::xFltk() const{
+    return (25 + 50 * (12 - x));
+}
+
+unsigned int Point::yFltk() const{
+    return (25 + 50 * y);
+}
+
+/*----------------------------------------------------------------------------------
+
 Rectangle class
 -----------------------------------------------------------------------------------*/
 
@@ -18,6 +31,12 @@ void Rectangle::draw() {
   fl_draw_box(FL_BORDER_FRAME, center.x - w / 2, center.y - h / 2, w, h,
               frameColor);
 }
+
+void Rectangle::draw(unsigned int x, unsigned int y) {
+  fl_draw_box(FL_FLAT_BOX, x - w / 2, y - h / 2, w, h, fillColor);
+  fl_draw_box(FL_BORDER_FRAME, x - w / 2, y - h / 2, w, h,
+              frameColor);
+} 
 
 void Rectangle::setFillColor(Fl_Color newFillColor) {
   fillColor = newFillColor;

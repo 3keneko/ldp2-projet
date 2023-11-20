@@ -25,7 +25,9 @@ Point class
 -----------------------------------------------------------------------------------*/
 
 struct Point {
-    int x, y;
+    unsigned int x, y;
+    unsigned int xFltk() const;
+    unsigned int yFltk() const;
 };
 
 /*----------------------------------------------------------------------------------
@@ -42,6 +44,7 @@ class Rectangle {
   Rectangle(Point center, int w, int h, Fl_Color frameColor = FL_BLACK,
             Fl_Color fillColor = FL_WHITE);
   void     draw();
+  void     draw(unsigned int x, unsigned int y);
   void     setFillColor(Fl_Color newFillColor);
   Fl_Color getFillColor() { return fillColor; }
   void     setFrameColor(Fl_Color newFrameColor);
