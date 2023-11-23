@@ -1,0 +1,6 @@
+#ifndef MOVINGOBJECTS_H_
+#define MOVINGOBJECTS_H_
+
+
+
+#endif // MOVINGOBJECTS_H_
