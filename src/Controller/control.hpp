@@ -1,7 +1,7 @@
 #ifndef CONTROL_HPP
 #define CONTROL_HPP
 
-#include "frog.hpp"
+#include "../Model/frog.hpp"
 // Move commands: Edit the position of the frog in the model
 // and calls the corresponding functions from view.hpp to edit
 // user's interface

@@ -45,7 +45,7 @@ class WaterLane: public Lane {
 class LogLane: public WaterLane {
     private:
         const unsigned int logs_per_pack;
-        const unsigned int space_between_logs
+        const unsigned int space_between_logs;
         std::vector<std::unique_ptr<Log>> logs;
     public:
         LogLane();

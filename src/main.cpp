@@ -1,5 +1,5 @@
 #include <iostream>
-#include "canvas.hpp"
+#include "View/canvas.hpp"
 
 using namespace std;
 

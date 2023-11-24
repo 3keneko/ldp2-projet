@@ -2,7 +2,7 @@
 #define FROGVIEW_HPP
 
 #include "fltk_tools.hpp"
-#include "frog.hpp"
+#include "../Model/frog.hpp"
 
 class FrogGraphics {
     Rectangle frogImage;   // The type will be changed to Fl_Image
