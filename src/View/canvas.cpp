@@ -46,7 +46,7 @@ void MainWindow::draw() {
 int MainWindow::handle(int event) {
     switch (event) {
     case FL_PUSH:
-      canvas.mouseClick(Point{Fl::event_x(), Fl::event_y()});
+      canvas.mouseClick(Point{static_cast<unsigned int>(Fl::event_x()), static_cast<unsigned int>(Fl::event_y())});
       return 1;
     case FL_KEYDOWN:
       canvas.keyPressed(Fl::event_key());

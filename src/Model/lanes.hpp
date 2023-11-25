@@ -9,12 +9,13 @@ class Lane {
     private:
         const unsigned int id_num;
         const unsigned int length;
+        std::vector<std::shared_ptr<MovingObject>> objects;
     public:
         Lane(const unsigned int id_num, const unsigned int length):
             id_num(id_num), length(length) {}
-        const unsigned int getId() { return id_num; }
-        const unsigned int getLength() { return length; }
-
+        unsigned int getId() const { return id_num; }
+        unsigned int getLength() const { return length; }
+        std::vector<std::shared_ptr<MovingObject>> getObjects() { return objects; }
         ~Lane() {};
 };
 
