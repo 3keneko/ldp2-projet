@@ -4,18 +4,17 @@
 #include <memory>
 #include "../Model/boardmodel.hpp"
 #include "laneview.hpp"
+#include "movingobjectview.hpp"
 
 class BoardView {
-    private:
-        std::shared_ptr<BoardModel> board;
-    public:
-        BoardView(std::shared_ptr<BoardModel> bm):  board(bm) {}
-        void draw() {
-            for (auto& lane: board->getLanes()) {
-                LaneView l { lane };
-                l.draw();
-            }
-        }
-        ~BoardView() {}
+  private:
+    std::vector<std::shared_ptr<MovingObjectView>> cv;
+    std::shared_ptr<BoardModel> b;
+  public:
+    BoardView(std::vector<std::shared_ptr<MovingObjectView>> cv, std::shared_ptr<BoardModel> b): cv(cv), b(b) {}
+    void draw();
+    std::vector<std::shared_ptr<MovingObjectView>> getCarList() { return cv; }
+    ~BoardView() {}
 };
+
 #endif // BOARDVIEW_H_

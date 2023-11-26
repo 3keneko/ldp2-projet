@@ -6,13 +6,20 @@
 #include "lanes.hpp"
 
 class BoardModel {
-    private:
-        std::vector<std::shared_ptr<Lane>> lanes;
-        std::shared_ptr<Frog> frog;
-    public:
-        BoardModel(std::vector<std::unique_ptr<Lane>> lanes, std::unique_ptr<Frog> frog): lanes(lanes) {}
-        std::vector<std::shared_ptr<Lane>> getLanes() { return lanes; }
-        ~BoardModel() {}
+  private:
+    std::vector<std::shared_ptr<Car>> cs;
+    unsigned time = 0;
+  public:
+    BoardModel(std::vector<std::shared_ptr<Car>> cs): cs(cs) {}
+    void update() {
+      time++;
+      for (auto& c: cs) {
+        c->move();
+      }
+    }
+    ~BoardModel() {}
+    unsigned getTime() const  { return time; }
 };
+
 
 #endif // BOARDMODEL_H_

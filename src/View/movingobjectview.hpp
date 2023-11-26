@@ -5,11 +5,28 @@
 #include "../Model/movingobjects.hpp"
 
 class MovingObjectView {
-    private:
+    protected:
         std::shared_ptr<MovingObject> mv;
     public:
         MovingObjectView(std::shared_ptr<MovingObject> mv): mv(mv) {}
+        virtual void draw(unsigned time)=0;
         ~MovingObjectView() {}
 };
+
+class CarView: public MovingObjectView {
+  /*private:
+    std::shared_ptr<Car> c;
+    //std::shared_ptr<Fl_Box> repr;
+    */
+    private:
+        std::shared_ptr<Car> c;
+  public:
+    CarView(std::shared_ptr<Car> c):  MovingObjectView(c), c(c)/*, repr(std::make_shared<Fl_Box>(FL_FLAT_BOX, std::get<0>(c->getUpLeft()),
+                                                                  c->getUpY(), c->getSize(), HEIGHT_LANE, "")) */ {}
+    void draw(unsigned time) override;
+    Car getCar() { return *c; }
+    ~CarView() {}
+};
+
 
 #endif // MOVINGOBJECTVIEW_H_
