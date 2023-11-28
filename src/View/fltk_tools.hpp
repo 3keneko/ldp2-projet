@@ -1,102 +1,102 @@
-//Contains some classes and functions to use fltk easily.
-//These functions and classes come from the labs.
+// //Contains some classes and functions to use fltk easily.
+// //These functions and classes come from the labs.
 
-#ifndef FLTK_TOOLS_HPP
-#define FLTK_TOOLS_HPP
+// #ifndef FLTK_TOOLS_HPP
+// #define FLTK_TOOLS_HPP
 
-#include <FL/Fl.H>
-#include <FL/Fl_Box.H>
-#include <FL/Fl_Double_Window.H>
-#include <FL/fl_draw.H>
-#include <math.h>
-#include <time.h>
-#include <iostream>
-#include <array>
-#include <string>
-#include <vector>
+// #include <FL/Fl.H>
+// #include <FL/Fl_Box.H>
+// #include <FL/Fl_Double_Window.H>
+// #include <FL/fl_draw.H>
+// #include <math.h>
+// #include <time.h>
+// #include <iostream>
+// #include <array>
+// #include <string>
+// #include <vector>
 
-const int windowWidth = 650;
-const int windowHeight = 650;
-const double refreshPerSecond = 60;
+// const int windowWidth = 650;
+// const int windowHeight = 650;
+// const double refreshPerSecond = 60;
 
-/*----------------------------------------------------------------------------------
+// /*----------------------------------------------------------------------------------
 
-Point class
------------------------------------------------------------------------------------*/
+// Point class
+// -----------------------------------------------------------------------------------*/
 
-struct Point {
-    unsigned int x, y;
-    unsigned int xFltk() const;
-    unsigned int yFltk() const;
-};
+// struct Point {
+//     unsigned int x, y;
+//     unsigned int xFltk() const;
+//     unsigned int yFltk() const;
+// };
 
-/*----------------------------------------------------------------------------------
+// /*----------------------------------------------------------------------------------
 
-Rectangle class
------------------------------------------------------------------------------------*/
+// Rectangle class
+// -----------------------------------------------------------------------------------*/
 
-class Rectangle {
-  Point    center;
-  int      w, h;
-  Fl_Color fillColor, frameColor;
+// class Rectangle {
+//   Point    center;
+//   int      w, h;
+//   Fl_Color fillColor, frameColor;
 
- public:
-  Rectangle(Point center, int w, int h, Fl_Color frameColor = FL_BLACK,
-            Fl_Color fillColor = FL_WHITE);
-  void     draw();
-  void     draw(unsigned int x, unsigned int y);
-  void     setFillColor(Fl_Color newFillColor);
-  Fl_Color getFillColor() { return fillColor; }
-  void     setFrameColor(Fl_Color newFrameColor);
-  Fl_Color getFrameColor() { return frameColor; }
-  void     setWidth(int neww) { w = neww; }
-  void     setHeight(int newh) { h = newh; }
-  int      getWidth() { return w; }
-  int      getHeight() { return h; }
-  bool     contains(Point p);
-  Point    getCenter() { return center; }
-};
+//  public:
+//   Rectangle(Point center, int w, int h, Fl_Color frameColor = FL_BLACK,
+//             Fl_Color fillColor = FL_WHITE);
+//   void     draw();
+//   void     draw(unsigned int x, unsigned int y);
+//   void     setFillColor(Fl_Color newFillColor);
+//   Fl_Color getFillColor() { return fillColor; }
+//   void     setFrameColor(Fl_Color newFrameColor);
+//   Fl_Color getFrameColor() { return frameColor; }
+//   void     setWidth(int neww) { w = neww; }
+//   void     setHeight(int newh) { h = newh; }
+//   int      getWidth() { return w; }
+//   int      getHeight() { return h; }
+//   bool     contains(Point p);
+//   Point    getCenter() { return center; }
+// };
 
-/*----------------------------------------------------------------------------------
+// /*----------------------------------------------------------------------------------
 
-Text class
------------------------------------------------------------------------------------*/
+// Text class
+// -----------------------------------------------------------------------------------*/
 
-class Text {
-  Point    center;
-  std::string   s;
-  int      fontSize;
-  Fl_Color color;
+// class Text {
+//   Point    center;
+//   std::string   s;
+//   int      fontSize;
+//   Fl_Color color;
 
- public:
-  Text(std::string &&s, Point center, int fontSize = 10, Fl_Color color = FL_BLACK);
-  void draw();
-  std::string getString() { return s; }
-  void   setString(const std::string &newString) { s = newString; }
-  int    getFontSize() { return fontSize; }
-  void   setFontSize(int newFontSize) { fontSize = newFontSize; }
-  Point  getCenter() { return center; }
-  void   setCenter(Point newCenter) { center = newCenter; }
-};
+//  public:
+//   Text(std::string &&s, Point center, int fontSize = 10, Fl_Color color = FL_BLACK);
+//   void draw();
+//   std::string getString() { return s; }
+//   void   setString(const std::string &newString) { s = newString; }
+//   int    getFontSize() { return fontSize; }
+//   void   setFontSize(int newFontSize) { fontSize = newFontSize; }
+//   Point  getCenter() { return center; }
+//   void   setCenter(Point newCenter) { center = newCenter; }
+// };
 
-/*----------------------------------------------------------------------------------
+// /*----------------------------------------------------------------------------------
 
-Translation class
------------------------------------------------------------------------------------*/
+// Translation class
+// -----------------------------------------------------------------------------------*/
 
-struct Translation {
-  explicit Translation(Point p);
-  ~Translation() { fl_pop_matrix(); }
-};
+// struct Translation {
+//   explicit Translation(Point p);
+//   ~Translation() { fl_pop_matrix(); }
+// };
 
-/*----------------------------------------------------------------------------------
+// /*----------------------------------------------------------------------------------
 
-Rotation class
------------------------------------------------------------------------------------*/
+// Rotation class
+// -----------------------------------------------------------------------------------*/
 
-struct Rotation {
-  Rotation(Point center, double angle);
-  ~Rotation() { fl_pop_matrix(); }
-};
+// struct Rotation {
+//   Rotation(Point center, double angle);
+//   ~Rotation() { fl_pop_matrix(); }
+// };
 
-#endif
+// #endif

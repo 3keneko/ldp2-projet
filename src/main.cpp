@@ -6,6 +6,7 @@
 #include "View/movingobjectview.hpp"
 
 int main(int argc, char *argv[]) {
+  std::cout << "1" << std::endl;
   std::srand(static_cast<unsigned>(time(nullptr)));
   auto c = std::make_shared<Car>(1, 40, 40, 7);
   auto d = std::make_shared<Car>(-1, 500, 40, 8);

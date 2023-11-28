@@ -11,6 +11,7 @@ class MainLoop {
   public:
     MainLoop(std::shared_ptr<BoardModel> bm, std::shared_ptr<BoardView> bv): bm(bm), bv(bv) {}
     void update() {
+      std::cout << "2" << std::endl;
       bm->update();
       bv->draw();
     }

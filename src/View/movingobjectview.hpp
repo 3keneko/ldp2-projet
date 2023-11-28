@@ -10,6 +10,7 @@ class MovingObjectView {
     public:
         MovingObjectView(std::shared_ptr<MovingObject> mv): mv(mv) {}
         virtual void draw()=0;
+        std::shared_ptr<MovingObject> getMovin() { return mv; }
         virtual ~MovingObjectView() {}
 };
 
@@ -18,8 +19,6 @@ class CarView: public MovingObjectView {
     std::shared_ptr<Car> c;
     //std::shared_ptr<Fl_Box> repr;
     */
-    private:
-        std::shared_ptr<Car> c;
   public:
     CarView(std::shared_ptr<Car> c):  MovingObjectView(c) /*, repr(std::make_shared<Fl_Box>(FL_FLAT_BOX, std::get<0>(c->getUpLeft()),
                                                                   c->getUpY(), c->getSize(), HEIGHT_LANE, "")) */ {}

@@ -1,36 +1,36 @@
-#ifndef CANVAS_HPP
-#define CANVAS_HPP
+// #ifndef CANVAS_HPP
+// #define CANVAS_HPP
 
-#include "fltk_tools.hpp"
+// #include "fltk_tools.hpp"
 
-/*-----------------------------------------------------------------------------------
+// /*-----------------------------------------------------------------------------------
 
-Canvas class
-------------------------------------------------------------------------------------*/
+// Canvas class
+// ------------------------------------------------------------------------------------*/
 
-class Canvas {
+// class Canvas {
 
- public:
-  Canvas();
-  ~Canvas();
-  void draw();
-  void mouseClick(Point mouseLoc);
-  void keyPressed(int keyCode);
-};
+//  public:
+//   Canvas();
+//   ~Canvas();
+//   void draw();
+//   void mouseClick(Point mouseLoc);
+//   void keyPressed(int keyCode);
+// };
 
-/*-----------------------------------------------------------------------------------
+// /*-----------------------------------------------------------------------------------
 
-MainWindow class
-------------------------------------------------------------------------------------*/
+// MainWindow class
+// ------------------------------------------------------------------------------------*/
 
-class MainWindow : public Fl_Window {
-  Canvas canvas;
+// class MainWindow : public Fl_Window {
+//   Canvas canvas;
 
- public:
-  MainWindow();
-  void draw() override;
-  int handle(int event) override;
-  static void Timer_CB(void *userdata);
-  };
+//  public:
+//   MainWindow();
+//   void draw() override;
+//   int handle(int event) override;
+//   static void Timer_CB(void *userdata);
+//   };
 
-#endif
+// #endif

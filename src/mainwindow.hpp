@@ -12,12 +12,13 @@ class MainWindow : public Fl_Window {
   private:
     std::shared_ptr<MainLoop> main;
     public:
-        MainWindow(std::shared_ptr<MainLoop> main) : Fl_Window(500, 500, windowWidth, windowHeight, "MOVE"), main(main) {
+        MainWindow(std::shared_ptr<MainLoop> main) : Fl_Window(650, 650, windowWidth, windowHeight, "Frogger Game"), main(main) {
             Fl::add_timeout(1.0/refreshPerSecond, Timer_CB, this);
             resizable(this);
         }
         void draw() override {
-          Fl_Window::draw();
+            std::cout << "huh" << std::endl;
+            Fl_Window::draw();
           main->update();
         }
 
