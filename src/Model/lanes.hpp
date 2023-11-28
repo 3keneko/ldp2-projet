@@ -17,7 +17,7 @@ class Lane {
         unsigned int getId() const { return id_num; }
         unsigned int getLength() const { return length; }
         std::vector<std::shared_ptr<MovingObject>> getObjects() { return objects; }
-        ~Lane() {};
+        ~Lane() {}
 };
 
 class RoadLane: public Lane {

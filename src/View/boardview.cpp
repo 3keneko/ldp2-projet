@@ -2,6 +2,6 @@
 
 void BoardView::draw() {
   for (auto& c: cv) {
-    c->draw(b->getTime());
+    c->draw();
   }
 }

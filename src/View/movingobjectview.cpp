@@ -2,7 +2,7 @@
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
 
-void CarView::draw(unsigned time) {
+void CarView::draw() {
   fl_draw_box(FL_FLAT_BOX, c->getUpX(), c->getUpY(), c->getSize(), HEIGHT_LANE, FL_BLUE);
   //
   //std::cout << c->getUpX() << " " << c->getUpY() << std::endl;

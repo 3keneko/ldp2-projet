@@ -4,13 +4,14 @@
 #include <vector>
 #include <memory>
 #include "lanes.hpp"
+#include "movingobjects.hpp"
 
 class BoardModel {
   private:
-    std::vector<std::shared_ptr<Car>> cs;
+    std::vector<std::shared_ptr<MovingObject>> cs;
     unsigned time = 0;
   public:
-    BoardModel(std::vector<std::shared_ptr<Car>> cs): cs(cs) {}
+    BoardModel(std::vector<std::shared_ptr<MovingObject>> mv): cs(mv) {}
     void update() {
       time++;
       for (auto& c: cs) {

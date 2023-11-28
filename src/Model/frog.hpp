@@ -6,14 +6,14 @@ class Frog {
         unsigned int lane_number;
         unsigned int column;
     public:
-        Frog() {};
+        Frog() {}
         unsigned int getLane();
         unsigned int getColumn();
         void goUp();
         void goDown();
         void goLeft();
         void goRight();
-        ~Frog(){};
+        ~Frog(){}
 };
 
 #endif // MODEL_H_

@@ -13,7 +13,7 @@ class MovingObject {
     const unsigned int lane_id;
   public:
     MovingObject(const int speed, unsigned int centerX, const unsigned int size, const unsigned lane_id):
-          speed(speed), centerX(centerX), size(size), lane_id(lane_id) {};
+          speed(speed), centerX(centerX), size(size), lane_id(lane_id) {}
     void move() {
           centerX += speed;
     }
@@ -37,16 +37,16 @@ class MovingObject {
       return std::get<0>(getUpLeft());
     }
     virtual bool collide(Frog& frog);
-    const int getSpeed() { return speed; }
-    virtual ~MovingObject() {};
+    int getSpeed() const { return speed; }
+    virtual ~MovingObject() {}
 };
 
 
 class Car: public MovingObject {
     public:
         Car(int speed, unsigned int head, const unsigned int size, const unsigned lane_id) :
-            MovingObject(speed, head, size, lane_id) {};
-        ~Car() {};
+            MovingObject(speed, head, size, lane_id) {}
+        ~Car() {}
 };
 
 class Turtle: public MovingObject {
@@ -54,18 +54,18 @@ class Turtle: public MovingObject {
         bool diving;
     public:
         Turtle(int speed, const unsigned int head, const unsigned int size, const unsigned lane_id):
-            MovingObject(speed, head, size, lane_id), diving(false) {};
+            MovingObject(speed, head, size, lane_id), diving(false) {}
         void dive() { diving=true; }
         void undive() { diving=false; }
         bool collide(Frog& frog) final override;
-        ~Turtle() {};
+        ~Turtle() {}
 };
 
 class Log: public MovingObject {
     public:
         Log(int speed, unsigned int head, const unsigned int size, const unsigned lane_id):
-            MovingObject(speed, head, size, lane_id) {};
-        ~Log() {};
+            MovingObject(speed, head, size, lane_id) {}
+        ~Log() {}
 };
 
 #endif // MOVINGOBJECTS_H_

@@ -3,15 +3,17 @@
 
 #include <memory>
 #include "../Model/lanes.hpp"
+#include "movingobjectview.hpp"
 
 class LaneView {
     private:
         std::shared_ptr<Lane> lane;
+        std::vector<std::shared_ptr<MovingObjectView>> viewable;
     public:
-        LaneView(std::shared_ptr<Lane> l): lane(l) {}
+        LaneView(std::shared_ptr<Lane> lane, std::vector<std::shared_ptr<MovingObjectView>> mvv): lane(lane), viewable(mvv) {}
         void draw() {
-            for (auto &obj: lane->getObjects()) {
-
+            for (auto &obj: viewable) {
+                obj->draw();
             }
         }
         ~LaneView() {}
