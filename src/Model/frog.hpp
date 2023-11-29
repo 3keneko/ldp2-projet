@@ -6,9 +6,9 @@ class Frog {
         unsigned int lane_number;
         unsigned int column;
     public:
-        Frog() {}
-        unsigned int getLane();
-        unsigned int getColumn();
+        Frog(unsigned int lane_number, unsigned int column): lane_number(lane_number), column(column) {}
+        unsigned int getLane() const;
+        unsigned int getColumn() const;
         void goUp();
         void goDown();
         void goLeft();

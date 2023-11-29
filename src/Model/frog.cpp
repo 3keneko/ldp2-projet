@@ -1,10 +1,10 @@
 #include "frog.hpp"
 
-unsigned int Frog::getLane() {
+unsigned int Frog::getLane() const {
     return lane_number;
 }
 
-unsigned int Frog::getColumn() {
+unsigned int Frog::getColumn() const {
     return column;
 }
 

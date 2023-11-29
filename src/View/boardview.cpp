@@ -2,7 +2,7 @@
 
 void BoardView::draw() {
   for (auto& c: cv) {
-    std::cout << "3" << std::endl;
+    // std::cout << "3" << std::endl;
     c->draw();
   }
 }

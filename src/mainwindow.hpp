@@ -10,16 +10,16 @@ const int windowHeight = 500;
 
 class MainWindow : public Fl_Window {
   private:
-    std::shared_ptr<MainLoop> main;
+    std::unique_ptr<MainLoop> main;
     public:
-        MainWindow(std::shared_ptr<MainLoop> main) : Fl_Window(650, 650, windowWidth, windowHeight, "Frogger Game"), main(main) {
+        MainWindow(std::unique_ptr<MainLoop> main) : Fl_Window(650, 650, windowWidth, windowHeight, "Frogger Game"), main(std::move(main)) {
             Fl::add_timeout(1.0/refreshPerSecond, Timer_CB, this);
             resizable(this);
         }
         void draw() override {
             std::cout << "huh" << std::endl;
             Fl_Window::draw();
-          main->update();
+            main->update();
         }
 
         static void Timer_CB(void *userdata) {

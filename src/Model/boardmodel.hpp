@@ -13,6 +13,7 @@ class BoardModel {
     unsigned time = 0;
   public:
     BoardModel(std::vector<std::shared_ptr<MovingObject>> mv): cs(mv) {}
+
     void update() {
       time++;
       for (auto& c: cs) {

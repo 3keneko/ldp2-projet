@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 
-
+/// An abstract class that helps model a lane
 class Lane {
     private:
         const unsigned int id_num;

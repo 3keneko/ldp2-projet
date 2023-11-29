@@ -5,6 +5,9 @@
 
 const int HEIGHT_LANE = 20;
 
+
+/// An abstract class that represents moving objects
+
 class MovingObject {
   protected:
     const int speed;
@@ -13,12 +16,17 @@ class MovingObject {
     const unsigned int lane_id;
   public:
     MovingObject(const int speed, unsigned int centerX, const unsigned int size, const unsigned lane_id):
-          speed(speed), centerX(centerX), size(size), lane_id(lane_id) {}
+      speed(speed), centerX(centerX), size(size), lane_id(lane_id) {}
+
+    // moves the object
     void move() {
           centerX += speed;
     }
+
     unsigned getSize() const { return size; }
     unsigned getId() { return lane_id; }
+
+    // returns the x coordinate of the center of the object
     unsigned getCenterX() { return centerX; }
     std::tuple<unsigned, unsigned> getBoundaries() {
       if (centerX <= size / 2) {
@@ -26,6 +34,8 @@ class MovingObject {
       }
       return std::make_tuple(centerX - size/2, centerX + size/2);
     }
+
+    // returns the y coordinate of the top left element of the object
     unsigned getUpY() { return lane_id * HEIGHT_LANE; }
     std::tuple<unsigned, unsigned> getUpLeft()  {
       if (centerX <= size / 2) {
@@ -33,10 +43,15 @@ class MovingObject {
       }
       return std::make_tuple(centerX - size/2, getUpY());
     }
+
+    // returns the x coordinate of the top left element of the object
     unsigned getUpX() {
       return std::get<0>(getUpLeft());
     }
+
+    // returns true if this element collides with the frog
     virtual bool collide(Frog& frog);
+
     int getSpeed() const { return speed; }
     virtual ~MovingObject() {}
 };

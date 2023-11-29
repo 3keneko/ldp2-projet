@@ -1,13 +1,18 @@
 #include <iostream>
 #include <memory>
+#include <type_traits>
 #include "mainloop.hpp"
 #include "mainwindow.hpp"
 #include "View/boardview.hpp"
 #include "View/movingobjectview.hpp"
+#include "Model/frog.hpp"
+#include "View/frogview.hpp"
 
 int main(int argc, char *argv[]) {
   std::cout << "1" << std::endl;
   std::srand(static_cast<unsigned>(time(nullptr)));
+  auto frog = std::make_unique<Frog>(1, 10);
+  auto fv = std::make_unique<FrogView>(std::move(frog));
   auto c = std::make_shared<Car>(1, 40, 40, 7);
   auto d = std::make_shared<Car>(-1, 500, 40, 8);
   std::vector<std::shared_ptr<MovingObject>> cs { c, d };
@@ -16,8 +21,8 @@ int main(int argc, char *argv[]) {
   auto dv = std::make_shared<CarView>(d);
   std::vector<std::shared_ptr<MovingObjectView>> cars { cv, dv };
   auto bv = std::make_shared<BoardView>(cars, b);
-  MainLoop ml(b, bv);
-  MainWindow window(std::make_shared<MainLoop>(ml));
+  auto ml = std::make_unique<MainLoop>(b, bv, std::move(fv), std::move(frog));
+  MainWindow window(std::move(ml));
   window.show(argc, argv);
   return Fl::run();
 }

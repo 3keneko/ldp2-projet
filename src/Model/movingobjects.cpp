@@ -1,12 +1,11 @@
 #include "movingobjects.hpp"
+#include "frog.hpp"
 
 bool MovingObject::collide(Frog& frog) {
-    if (speed > 0)
-        return frog.getColumn() <= head &&
-            frog.getColumn() >= head - size;
-    else
-        return frog.getColumn() >= head &&
-            frog.getColumn() <= head + size;
+    int a, b;
+    std::tie(a, b) = getBoundaries();
+    return a <= frog.getColumn() && b <= frog.getColumn() &&
+        frog.getLane() == getId();
 }
 
 bool Turtle::collide(Frog& frog) {
