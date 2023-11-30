@@ -25,8 +25,8 @@
 #include <FL/fl_draw.H>
 
 const int HEIGHT_LANE = 20;
-const int FROG_WIDTH = 200;
-const int FROG_HEIGHT = 200;
+const int FROG_WIDTH = 20;
+const int FROG_HEIGHT = 20;
 
 std::tuple<int, int> getImagePos(const Frog& frog) {
     auto x = frog.getLane() * (HEIGHT_LANE + 1);
@@ -36,7 +36,6 @@ std::tuple<int, int> getImagePos(const Frog& frog) {
 
 void FrogView::draw() {
     int a, b;
-    std::cout << "frog drawn" << std::endl;
     std::tie(a, b) = getImagePos(*frog);
     //auto frog_drawing = std::make_unique<Fl_PNG_Image>("14-1.png");
     //frog_drawing->draw(a, b, FROG_WIDTH, FROG_HEIGHT);

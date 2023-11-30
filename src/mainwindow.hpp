@@ -17,7 +17,6 @@ class MainWindow : public Fl_Window {
             resizable(this);
         }
         void draw() override {
-            std::cout << "huh" << std::endl;
             Fl_Window::draw();
             main->update();
         }

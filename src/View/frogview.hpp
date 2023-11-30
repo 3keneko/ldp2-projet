@@ -6,11 +6,11 @@
 #include <tuple>
 
 class FrogView {
-    std::unique_ptr<Frog> frog;
+    std::shared_ptr<Frog> frog;
     unsigned int tick = 0;
 
 public:
-    FrogView(std::unique_ptr<Frog> f): frog(std::move(f)) {}
+    FrogView(std::shared_ptr<Frog> f): frog(f) {}
     void draw();
     void moveLeft();
     void moveRight();

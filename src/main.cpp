@@ -11,8 +11,9 @@
 int main(int argc, char *argv[]) {
   std::cout << "1" << std::endl;
   std::srand(static_cast<unsigned>(time(nullptr)));
-  auto frog = std::make_unique<Frog>(1, 10);
-  auto fv = std::make_unique<FrogView>(std::move(frog));
+  Frog frog { 1, 10 };
+  auto frg_ptr = std::make_shared<Frog>(frog);
+  auto fv = std::make_shared<FrogView>(frg_ptr);
   auto c = std::make_shared<Car>(1, 40, 40, 7);
   auto d = std::make_shared<Car>(-1, 500, 40, 8);
   std::vector<std::shared_ptr<MovingObject>> cs { c, d };
@@ -21,7 +22,7 @@ int main(int argc, char *argv[]) {
   auto dv = std::make_shared<CarView>(d);
   std::vector<std::shared_ptr<MovingObjectView>> cars { cv, dv };
   auto bv = std::make_shared<BoardView>(cars, b);
-  auto ml = std::make_unique<MainLoop>(b, bv, std::move(fv), std::move(frog));
+  auto ml = std::make_unique<MainLoop>(b, bv, fv, frg_ptr);
   MainWindow window(std::move(ml));
   window.show(argc, argv);
   return Fl::run();

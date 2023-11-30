@@ -8,7 +8,7 @@ void CarView::draw() {
   std::shared_ptr<Car> c = std::dynamic_pointer_cast<Car>(getMovin());
   if (c) {
     fl_draw_box(FL_FLAT_BOX, c->getUpX(), c->getUpY(), c->getSize(), HEIGHT_LANE, FL_BLUE);
-    std::cout << c->getUpX() << " " << c->getUpY() << std::endl;
+    // std::cout << c->getUpX() << " " << c->getUpY() << std::endl;
   }
   //fl_color(FL_BLACK);
   //fl_draw_box(FL_FLAT_BOX, 20, 20, 10, 10, FL_BLUE);

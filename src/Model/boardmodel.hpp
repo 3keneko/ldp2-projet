@@ -17,7 +17,6 @@ class BoardModel {
     void update() {
       time++;
       for (auto& c: cs) {
-        std::cout << "Before " << c->getUpX() << std::endl;
         c->move();
       }
     }
