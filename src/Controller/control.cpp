@@ -6,19 +6,44 @@ with FLTK to let the user control the game
 #include "control.hpp"
 #include <FL/Fl.H>
 #include <iostream>
+#include <algorithm>
 
-void Controller::processKey() {
-    auto c = Fl::event_key();
+void Controller::resetPressedKeys() {
+    for (auto& [a, last_pressed]: is_pressed) last_pressed = false;
+}
+void Controller::updatePressedKeys(const char&& last_key_pressed) {
+    for (auto&[key, last_pressed]: is_pressed) {
+        last_pressed = key == last_key_pressed;
+    }
+}
+
+
+void Controller::processKey(char& c) {
     switch (c) {
         case 'z':
-            f->goUp();
+            if (Fl::get_key('z') && !is_pressed['z']) {
+                updatePressedKeys('z');
+                f->goUp();
+            }
             break;
         case 'q':
-            f->goLeft(); break;
+            if (Fl::get_key('q') && !is_pressed['q']) {
+                updatePressedKeys('q');
+                f->goLeft();
+            }
+            break;
         case 's':
-            f->goDown(); break;
+            if (Fl::get_key('s') && !is_pressed['s']) {
+                updatePressedKeys('s');
+                f->goDown();
+            }
+            break;
         case 'd':
-            f->goRight(); break;
+            if (Fl::get_key('d') && !is_pressed['d']) {
+                updatePressedKeys('d');
+                f->goRight();
+            }
+            break;
         default:
             return;
     }

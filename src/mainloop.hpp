@@ -7,6 +7,7 @@
 #include "Model/frog.hpp"
 #include <FL/Fl_PNG_Image.H>
 #include "Controller/control.hpp"
+#include <FL/Fl.H>
 
 class MainLoop {
   private:
@@ -23,7 +24,10 @@ class MainLoop {
       bm->update();
       bv->draw();
       fv->draw();
-      c.processKey();
+      char key = Fl::event_key();
+      c.processKey(key);
+      int s = Fl::event();
+      if (s == FL_KEYUP) c.resetPressedKeys();
     }
     std::shared_ptr<BoardModel> getModel() { return bm; }
     std::shared_ptr<BoardView> getView() { return bv; }
