@@ -8,6 +8,8 @@
 #include "Model/frog.hpp"
 #include "View/frogview.hpp"
 
+void init() {}
+
 int main(int argc, char *argv[]) {
   std::cout << "1" << std::endl;
   std::srand(static_cast<unsigned>(time(nullptr)));
