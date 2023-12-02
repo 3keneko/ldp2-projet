@@ -16,11 +16,13 @@ int main(int argc, char *argv[]) {
   auto fv = std::make_shared<FrogView>(frg_ptr);
   auto c = std::make_shared<Car>(1, 40, 40, 7);
   auto d = std::make_shared<Car>(-1, 500, 40, 8);
-  std::vector<std::shared_ptr<MovingObject>> cs { c, d };
+  auto e = std::make_shared<Log>(2, 20, 100, 9);
+  std::vector<std::shared_ptr<MovingObject>> cs { c, d, e };
   auto b = std::make_shared<BoardModel>(cs);
   auto cv = std::make_shared<CarView>(c);
   auto dv = std::make_shared<CarView>(d);
-  std::vector<std::shared_ptr<MovingObjectView>> cars { cv, dv };
+  auto lv = std::make_shared<LogView>(e);
+  std::vector<std::shared_ptr<MovingObjectView>> cars { cv, dv, lv };
   auto bv = std::make_shared<BoardView>(cars, b);
   auto ml = std::make_unique<MainLoop>(b, bv, fv, frg_ptr);
   MainWindow window(std::move(ml));

@@ -23,19 +23,15 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
+#include "../constants.hpp"
 
-const int WINDOW_WIDTH = 650;
-const int WINDOW_HEIGHT = 650;
-const int HEIGHT_LANE = 20;
-const int FROG_WIDTH = 20;
-const int FROG_HEIGHT = 20;
-const int NUMBER_LANES = 24;
-
+using namespace constants;
 /// Retrieves the coordinate at which the frog should be placed
 /// according to the column and lane it is in
 std::tuple<int, int> getImagePos(const Frog& frog) {
     auto x = frog.getColumn() * 30;
-    auto y = (NUMBER_LANES - frog.getLane()) * (HEIGHT_LANE + 1);
+    auto y = (lanes::NUMBER - frog.getLane())
+        * (lanes::HEIGHT + 1);
     return std::make_tuple(x, y);
 }
 /// * <------- LANE 8 -------> */ <- y=0
@@ -51,5 +47,5 @@ void FrogView::draw() {
     std::tie(a, b) = getImagePos(*frog);
     //auto frog_drawing = std::make_unique<Fl_PNG_Image>("14-1.png");
     //frog_drawing->draw(a, b, FROG_WIDTH, FROG_HEIGHT);
-    fl_draw_box(FL_FLAT_BOX, a, b, FROG_WIDTH, FROG_HEIGHT, FL_GREEN);
+    fl_draw_box(FL_FLAT_BOX, a, b, frog::WIDTH, frog::HEIGHT, FL_GREEN);
 }

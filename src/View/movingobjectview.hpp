@@ -27,5 +27,11 @@ class CarView: public MovingObjectView {
     ~CarView() {}
 };
 
+class LogView: public MovingObjectView {
+    public:
+        LogView(std::shared_ptr<Log> l): MovingObjectView(l) {}
+        void draw() override;
+        ~LogView() {}
+};
 
 #endif // MOVINGOBJECTVIEW_H_
