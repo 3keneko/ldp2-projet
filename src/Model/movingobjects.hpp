@@ -72,6 +72,7 @@ class Turtle: public MovingObject {
             MovingObject(speed, head, size, lane_id), diving(false) {}
         void dive() { diving=true; }
         void undive() { diving=false; }
+        bool isDiving() const { return diving; }
         bool collide(Frog& frog) final override;
         ~Turtle() {}
 };
