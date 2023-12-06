@@ -13,15 +13,15 @@ class LaneView {
         std::vector<std::shared_ptr<MovingObjectView>> viewable;
     public:
         LaneView(std::shared_ptr<Lane> lane, std::vector<std::shared_ptr<MovingObjectView>> mvv): lane(lane), viewable(mvv) {}
-        virtual void draw(Fl_Color const& color);
+        virtual void draw() = 0;
         ~LaneView() {}
 };
-/*
+
 class WaterLaneView: public LaneView {
     public:
         WaterLaneView(std::shared_ptr<WaterLane> wl, std::vector<std::shared_ptr<MovingObjectView>> mvv): LaneView(wl, mvv) {}
         void draw() override;
         ~WaterLaneView() {}
 };
-*/
+
 #endif // LANEVIEW_H_

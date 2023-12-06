@@ -24,8 +24,15 @@ void CarView::draw() {
 
 void LogView::draw() {
   std::shared_ptr<Log> l = std::dynamic_pointer_cast<Log>(getMovin());
-
   if (l)
     fl_draw_box(FL_FLAT_BOX, l->getUpX(), l->getUpY(), l->getSize(),
                 lanes::HEIGHT, fl_rgb_color(139, 69, 16));
 }
+
+void TurtleView::draw() {
+  std::shared_ptr<Turtle> t = std::dynamic_pointer_cast<Turtle>(getMovin());
+  if (t && !t->isDiving()) {
+    fl_draw_box(FL_FLAT_BOX, t->getUpX(), t->getUpY(), t->getSize(),
+                lanes::HEIGHT, fl_rgb_color(3, 75, 3));
+  }
+};

@@ -34,4 +34,11 @@ class LogView: public MovingObjectView {
         ~LogView() {}
 };
 
+class TurtleView: public MovingObjectView {
+    public:
+        TurtleView(std::shared_ptr<Turtle> t): MovingObjectView(t) {}
+        void draw() override;
+        ~TurtleView() {}
+};
+
 #endif // MOVINGOBJECTVIEW_H_

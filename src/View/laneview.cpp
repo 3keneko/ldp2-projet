@@ -1,0 +1,14 @@
+#include "laneview.hpp"
+#include "../constants.hpp"
+#include <FL/Enumerations.H>
+#include <FL/Fl_Box.H>
+#include <FL/fl_draw.H>
+
+using namespace constants::lanes;
+
+void WaterLaneView::draw() {
+    fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - lane->getId()),
+                constants::window::WIDTH, HEIGHT, FL_BLUE);
+    for (auto& object: viewable)
+        object->draw();
+}
