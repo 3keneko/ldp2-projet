@@ -9,13 +9,11 @@
 class Lane {
     private:
         const unsigned int id_num;
-        const unsigned int length;
         std::vector<std::shared_ptr<MovingObject>> objects;
     public:
-        Lane(const unsigned int id_num, const unsigned int length):
-            id_num(id_num), length(length) {}
+        Lane(const unsigned int id_num):
+            id_num(id_num) {}
         unsigned int getId() const { return id_num; }
-        unsigned int getLength() const { return length; }
         std::vector<std::shared_ptr<MovingObject>> getObjects() { return objects; }
         ~Lane() {}
 };
@@ -32,15 +30,15 @@ class RoadLane: public Lane {
 
 class SafeLane: public Lane {
     public:
-        SafeLane(const unsigned int id, const unsigned int length):
-            Lane(id, length) {}
+        SafeLane(const unsigned int id):
+            Lane(id) {}
         ~SafeLane();
 };
 
 class WaterLane: public Lane {
     public:
-        WaterLane(const unsigned int id, const unsigned int length):
-            Lane(id, length) {}
+        WaterLane(const unsigned int id):
+            Lane(id) {}
         ~WaterLane();
 };
 

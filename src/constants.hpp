@@ -14,6 +14,9 @@ namespace constants {
         const int WIDTH = 20;
         const int HEIGHT = 20;
     }
+    namespace turtle {
+        const int length = 40;
+    }
 }
 
 #endif // CONSTANTS_H_

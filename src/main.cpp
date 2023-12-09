@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <type_traits>
+#include "maininit.hpp"
 #include "mainloop.hpp"
 #include "mainwindow.hpp"
 #include "View/boardview.hpp"
@@ -12,8 +13,10 @@ void init() {}
 
 int main(int argc, char *argv[]) {
   std::cout << "1" << std::endl;
+  MainInit maininit {};
   std::srand(static_cast<unsigned>(time(nullptr)));
   Frog frog { 1, 10 };
+  std::vector<std::shared_ptr<Lane>> lanes;
   auto frg_ptr = std::make_shared<Frog>(frog);
   auto fv = std::make_shared<FrogView>(frg_ptr);
   auto c = std::make_shared<Car>(1, 40, 40, 7);
