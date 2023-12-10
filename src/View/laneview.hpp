@@ -14,7 +14,7 @@ class LaneView {
     public:
         LaneView(std::shared_ptr<Lane> lane, std::vector<std::shared_ptr<MovingObjectView>> mvv): lane(lane), viewable(mvv) {}
         virtual void draw() = 0;
-        ~LaneView() {}
+        virtual ~LaneView() {}
 };
 
 class WaterLaneView: public LaneView {

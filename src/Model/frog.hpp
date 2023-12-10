@@ -6,6 +6,7 @@ class Frog {
         unsigned int lane_number;
         unsigned int column;
     public:
+        Frog() = default;
         Frog(unsigned int lane_number, unsigned int column): lane_number(lane_number), column(column) {}
         unsigned int getLane() const ;
         unsigned int getColumn() const;
