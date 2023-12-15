@@ -75,5 +75,6 @@ class FinalLaneView: public WaterLaneView {
         FinalLaneView(): WaterLaneView() {}
         void draw() final;
         ~FinalLaneView() {}
-}
+};
+
 #endif // LANEVIEW_H_

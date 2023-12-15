@@ -7,21 +7,21 @@
 
 using namespace constants::lanes;
 
-LaneView::LaneView(std::shared_ptr<Lane> l) {
-    for (auto& obj: l->getObjects()) {
+// LaneView::LaneView(std::shared_ptr<Lane> l) {
+//     for (auto& obj: l->getObjects()) {
 
-    }
-}
+//     }
+// }
 
-void LaneView::draw() {
-    for (auto& object: viewable) {
-        object->draw();
-    }
-}
+// void LaneView::draw() {
+//     for (auto& object: viewable) {
+//         object->draw();
+//     }
+// }
 
-void WaterLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - lane->getId()),
-                constants::window::WIDTH, HEIGHT, FL_BLUE);
-    for (auto& object: viewable)
-        object->draw();
-}
+// void WaterLaneView::draw() {
+//     fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - lane->getId()),
+//                 constants::window::WIDTH, HEIGHT, FL_BLUE);
+//     for (auto& object: viewable)
+//         object->draw();
+// }
