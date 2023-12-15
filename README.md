@@ -1,5 +1,5 @@
 # Fiche de trucs à faire et à défaire pour le projet LDP 2.
-- [ X ] MAIN <br />
+- [X] MAIN <br />
 Le code suivant dans le main.cpp est horrible, il devrait être changé
 
 ```cpp
