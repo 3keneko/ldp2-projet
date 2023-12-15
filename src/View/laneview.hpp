@@ -13,7 +13,7 @@ class LaneView {
         std::vector<std::shared_ptr<MovingObjectView>> viewable;
     public:
         LaneView(std::shared_ptr<Lane> lane, std::vector<std::shared_ptr<MovingObjectView>> mvv): lane(lane), viewable(mvv) {}
-        virtual void draw() = 0;
+        virtual void draw();
         virtual ~LaneView() {}
 };
 

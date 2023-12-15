@@ -6,6 +6,12 @@
 
 using namespace constants::lanes;
 
+void LaneView::draw() {
+    for (auto& object: viewable) {
+        object->draw();
+    }
+}
+
 void WaterLaneView::draw() {
     fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - lane->getId()),
                 constants::window::WIDTH, HEIGHT, FL_BLUE);

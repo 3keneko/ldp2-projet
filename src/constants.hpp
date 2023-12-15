@@ -15,7 +15,7 @@ namespace constants {
         const int HEIGHT = 20;
     }
     namespace turtle {
-        const int length = 40;
+        const int LENGTH = 40;
     }
 }
 
