@@ -20,11 +20,12 @@ class Lane {
 
 class RoadLane: public Lane {
     private:
-        const unsigned int car_by_pack;
-        const unsigned int space_between_cars;
-        std::vector<std::unique_ptr<Car>> cars;
+        std::vector<std::shared_ptr<Car>> cars;
     public:
         RoadLane();
+        RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
+                 const unsigned int& space_between_cars, const unsigned& space_between_packs,
+                 const int& first_car_placement, const unsigned int& size_car, const int& speed=1);
         ~RoadLane();
 };
 
@@ -39,17 +40,17 @@ class WaterLane: public Lane {
     public:
         WaterLane(const unsigned int id):
             Lane(id) {}
-        ~WaterLane();
+        ~WaterLane() {}
 };
 
 class LogLane: public WaterLane {
     private:
-        const unsigned int logs_per_pack;
-        const unsigned int space_between_logs;
         std::vector<std::unique_ptr<Log>> logs;
     public:
-        LogLane();
-        ~LogLane();
+        LogLane(const unsigned int id_num, const unsigned int& log_by_pack,
+            const unsigned int& space_between_logs, const unsigned& space_between_packs,
+            const int& first_log_placement, const unsigned int& size_log, const int& speed=1);
+        ~LogLane() {}
 };
 
 class FinishLane: public WaterLane {
@@ -60,12 +61,12 @@ class FinishLane: public WaterLane {
 
 class TurtleLane: public WaterLane {
     private:
-        const unsigned int turtle_per_pack;
-        const unsigned int space_between_turtles;
         std::vector<std::unique_ptr<Turtle>> turtles;
     public:
-        TurtleLane();
-        ~TurtleLane();
+        TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack,
+            const unsigned int& space_between_turtles, const unsigned& space_between_packs,
+            const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed=1);
+        ~TurtleLane() {}
 };
 
 #endif // LANE_H_
