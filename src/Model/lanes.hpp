@@ -9,12 +9,10 @@
 class Lane {
     private:
         const unsigned int id_num;
-        std::vector<std::shared_ptr<MovingObject>> objects;
     public:
         Lane(const unsigned int id_num):
             id_num(id_num) {}
         unsigned int getId() const { return id_num; }
-        std::vector<std::shared_ptr<MovingObject>> getObjects() { return objects; }
         ~Lane() {}
 };
 
@@ -44,7 +42,7 @@ class WaterLane: public Lane {
 
 class LogLane: public WaterLane {
     private:
-        std::vector<std::unique_ptr<Log>> logs;
+        std::vector<std::shared_ptr<Log>> logs;
     public:
         LogLane(const unsigned int id_num, const unsigned int& log_by_pack,
             const unsigned int& space_between_logs, const unsigned& space_between_packs,
@@ -60,11 +58,12 @@ class FinishLane: public WaterLane {
 
 class TurtleLane: public WaterLane {
     private:
-        std::vector<std::unique_ptr<Turtle>> turtles;
+        std::vector<std::shared_ptr<Turtle>> turtles;
     public:
         TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack,
             const unsigned int& space_between_turtles, const unsigned& space_between_packs,
             const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed=1);
+        std::vector<std::shared_ptr<Turtle>> getTurtles() { return turtles; }
         ~TurtleLane() {}
 };
 

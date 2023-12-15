@@ -25,3 +25,10 @@ using namespace constants::lanes;
 //     for (auto& object: viewable)
 //         object->draw();
 // }
+
+void TurtleLaneView::draw() {
+    fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - tl->getId()),
+                constants::window::WIDTH, HEIGHT, FL_BLUE);
+    for (auto& object: tv)
+        object->draw();
+}

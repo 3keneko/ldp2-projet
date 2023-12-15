@@ -64,8 +64,13 @@ class LogLaneView: public WaterLaneView {
 class TurtleLaneView: public WaterLaneView {
     private:
         std::shared_ptr<TurtleLane> tl;
+        std::vector<std::shared_ptr<TurtleView>> tv {};
     public:
-        TurtleLaneView(std::shared_ptr<TurtleLane> tl): WaterLaneView(), tl(tl) {}
+        TurtleLaneView(std::shared_ptr<TurtleLane> tl): WaterLaneView(), tl(tl) {
+            for (auto& turtle: tl->getTurtles()) {
+                tv.push_back(std::make_shared<TurtleView>(turtle));
+            }
+        }
         void draw() final;
         ~TurtleLaneView() {}
 };
