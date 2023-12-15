@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
   std::srand(static_cast<unsigned>(time(nullptr)));
   Frog frog { 1, 10 };
   MainInit m {};
-  auto ml = std::make_unique<MainLoop>(m.getBoardModel(), m.getBoardView(), m.getFrogView(), fr);
+  auto ml = std::make_unique<MainLoop>(m.getBoardModel(), m.getBoardView(), m.getFrogView(), frog);
   MainWindow window(std::move(ml));
   window.show(argc, argv);
   return Fl::run();

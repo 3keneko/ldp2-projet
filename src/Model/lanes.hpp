@@ -23,6 +23,7 @@ class RoadLane: public Lane {
         RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
                  const unsigned int& space_between_cars, const unsigned& space_between_packs,
                  const int& first_car_placement, const unsigned int& size_car, const int& speed=1);
+        std::vector<std::shared_ptr<Car>> getCars() {return cars;}
         ~RoadLane() {}
 };
 
@@ -47,6 +48,7 @@ class LogLane: public WaterLane {
         LogLane(const unsigned int id_num, const unsigned int& log_by_pack,
             const unsigned int& space_between_logs, const unsigned& space_between_packs,
             const int& first_log_placement, const unsigned int& size_log, const int& speed=1);
+        std::vector<std::shared_ptr<Log>> getLogs() {return logs;}
         ~LogLane() {}
 };
 

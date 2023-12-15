@@ -39,15 +39,20 @@ class SafeLaneView: public LaneView {
         std::shared_ptr<SafeLane> sfl;
     public:
         SafeLaneView(std::shared_ptr<SafeLane> sfl): sfl(sfl) {}
-        virtual void draw() final;
+        void draw() final;
         ~SafeLaneView() {}
 };
 
 class RoadLaneView: public LaneView {
     private:
         std::shared_ptr<RoadLane> rl;
+        std::vector<std::shared_ptr<CarView>> cv;
     public:
-        RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(), rl(rl) {}
+        RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(), rl(rl) {
+            for (auto& car: rl->getCars()) {
+                cv.push_back(std::make_shared<CarView>(car));
+            }
+        }
         void draw() final;
         ~RoadLaneView() {}
 };
@@ -55,8 +60,13 @@ class RoadLaneView: public LaneView {
 class LogLaneView: public WaterLaneView {
     private:
         std::shared_ptr<LogLane> ll;
+        std::vector<std::shared_ptr<LogView>> lv;
     public:
-        LogLaneView(std::shared_ptr<LogLane> ll): WaterLaneView(), ll(ll) {}
+        LogLaneView(std::shared_ptr<LogLane> ll): WaterLaneView(), ll(ll) {
+            for (auto& _log: ll->getLogs()) {
+                lv.push_back(std::make_shared<LogView>(_log));
+            }
+        }
         void draw() final;
         ~LogLaneView() {}
 };
