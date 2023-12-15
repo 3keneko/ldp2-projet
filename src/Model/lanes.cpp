@@ -11,7 +11,6 @@ void pack_initializer(const unsigned int& by_pack, const unsigned int& space_bet
                       const int& speed, const unsigned lane_id, int padding=0) {
     using namespace constants::window;
     int buffer = first_placement;
-    int res = 0;
     while (buffer < WIDTH + padding) {
         unsigned int in_pack = 0;
         while (buffer < WIDTH + padding && in_pack <= by_pack) {

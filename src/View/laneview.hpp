@@ -27,12 +27,12 @@ class LaneView {
         virtual ~LaneView() {}
 };
 
-class WaterLaneView: public LaneView {
-    public:
-        WaterLaneView(): LaneView() {}
-        virtual void draw() override;
-        virtual ~WaterLaneView() {}
-};
+// class WaterLaneView: public LaneView {
+//     public:
+//         WaterLaneView(): LaneView() {}
+//         virtual void draw() override = 0;
+//         virtual ~WaterLaneView() {}
+// };
 
 class SafeLaneView: public LaneView {
     private:
@@ -57,12 +57,12 @@ class RoadLaneView: public LaneView {
         ~RoadLaneView() {}
 };
 
-class LogLaneView: public WaterLaneView {
+class LogLaneView: public LaneView {
     private:
         std::shared_ptr<LogLane> ll;
         std::vector<std::shared_ptr<LogView>> lv;
     public:
-        LogLaneView(std::shared_ptr<LogLane> ll): WaterLaneView(), ll(ll) {
+        LogLaneView(std::shared_ptr<LogLane> ll): LaneView(), ll(ll) {
             for (auto& _log: ll->getLogs()) {
                 lv.push_back(std::make_shared<LogView>(_log));
             }
@@ -71,12 +71,12 @@ class LogLaneView: public WaterLaneView {
         ~LogLaneView() {}
 };
 
-class TurtleLaneView: public WaterLaneView {
+class TurtleLaneView: public LaneView {
     private:
         std::shared_ptr<TurtleLane> tl;
         std::vector<std::shared_ptr<TurtleView>> tv {};
     public:
-        TurtleLaneView(std::shared_ptr<TurtleLane> tl): WaterLaneView(), tl(tl) {
+        TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(), tl(tl) {
             for (auto& turtle: tl->getTurtles()) {
                 tv.push_back(std::make_shared<TurtleView>(turtle));
             }
@@ -85,9 +85,9 @@ class TurtleLaneView: public WaterLaneView {
         ~TurtleLaneView() {}
 };
 
-class FinalLaneView: public WaterLaneView {
+class FinalLaneView: public LaneView {
     public:
-        FinalLaneView(): WaterLaneView() {}
+        FinalLaneView(): LaneView() {}
         void draw() final;
         ~FinalLaneView() {}
 };
