@@ -36,11 +36,13 @@ Il manque une classe view pour turtle
 
 - [ ] LANES dans l'initialisation <br/>
 Ce serait bien qu'on initialise directment avec des lanes quand même :sob:, dans l'état actuel, 
-on initialise à chaque fois de manière brute 
-
-- [ ] WaterLanes en bleu <br/>
-Oui stp :pleading_face:
-
+on initialise à chaque fois de manière brute.
+#### C'est en cours de route!!! 
+Beaucoup de classes View ont été rajoutées dans  laneview.hpp, 
+il reste à écrire des initialiseurs corrects pour la plupart de ces classes, puis on fera tourner le code
+- ~~[ ] WaterLanes en bleu~~ <br/>
+~~Oui stp :pleading_face:~~
+On va plutôt colorer les classes filles de WaterLanes en bleu, colorer waterlanes directement s'annonce plus coton pour l'instant
 - [ ] Gérer les collisions <br/>
 Il faudrait au moins que ça affiche "poc" dans le terminal quand la grenouille touche un truc
 
