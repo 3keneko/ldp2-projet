@@ -3,8 +3,15 @@
 #include <FL/Enumerations.H>
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
+#include <memory>
 
 using namespace constants::lanes;
+
+LaneView::LaneView(std::shared_ptr<Lane> l) {
+    for (auto& obj: l->getObjects()) {
+
+    }
+}
 
 void LaneView::draw() {
     for (auto& object: viewable) {

@@ -22,18 +22,17 @@ class RoadLane: public Lane {
     private:
         std::vector<std::shared_ptr<Car>> cars;
     public:
-        RoadLane();
         RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
                  const unsigned int& space_between_cars, const unsigned& space_between_packs,
                  const int& first_car_placement, const unsigned int& size_car, const int& speed=1);
-        ~RoadLane();
+        ~RoadLane() {}
 };
 
 class SafeLane: public Lane {
     public:
         SafeLane(const unsigned int id):
             Lane(id) {}
-        ~SafeLane();
+        ~SafeLane() {}
 };
 
 class WaterLane: public Lane {
@@ -56,7 +55,7 @@ class LogLane: public WaterLane {
 class FinishLane: public WaterLane {
     public:
         FinishLane();
-        ~FinishLane();
+        ~FinishLane() {}
 };
 
 class TurtleLane: public WaterLane {
