@@ -1,5 +1,5 @@
 # Fiche de trucs à faire et à défaire pour le projet LDP 2.
-- [ X ] 1. MAIN 
+- [ X ] MAIN 
 Le code suivant dans le main.cpp est horrible, il devrait être changé
 
 ```cpp
@@ -28,15 +28,22 @@ Le code suivant dans le main.cpp est horrible, il devrait être changé
 - Être plus intelligent lors de l'initialisation ?
 - Une classe d'initialisation ?
 
-- [ ] 2. Les lanes sont inversées
+- [ ] Les lanes sont inversées
 Lors de l'affichage des objets sur le plateau, mettre une lane plus grande qu'une autre fait que l'on a les objets affichés dans l'ordre inverse que ce que l'on voudrait
 
-- [X] 3. TurtleView
+- [X] TurtleView
 Il manque une classe view pour turtle
 
-- [ ] 4. LANES
+- [ ] LANES dans l'initialisation
 Ce serait bien qu'on initialise directment avec des lanes quand même :sob:, dans l'état actuel, 
 on initialise à chaque fois de manière brute 
 
-- [ ] 5. WaterLanes en bleu
+- [ ] WaterLanes en bleu
 Oui stp :pleading_face:
+
+- [ ] Gérer les collisions
+Il faudrait au moins que ça affiche "poc" dans le terminal quand la grenouille touche un truc
+
+- [ ] Faire revenir les objets sur le plateau et initialiser par paquet
+Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il soit plus vivant
+donc rajoutons des voitures par paquets et tout, ce serait cool!
