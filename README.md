@@ -28,8 +28,9 @@ Le code suivant dans le main.cpp est horrible, il devrait être changé
 - Être plus intelligent lors de l'initialisation ?
 - Une classe d'initialisation ?
 
-- [ ] Les lanes sont inversées <br/>
+- [x] Les lanes sont inversées <br/>
 Lors de l'affichage des objets sur le plateau, mettre une lane plus grande qu'une autre fait que l'on a les objets affichés dans l'ordre inverse que ce que l'on voudrait
+ça aussi c'est fait!
 
 - [X] TurtleView <br/>
 Il manque une classe view pour turtle
