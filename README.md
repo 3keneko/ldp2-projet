@@ -38,6 +38,17 @@ Il manque une classe view pour turtle
 - [x] LANES dans l'initialisation <br/>
 Ce serait bien qu'on initialise directment avec des lanes quand même :sob:, dans l'état actuel, 
 on initialise à chaque fois de manière brute.
+
+- [ ] Le contrôle de la grenouille est bugué <br/>
+Parfois, la grenouille avec de 2 ou 3 cases au lieu d'une.
+
+- [ ] Gérer la mort <br/>
+Parce que c'est important de mourir
+
+- [ ] Faire avancer la grenouille quand elle est sur une buche <br/>
+Je pensais à faire avancer la grenouille case par case dans le modèle de manière à ce que ce soit un minimum coordonné avec les buches.
+Il est important qu'on ne puisse pas sauter entre deux cases. 
+
 #### C'est en cours de route!!! 
 Beaucoup de classes View ont été rajoutées dans  laneview.hpp, 
 il reste à écrire des initialiseurs corrects pour la plupart de ces classes, puis on fera tourner le code
@@ -46,8 +57,17 @@ DONE!!!!
 - ~~[ ] WaterLanes en bleu~~ <br/>
 ~~Oui stp :pleading_face:~~
 On va plutôt colorer les classes filles de WaterLanes en bleu, colorer waterlanes directement s'annonce plus coton pour l'instant
+
+- [ ] Définir les objets de finnishLane <br/>
+D'accord définir de nouveaux objets imobiles (finnishCase?) et puis le mettre dans finnishLane
+Définir des collisions avec ces objets
+Définir des collisions avec toute la lane sauf ces objets (la mort quoi)
+
 - [ ] Gérer les collisions <br/>
 Il faudrait au moins que ça affiche "poc" dans le terminal quand la grenouille touche un truc
+Pour les collisions avec les voitures dans le programme, il y a un décalage avec les collisions
+Gérer les collisions mortelles dans les WaterLanes
+Gérer les collisions avec les Logs (pour faire bouger la grenouille avec la log)
 
 - [x] Faire revenir les objets sur le plateau et initialiser par paquet <br/>
 Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il soit plus vivant

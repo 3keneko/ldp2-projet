@@ -23,7 +23,13 @@ class BoardModel {
         }
       }
     }
-    
+    // Collision methods
+    bool isOutOfBoard(Frog& frog);
+    bool collidesWithAuto(Frog &frog, RoadLane& lane);
+    bool collidesInFinnishLane(Frog& frog);
+    bool isOnLog(Frog &frog, LogLane& lane);
+    bool isOnTurtle(Frog& frog, TurtleLane& tl);
+    bool isDrowning(Frog& frog, WaterLane& wl);
     bool any_collision(Frog& frog);
     ~BoardModel() {}
     unsigned getTime() const  { return time; }
