@@ -1,8 +1,8 @@
 #include "boardview.hpp"
 
 void BoardView::draw() {
-  for (auto& c: cv) {
+  for (auto& lane: lanes) {
     // std::cout << "3" << std::endl;
-    c->draw();
+    lane->draw();
   }
 }

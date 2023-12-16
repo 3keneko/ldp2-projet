@@ -4,12 +4,12 @@
 class Frog {
     private:
         unsigned int lane_number;
-        unsigned int column;
+        int column;
     public:
         Frog() = default;
-        Frog(unsigned int lane_number, unsigned int column): lane_number(lane_number), column(column) {}
+        Frog(unsigned int lane_number, int column): lane_number(lane_number), column(column) {}
         unsigned int getLane() const ;
-        unsigned int getColumn() const;
+        int getColumn() const;
         void goUp();
         void goDown();
         void goLeft();

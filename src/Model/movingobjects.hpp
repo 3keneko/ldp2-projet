@@ -1,6 +1,7 @@
 #ifndef MOVINGOBJECTS_H_
 #define MOVINGOBJECTS_H_
 #include "frog.hpp"
+#include <memory>
 #include <tuple>
 
 const int HEIGHT_LANE = 20;
@@ -11,42 +12,43 @@ const int HEIGHT_LANE = 20;
 class MovingObject {
   protected:
     const int speed;
-    unsigned int centerX;
+    int centerX;
     const unsigned int size;
     const unsigned int lane_id;
   public:
-    MovingObject(const int speed, unsigned int centerX, const unsigned int size, const unsigned lane_id):
+    MovingObject(const int speed, int centerX, const unsigned int size, const unsigned lane_id):
       speed(speed), centerX(centerX), size(size), lane_id(lane_id) {}
 
     // moves the object
-    void move() {
-          centerX += speed;
-    }
+    void move();
 
     unsigned getSize() const { return size; }
     unsigned getId() { return lane_id; }
 
     // returns the x coordinate of the center of the object
     unsigned getCenterX() { return centerX; }
+
     std::tuple<unsigned, unsigned> getBoundaries() {
-      if (centerX <= size / 2) {
-        return std::make_tuple(0, centerX+size/2);
+
+        int size_int = static_cast<int>(size);
+        if (centerX <= size_int / 2) {
+        return std::make_tuple(0, centerX+size_int/2);
       }
-      return std::make_tuple(centerX - size/2, centerX + size/2);
+      return std::make_tuple(centerX - size_int/2, centerX + size_int/2);
     }
 
     // returns the y coordinate of the top left element of the object
-    unsigned getUpY() { return lane_id * HEIGHT_LANE; }
-    std::tuple<unsigned, unsigned> getUpLeft()  {
-      if (centerX <= size / 2) {
-        return std::make_tuple(0, getUpY());
-      }
-      return std::make_tuple(centerX - size/2, getUpY());
-    }
-
+    // unsigned getUpY() { return lane_id* HEIGHT_LANE; }
+    // std::tuple<unsigned, unsigned> getUpLeft()  {
+    //   if (centerX <= size / 2) {
+    //     return std::make_tuple(0, getUpY());
+    //   }
+    //   return std::make_tuple(centerX - size/2, getUpY());
+    // }
     // returns the x coordinate of the top left element of the object
     unsigned getUpX() {
-      return std::get<0>(getUpLeft());
+      int size_int = static_cast<int>(size);
+      return centerX <= size / 2 ? 0 : centerX - size/2;
     }
 
     // returns true if this element collides with the frog

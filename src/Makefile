@@ -17,8 +17,7 @@ main: ${OBJECTS}
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 .PHONY: clean
 clean:
-	-rm *.o
-
+	-rm *.o && rm Model/*.o && rm View/*.o && rm Controller/*.o
 .PHONY: mrclean
 mrclean: clean
 	-rm ${BINS}

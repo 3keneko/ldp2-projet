@@ -21,8 +21,10 @@ class LaneView {
 */
 
 class LaneView {
+    protected:
+        std::shared_ptr<Lane> lane;
     public:
-        LaneView() {}
+        LaneView(std::shared_ptr<Lane> lane): lane(lane){}
         virtual void draw() = 0;
         virtual ~LaneView() {}
 };
@@ -35,20 +37,19 @@ class LaneView {
 // };
 
 class SafeLaneView: public LaneView {
-    private:
-        std::shared_ptr<SafeLane> sfl;
+    // private:
+    //     std::shared_ptr<SafeLane> sfl;
     public:
-        SafeLaneView(std::shared_ptr<SafeLane> sfl): sfl(sfl) {}
+        SafeLaneView(std::shared_ptr<SafeLane> sfl): LaneView(sfl) {}
         void draw() final;
         ~SafeLaneView() {}
 };
 
 class RoadLaneView: public LaneView {
     private:
-        std::shared_ptr<RoadLane> rl;
         std::vector<std::shared_ptr<CarView>> cv;
     public:
-        RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(), rl(rl) {
+        RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(rl) {
             for (auto& car: rl->getCars()) {
                 cv.push_back(std::make_shared<CarView>(car));
             }
@@ -59,10 +60,9 @@ class RoadLaneView: public LaneView {
 
 class LogLaneView: public LaneView {
     private:
-        std::shared_ptr<LogLane> ll;
         std::vector<std::shared_ptr<LogView>> lv;
     public:
-        LogLaneView(std::shared_ptr<LogLane> ll): LaneView(), ll(ll) {
+        LogLaneView(std::shared_ptr<LogLane> ll): LaneView(ll) {
             for (auto& _log: ll->getLogs()) {
                 lv.push_back(std::make_shared<LogView>(_log));
             }
@@ -76,7 +76,7 @@ class TurtleLaneView: public LaneView {
         std::shared_ptr<TurtleLane> tl;
         std::vector<std::shared_ptr<TurtleView>> tv {};
     public:
-        TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(), tl(tl) {
+        TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(tl) {
             for (auto& turtle: tl->getTurtles()) {
                 tv.push_back(std::make_shared<TurtleView>(turtle));
             }
@@ -85,11 +85,11 @@ class TurtleLaneView: public LaneView {
         ~TurtleLaneView() {}
 };
 
-class FinalLaneView: public LaneView {
+class FinishLaneView: public LaneView {
     public:
-        FinalLaneView(): LaneView() {}
+        FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {}
         void draw() final;
-        ~FinalLaneView() {}
+        ~FinishLaneView() {}
 };
 
 #endif // LANEVIEW_H_

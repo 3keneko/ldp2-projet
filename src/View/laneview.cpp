@@ -4,6 +4,7 @@
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
 #include <memory>
+#include "../utils.hpp"
 
 using namespace constants::lanes;
 
@@ -26,24 +27,19 @@ using namespace constants::lanes;
 //         object->draw();
 // }
 
-// Takes an id of a lane and returns the y position for using fl_draw_box()
-unsigned int getLanePos(unsigned int lane_id) {
-    return constants::window::HEIGHT - ((lane_id + 1) * HEIGHT);
-}
-
 void SafeLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(sfl->getId()), 
+    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
                 constants::window::WIDTH, HEIGHT, FL_GREEN);
 }
 
 void RoadLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(rl->getId()),
-                constants::window::WIDTH, HEIGHT, FL_GRAY);
+    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
+               constants::window::WIDTH, HEIGHT, FL_BLACK);
     for (auto& car: cv) {car->draw();}
 }
 
 void LogLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(ll->getId()),
+    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
                 constants::window::WIDTH, HEIGHT, FL_BLUE);
     for (auto& _log: lv) {_log->draw();}
 }
@@ -56,4 +52,4 @@ void TurtleLaneView::draw() {
 }
 
 // TODO
-void FinalLaneView::draw() {}
+void FinishLaneView::draw() {}

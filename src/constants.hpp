@@ -5,6 +5,7 @@ namespace constants {
     namespace window {
         const int WIDTH = 500;
         const int HEIGHT = 500;
+        const int PADDING = 100;
     }
     namespace lanes {
         const int NUMBER = 24;
