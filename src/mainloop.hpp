@@ -26,6 +26,9 @@ class MainLoop {
       fv->draw();
       char key = Fl::event_key();
       c.processKey(key);
+      if (bm->any_collision(*frog)) {
+        std::cout << "poc" << std::endl;
+      }
       int s = Fl::event();
       if (s == FL_KEYUP) c.resetPressedKeys();
     }
