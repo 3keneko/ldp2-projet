@@ -48,7 +48,7 @@ class MovingObject {
     // returns the x coordinate of the top left element of the object
     unsigned getUpX() {
       int size_int = static_cast<int>(size);
-      return centerX <= size / 2 ? 0 : centerX - size/2;
+      return centerX <= size_int / 2 ? 0 : centerX - size_int/2;
     }
 
     // returns true if this element collides with the frog
