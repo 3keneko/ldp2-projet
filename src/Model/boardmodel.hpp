@@ -9,15 +9,18 @@
 
 class BoardModel {
   private:
-    std::vector<std::shared_ptr<MovingObject>> cs;
+    std::vector<std::shared_ptr<Lane>> cs;
     unsigned time = 0;
   public:
-    BoardModel(std::vector<std::shared_ptr<MovingObject>> mv): cs(mv) {}
+    BoardModel(std::vector<std::shared_ptr<Lane>> mv): cs(mv) {}
 
     void update() {
       time++;
       for (auto& c: cs) {
-        c->move();
+        auto try_rl = std::dynamic_pointer_cast<RoadLane>(c);
+        if (try_rl != nullptr) {
+          for (auto& car: try_rl->getCars()) { car->move(); }
+        }
       }
     }
     ~BoardModel() {}

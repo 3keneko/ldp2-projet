@@ -8,13 +8,13 @@
 
 class BoardView {
   private:
-    std::vector<std::shared_ptr<MovingObjectView>> cv;
+    std::vector<std::shared_ptr<LaneView>> lanes;
     std::shared_ptr<BoardModel> b;
   public:
-    BoardView(std::vector<std::shared_ptr<MovingObjectView>> cv,
-              std::shared_ptr<BoardModel> b): cv(cv), b(b) {}
+    BoardView(std::vector<std::shared_ptr<LaneView>> lanes,
+              std::shared_ptr<BoardModel> b): lanes(lanes), b(b) {}
     void draw();
-    std::vector<std::shared_ptr<MovingObjectView>> getCarList() { return cv; }
+    std::vector<std::shared_ptr<LaneView>> getLaneList() { return lanes; }
     ~BoardView() {}
 };
 

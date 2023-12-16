@@ -4,7 +4,7 @@ unsigned int Frog::getLane() const {
     return lane_number;
 }
 
-unsigned int Frog::getColumn() const {
+int Frog::getColumn() const {
     return column;
 }
 

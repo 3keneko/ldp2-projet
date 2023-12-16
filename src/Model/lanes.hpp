@@ -13,7 +13,7 @@ class Lane {
         Lane(const unsigned int id_num):
             id_num(id_num) {}
         unsigned int getId() const { return id_num; }
-        ~Lane() {}
+        virtual ~Lane() {}
 };
 
 class RoadLane: public Lane {

@@ -34,18 +34,21 @@ Lors de l'affichage des objets sur le plateau, mettre une lane plus grande qu'un
 - [X] TurtleView <br/>
 Il manque une classe view pour turtle
 
-- [ ] LANES dans l'initialisation <br/>
+- [x] LANES dans l'initialisation <br/>
 Ce serait bien qu'on initialise directment avec des lanes quand même :sob:, dans l'état actuel, 
 on initialise à chaque fois de manière brute.
 #### C'est en cours de route!!! 
 Beaucoup de classes View ont été rajoutées dans  laneview.hpp, 
 il reste à écrire des initialiseurs corrects pour la plupart de ces classes, puis on fera tourner le code
+DONE!!!! 
+
 - ~~[ ] WaterLanes en bleu~~ <br/>
 ~~Oui stp :pleading_face:~~
 On va plutôt colorer les classes filles de WaterLanes en bleu, colorer waterlanes directement s'annonce plus coton pour l'instant
 - [ ] Gérer les collisions <br/>
 Il faudrait au moins que ça affiche "poc" dans le terminal quand la grenouille touche un truc
 
-- [ ] Faire revenir les objets sur le plateau et initialiser par paquet <br/>
+- [x] Faire revenir les objets sur le plateau et initialiser par paquet <br/>
 Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il soit plus vivant
 donc rajoutons des voitures par paquets et tout, ce serait cool!
+AMAZING
