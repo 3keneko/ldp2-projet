@@ -25,3 +25,8 @@ void Frog::goLeft() {
 void Frog::goRight() {
     column++;
 }
+
+bool Frog::inBoard() {
+    return ( 0 <= column ) & 
+            ( column <= constants::lanes::WIDTH );
+}

@@ -23,7 +23,7 @@ class BoardModel {
         }
       }
     }
-
+    
     bool any_collision(Frog& frog);
     ~BoardModel() {}
     unsigned getTime() const  { return time; }

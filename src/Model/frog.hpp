@@ -1,5 +1,6 @@
 #ifndef MODEL_H_
 #define MODEL_H_
+#include "../constants.hpp"
 
 class Frog {
     private:
@@ -14,6 +15,7 @@ class Frog {
         void goDown();
         void goLeft();
         void goRight();
+        bool inBoard();     // Returns false only if the frog is outside
         ~Frog(){}
 };
 

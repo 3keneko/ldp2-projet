@@ -29,7 +29,7 @@ using namespace constants;
 /// Retrieves the coordinate at which the frog should be placed
 /// according to the column and lane it is in
 std::tuple<int, int> getImagePos(const Frog& frog) {
-    auto x = frog.getColumn() * 30;
+    auto x = frog.getColumn() * lanes::HEIGHT;
     auto y = (lanes::NUMBER - frog.getLane())
         * (lanes::HEIGHT + 1);
     return std::make_tuple(x, y);

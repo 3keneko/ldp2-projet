@@ -10,6 +10,7 @@ namespace constants {
     namespace lanes {
         const int NUMBER = 24;
         const int HEIGHT = 20;
+        const int WIDTH = 24;
     }
     namespace frog {
         const int WIDTH = 20;
