@@ -15,6 +15,7 @@ namespace constants {
     namespace frog {
         const int WIDTH = 20;
         const int HEIGHT = 20;
+        const int LEAP_SIZE = 24;
     }
     namespace turtle {
         const int LENGTH = 40;

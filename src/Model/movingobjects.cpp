@@ -8,13 +8,13 @@ void MovingObject::move() {
     if (centerX < 0) {
         centerX += window::WIDTH + window::PADDING;
     }
-    centerX %= (window::WIDTH+window::PADDING);
+    centerX %= (window::WIDTH + window::PADDING);
 }
 
 bool MovingObject::collide(Frog& frog) {
     int a, b;
     std::tie(a, b) = getBoundaries();
-    return a <= frog.getColumn() && b <= frog.getColumn() &&
+    return a <= frog.getX() && b <= frog.getX() &&
         frog.getLane() == getId();
 }
 
