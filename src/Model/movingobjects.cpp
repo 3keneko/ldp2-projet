@@ -14,7 +14,7 @@ void MovingObject::move() {
 bool MovingObject::collide(Frog& frog) {
     int a, b;
     std::tie(a, b) = getBoundaries();
-    return a <= frog.getX() && b <= frog.getX() &&
+    return (getUpX() <= frog.getX() && getUpX() + getSize() >= frog.getX()) &&
         frog.getLane() == getId();
 }
 
