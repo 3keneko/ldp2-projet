@@ -16,16 +16,6 @@ class Lane {
         virtual ~Lane() {}
 };
 
-class RoadLane: public Lane {
-    private:
-        std::vector<std::shared_ptr<Car>> cars;
-    public:
-        RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
-                 const unsigned int& space_between_cars, const unsigned& space_between_packs,
-                 const int& first_car_placement, const unsigned int& size_car, const int& speed=1);
-        std::vector<std::shared_ptr<Car>> getCars() {return cars;}
-        ~RoadLane() {}
-};
 
 class SafeLane: public Lane {
     public:
@@ -34,39 +24,77 @@ class SafeLane: public Lane {
         ~SafeLane() {}
 };
 
-class WaterLane: public Lane {
+class MovingObjectLane: public Lane {
+    protected:
+        std::vector<std::shared_ptr<MovingObject>> mv;
     public:
-        WaterLane(const unsigned int id):
+        MovingObjectLane(const unsigned int id):
             Lane(id) {}
-        ~WaterLane() {}
+        MovingObjectLane(const unsigned int id, const unsigned int& by_pack, const unsigned int& space_between,
+                      const unsigned& space_between_packs, const unsigned int& first_placement,
+                      const unsigned int& size_each, const int& speed, int padding=0);
+        virtual std::vector<std::shared_ptr<MovingObject>> getMovingObjects() { return mv; }
+        virtual ~MovingObjectLane() {}
 };
 
-class LogLane: public WaterLane {
-    private:
-        std::vector<std::shared_ptr<Log>> logs;
+class LogLane: public MovingObjectLane {
     public:
-        LogLane(const unsigned int id_num, const unsigned int& log_by_pack,
-            const unsigned int& space_between_logs, const unsigned& space_between_packs,
-            const int& first_log_placement, const unsigned int& size_log, const int& speed=1);
-        std::vector<std::shared_ptr<Log>> getLogs() {return logs;}
+        LogLane(const unsigned int id_num) : MovingObjectLane(id_num) {}
+
+        LogLane(const unsigned int id_num, const unsigned int& log_by_pack, const unsigned int& space_between_logs,
+                const unsigned& space_between_packs,const int& first_log_placement, const unsigned int& size_log, const int& speed=0):
+            MovingObjectLane(id_num, log_by_pack, space_between_logs, space_between_packs, first_log_placement, size_log, speed)
+        {
+            // for (auto& log: mv) {
+            //     log = std::dynamic_pointer_cast<Log>(log);
+            // }
+        }
+
         ~LogLane() {}
 };
 
-class FinishLane: public WaterLane {
+class FinishLane: Lane {
     public:
-        FinishLane();
+        FinishLane(const unsigned int id): Lane(id) {}
         ~FinishLane() {}
 };
-
-class TurtleLane: public WaterLane {
-    private:
-        std::vector<std::shared_ptr<Turtle>> turtles;
+#include <iostream>
+class TurtleLane: public MovingObjectLane {
     public:
         TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack,
             const unsigned int& space_between_turtles, const unsigned& space_between_packs,
-            const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed=1);
-        std::vector<std::shared_ptr<Turtle>> getTurtles() { return turtles; }
+                   const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed=1):
+            MovingObjectLane(id_num, turtle_by_pack, space_between_turtles, space_between_packs,
+                             first_turtle_placement, size_turtle, speed) {
+            // for (auto& turtle: mv){
+            //     auto turt_attempt = std::dynamic_pointer_cast<Turtle>(turtle);
+            //     if (turt_attempt == nullptr) std::cout << "uh oh" << std::endl;
+            //     turtle = std::dynamic_pointer_cast<Turtle>(turtle);
+            // }
+        }
+        /*
+        std::vector<std::shared_ptr<Turtle>> getMovingObjects() override {
+            return mv;
+        }
+        */
         ~TurtleLane() {}
+};
+
+class RoadLane: public MovingObjectLane {
+    public:
+        RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
+                 const unsigned int& space_between_cars, const unsigned& space_between_packs,
+                 const int& first_car_placement, const unsigned int& size_car, const int& speed=1):
+            MovingObjectLane(id_num, car_by_pack, space_between_cars, space_between_packs,
+                             first_car_placement, size_car, speed) {
+            // for (auto& car: mv) {
+            //     auto car_attempt = std::dynamic_pointer_cast<Car>(car);
+            //     if (car_attempt == nullptr) std::cout << "problem with the cars" << std::endl;
+            //     car = car_attempt;
+            // }
+
+        }
+        ~RoadLane() {}
 };
 
 #endif // LANE_H_

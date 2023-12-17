@@ -19,7 +19,7 @@ class BoardModel {
       for (auto& c: lanes) {
         auto try_rl = std::dynamic_pointer_cast<RoadLane>(c);
         if (try_rl != nullptr) {
-          for (auto& car: try_rl->getCars()) { car->move(); }
+          for (auto& car: try_rl->getMovingObjects()) { car->move(); }
         }
       }
     }
@@ -29,7 +29,7 @@ class BoardModel {
     bool collidesInFinnishLane(Frog& frog);
     bool isOnLog(Frog &frog, LogLane& lane);
     bool isOnTurtle(Frog& frog, TurtleLane& tl);
-    bool isDrowning(Frog& frog, WaterLane& wl);
+    // bool isDrowning(Frog& frog, WaterLane& wl);
     bool any_collision(Frog& frog);
     ~BoardModel() {}
     unsigned getTime() const  { return time; }

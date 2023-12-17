@@ -14,6 +14,7 @@ bool BoardModel::isOutOfBoard(Frog& frog) {
     return !frog.inBoard();
 }
 
+/*
 bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
     auto car_list = rl.getCars();
     return std::any_of(car_list.begin(), car_list.end(),
@@ -21,10 +22,10 @@ bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
                                     return car->collide(frog); 
                                 }); 
 }
-
+*/
 // To do after defining finnishLane
 bool BoardModel::collidesInFinnishLane(Frog& frog) {return false;}
-
+/*
 bool BoardModel::isOnLog(Frog& frog, LogLane& ll) {
     auto log_list = ll.getLogs();
     return std::any_of(log_list.begin(), log_list.end(),
@@ -40,18 +41,18 @@ bool BoardModel::isOnTurtle(Frog& frog, TurtleLane& tl) {
                                     return turtle->collide(frog); 
                                 }); 
 }
-
+*/
 // To do with upper functions
-bool BoardModel::isDrowning(Frog& frog, WaterLane& wl) {return false;}
+// bool BoardModel::isDrowning(Frog& frog, WaterLane& wl) {return false;}
 
 bool BoardModel::any_collision(Frog& frog) {
     for (auto& lane: lanes) {
-        auto try_rl = std::dynamic_pointer_cast<RoadLane>(lane);
-        if (try_rl != nullptr) {
-            auto car_list = try_rl->getCars();
-            return std::any_of(car_list.begin(), car_list.end(),
-                                [&frog](std::shared_ptr<Car> car) {
-                                    return car->collide(frog); 
+        auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
+        if (try_mvl != nullptr) {
+            auto mv_list = try_mvl->getMovingObjects();
+            return std::any_of(mv_list.begin(), mv_list.end(),
+                                [&frog](std::shared_ptr<MovingObject> mv) {
+                                    return mv->collide(frog);
                                 });    
         }
     }

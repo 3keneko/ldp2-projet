@@ -50,8 +50,8 @@ class RoadLaneView: public LaneView {
         std::vector<std::shared_ptr<CarView>> cv;
     public:
         RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(rl) {
-            for (auto& car: rl->getCars()) {
-                cv.push_back(std::make_shared<CarView>(car));
+            for (auto& car: rl->getMovingObjects()) {
+                cv.push_back(std::make_shared<CarView>(std::dynamic_pointer_cast<Car>(car)));
             }
         }
         void draw() final;
@@ -63,8 +63,8 @@ class LogLaneView: public LaneView {
         std::vector<std::shared_ptr<LogView>> lv;
     public:
         LogLaneView(std::shared_ptr<LogLane> ll): LaneView(ll) {
-            for (auto& _log: ll->getLogs()) {
-                lv.push_back(std::make_shared<LogView>(_log));
+            for (auto& _log: ll->getMovingObjects()) {
+                lv.push_back(std::make_shared<LogView>(std::dynamic_pointer_cast<Log>(_log)));
             }
         }
         void draw() final;
@@ -77,19 +77,20 @@ class TurtleLaneView: public LaneView {
         std::vector<std::shared_ptr<TurtleView>> tv {};
     public:
         TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(tl) {
-            for (auto& turtle: tl->getTurtles()) {
-                tv.push_back(std::make_shared<TurtleView>(turtle));
+            for (auto& turtle: tl->getMovingObjects()) {
+                tv.push_back(std::make_shared<TurtleView>(std::dynamic_pointer_cast<Turtle>(turtle)));
             }
         }
         void draw() final;
         ~TurtleLaneView() {}
 };
 
+/*
 class FinishLaneView: public LaneView {
     public:
         FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {}
         void draw() final;
         ~FinishLaneView() {}
 };
-
+*/
 #endif // LANEVIEW_H_
