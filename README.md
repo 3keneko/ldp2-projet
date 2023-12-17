@@ -42,7 +42,7 @@ on initialise à chaque fois de manière brute.
 - [ ] Le contrôle de la grenouille est bugué <br/>
 Parfois, la grenouille avec de 2 ou 3 cases au lieu d'une.
 
-- [ ] Gérer la mort <br/>
+- [x] Gérer la mort <br/>
 Parce que c'est important de mourir
 
 - [ ] Faire avancer la grenouille quand elle est sur une buche <br/>
@@ -62,8 +62,9 @@ On va plutôt colorer les classes filles de WaterLanes en bleu, colorer waterlan
 D'accord définir de nouveaux objets imobiles (finnishCase?) et puis le mettre dans finnishLane
 Définir des collisions avec ces objets
 Définir des collisions avec toute la lane sauf ces objets (la mort quoi)
+--- Pas vraiment nécessaire pour le moment, lit le pdf.
 
-- [ ] Gérer les collisions <br/>
+- [x] Gérer les collisions <br/>
 Il faudrait au moins que ça affiche "poc" dans le terminal quand la grenouille touche un truc
 Pour les collisions avec les voitures dans le programme, il y a un décalage avec les collisions
 Gérer les collisions mortelles dans les WaterLanes
