@@ -8,7 +8,7 @@ void MovingObject::move() {
     if (centerX < 0) {
         centerX += window::WIDTH + window::PADDING;
     }
-    centerX %= (window::WIDTH+window::PADDING);
+    centerX %= (window::WIDTH + window::PADDING);
 }
 
 bool MovingObject::collide(Frog& frog) {
