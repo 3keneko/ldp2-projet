@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 
+
 template <class T>
 void pack_initialize(const unsigned int& by_pack, const unsigned int& space_between,
                      const unsigned& space_between_packs, const unsigned int& first_placement,
@@ -25,6 +26,7 @@ void pack_initialize(const unsigned int& by_pack, const unsigned int& space_betw
     }
 }
 
+
 RoadLane::RoadLane(const unsigned int id_num, const unsigned int& car_by_pack, const unsigned int& space_between_cars,
                    const unsigned& space_between_packs,const int& first_car_placement, const unsigned int& size_car, const int& speed): MovingObjectLane(id_num) {
     pack_initialize<Car>(car_by_pack, space_between_cars, space_between_packs, first_car_placement,
@@ -40,6 +42,7 @@ TurtleLane::TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_
                    const unsigned& space_between_packs,const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed): MovingObjectLane(id_num) {
     pack_initialize<Turtle>(turtle_by_pack, space_between_turtles, space_between_packs, first_turtle_placement, size_turtle, mv, speed, id_num, constants::window::PADDING);
 }
+
 
 template <class T>
 std::vector<std::shared_ptr<T>> preCastedGet(std::vector<std::shared_ptr<MovingObject>> mv) {

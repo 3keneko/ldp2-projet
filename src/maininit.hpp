@@ -20,13 +20,13 @@ class MainInit {
     public:
         MainInit() {
             // Intializing the frog
-            Frog frog {1, 10};
+            Frog frog {1, 250};
             frg = std::make_shared<Frog>(frog);
             fv = std::make_shared<FrogView>(frg);
 
             // Initializing the lanes
             std::vector<std::shared_ptr<Lane>> lanes;
-            auto test_lane = std::make_shared<RoadLane>(3, 4, 10, 30, 0, 20);
+            auto test_lane = std::make_shared<RoadLane>(3, 40, 100, 30, 0, 20);
             std::vector<std::shared_ptr<Lane>> v1 { test_lane };
             auto test_lane_view = std::make_shared<RoadLaneView>(test_lane);
             std::vector<std::shared_ptr<LaneView>> v { test_lane_view };

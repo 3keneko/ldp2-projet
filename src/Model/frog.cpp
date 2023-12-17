@@ -1,11 +1,13 @@
 #include "frog.hpp"
 
+using namespace constants::frog;
+
 unsigned int Frog::getLane() const {
     return lane_number;
 }
 
-int Frog::getColumn() const {
-    return column;
+int Frog::getX() const {
+    return x;
 }
 
 void Frog::goUp() {
@@ -19,14 +21,14 @@ void Frog::goDown() {
 }
 
 void Frog::goLeft() {
-    column--;
+    x -= LEAP_SIZE;
 }
 
 void Frog::goRight() {
-    column++;
+    x += LEAP_SIZE;
 }
 
 bool Frog::inBoard() {
-    return ( 0 <= column ) & 
-            ( column <= constants::lanes::WIDTH );
+    return ( 0 <= x ) &
+            ( x <= constants::window::WIDTH );
 }
