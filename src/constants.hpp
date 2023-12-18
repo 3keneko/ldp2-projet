@@ -8,17 +8,16 @@ namespace constants {
         const int PADDING = 100;
     }
     namespace lanes {
-        const int NUMBER = 24;
-        const int HEIGHT = 20;
-        const int WIDTH = 24;
+        const int NUMBER = 13;
+        const int HEIGHT = constants::window::HEIGHT / NUMBER;
     }
     namespace frog {
-        const int WIDTH = 20;
-        const int HEIGHT = 20;
-        const int LEAP_SIZE = 24;
+        const int WIDTH = constants::lanes::HEIGHT;
+        const int HEIGHT = WIDTH;
+        const int LEAP_SIZE = WIDTH * (6/5);
     }
     namespace turtle {
-        const int LENGTH = 40;
+        const int LENGTH = constants::frog::WIDTH;
     }
 }
 
