@@ -25,7 +25,11 @@ class MainLoop {
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
       bm(bm), bv(bv), fv(fv), frog(frog), c(Controller(frog)){}
     void update() {
-      if (frog->alive()) {
+      if (bm->inFinishLane(*frog)) {
+        auto jpeg = std::make_unique<Fl_JPEG_Image>("../imgs/won.jpeg" );
+        if (jpeg->fail()) { std::cout << "couldn't open the image!" << std::endl;}
+        jpeg->draw(0, 0, constants::window::HEIGHT, constants::window::WIDTH);
+      } else if (frog->alive()) {
         bm->update();
         bv->draw();
         fv->draw();
@@ -37,7 +41,7 @@ class MainLoop {
       } else {
         auto jpeg = std::make_unique<Fl_JPEG_Image>("../imgs/Untitled.jpeg" );
         if (jpeg->fail()) { std::cout << "couldn't open the image!" << std::endl;}
-        jpeg->draw(0, 0, constants::window::HEIGHT*2, constants::window::WIDTH*2);
+        jpeg->draw(0, 0, constants::window::HEIGHT, constants::window::WIDTH);
       }
     }
     std::shared_ptr<BoardModel> getModel() { return bm; }

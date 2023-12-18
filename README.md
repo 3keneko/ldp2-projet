@@ -45,7 +45,7 @@ Parfois, la grenouille avec de 2 ou 3 cases au lieu d'une.
 - [x] Gérer la mort <br/>
 Parce que c'est important de mourir
 
-- [ ] Faire avancer la grenouille quand elle est sur une buche <br/>
+- [x] Faire avancer la grenouille quand elle est sur une buche <br/>
 Je pensais à faire avancer la grenouille case par case dans le modèle de manière à ce que ce soit un minimum coordonné avec les buches.
 Il est important qu'on ne puisse pas sauter entre deux cases. 
 
@@ -74,3 +74,9 @@ Gérer les collisions avec les Logs (pour faire bouger la grenouille avec la log
 Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il soit plus vivant
 donc rajoutons des voitures par paquets et tout, ce serait cool!
 AMAZING
+
+- [ ] Rendre l'arrivée des objets sur le plateau plus smooth
+Actuellement, l'arrivée des objets sur le plateau se fait de manière beaucoup trop clunky, ce serait bien qu'ils rentrent sur le plateau de manière beaucoup plus smooth
+
+- [ ] Faire un plateau à 13 lanes
+Dans le pdf, il demande de faire un plateau à 13 lanes, on devrait entre autre augmenter la taille des lanes et de chaque frog.

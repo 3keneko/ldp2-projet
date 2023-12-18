@@ -14,6 +14,7 @@ class BoardModel {
   public:
     BoardModel(std::vector<std::shared_ptr<Lane>> mv): lanes(mv) {}
 
+    // moves the objects on the board
     void update() {
       time++;
       for (auto& c: lanes) {
@@ -23,15 +24,20 @@ class BoardModel {
         }
       }
     }
+
     // Collision methods
     bool isOutOfBoard(Frog& frog);
-    bool collidesWithAuto(Frog &frog, RoadLane& lane);
-    bool collidesInFinnishLane(Frog& frog);
-    bool isOnLog(Frog &frog, LogLane& lane);
-    bool isOnTurtle(Frog& frog, TurtleLane& tl);
+    // bool collidesWithAuto(Frog &frog, RoadLane& lane);
+    bool inFinishLane(Frog& frog);
+
+    // bool isOnLog(Frog &frog, LogLane& lane);
+    // bool isOnTurtle(Frog& frog, TurtleLane& tl);
     // bool isDrowning(Frog& frog, WaterLane& wl)
+
+    /// Collision handlers
     bool any_collision(Frog& frog);
     void handle_collision(Frog& frog);
+
     ~BoardModel() {}
     unsigned getTime() const  { return time; }
 };
