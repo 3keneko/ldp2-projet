@@ -1,4 +1,5 @@
 #include "boardmodel.hpp"
+#include "frog.hpp"
 #include "lanes.hpp"
 #include <memory>
 #include <algorithm>
@@ -45,6 +46,8 @@ bool BoardModel::isOnTurtle(Frog& frog, TurtleLane& tl) {
 // To do with upper functions
 // bool BoardModel::isDrowning(Frog& frog, WaterLane& wl) {return false;}
 
+
+
 bool BoardModel::any_collision(Frog& frog) {
     for (auto& lane: lanes) {
         auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
@@ -58,4 +61,15 @@ bool BoardModel::any_collision(Frog& frog) {
     }
     return false;
     
+}
+
+void BoardModel::handle_collision(Frog& frog) {
+    for (auto& lane: lanes) {
+        if (lane->getId() == frog.getLane()) {
+            auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
+            if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
+                try_mvl->handle_after_collision(frog);
+            }
+        }
+    }
 }

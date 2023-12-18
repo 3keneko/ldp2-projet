@@ -6,9 +6,10 @@ class Frog {
     private:
         unsigned int lane_number;
         int x;
-    public:
-        Frog() = default;
-        Frog(unsigned int lane_number, int x): lane_number(lane_number), x(x) {}
+        int lives;
+   public:
+        Frog(unsigned int lane_number, int x):
+                lane_number(lane_number), x(x), lives(3) {}
         unsigned int getLane() const ;
         int getX() const;
         void goUp();
@@ -16,6 +17,8 @@ class Frog {
         void goLeft();
         void goRight();
         bool inBoard();     // Returns false only if the frog is outside
+        void kill() {lives--;}
+        bool alive() {return lives != 0;}
         ~Frog(){}
 };
 

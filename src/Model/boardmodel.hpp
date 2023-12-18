@@ -29,8 +29,9 @@ class BoardModel {
     bool collidesInFinnishLane(Frog& frog);
     bool isOnLog(Frog &frog, LogLane& lane);
     bool isOnTurtle(Frog& frog, TurtleLane& tl);
-    // bool isDrowning(Frog& frog, WaterLane& wl);
+    // bool isDrowning(Frog& frog, WaterLane& wl)
     bool any_collision(Frog& frog);
+    void handle_collision(Frog& frog);
     ~BoardModel() {}
     unsigned getTime() const  { return time; }
 };

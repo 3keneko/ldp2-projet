@@ -7,6 +7,12 @@
 #include <vector>
 
 
+bool MovingObjectLane::frog_collide(Frog& frog) {
+    return std::any_of(mv.begin(), mv.end(), [&frog](std::shared_ptr<MovingObject> elems) {
+                                    return elems->collide(frog);
+                    });
+}
+
 template <class T>
 void pack_initialize(const unsigned int& by_pack, const unsigned int& space_between,
                      const unsigned& space_between_packs, const unsigned int& first_placement,
