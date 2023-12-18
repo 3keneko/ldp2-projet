@@ -69,7 +69,7 @@ void BoardModel::handle_collision(Frog& frog) {
             auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
             if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
                 try_mvl->handle_after_collision(frog);
-            } else if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
+            } else if (try_mvl != nullptr && try_mvl->water_lane()) {
                 frog.kill();
             }
         }
