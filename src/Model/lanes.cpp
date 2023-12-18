@@ -70,3 +70,17 @@ std::vector<std::shared_ptr<Car>> RoadLane::getCars() const {
 std::vector<std::shared_ptr<Turtle>> TurtleLane::getTurtles() const {
     return preCastedGet<Turtle>(mv);
 }
+
+void LogLane::handle_after_collision(Frog &frog) {
+    MovingObject log = *mv[0];
+    frog.go(log.getSpeed());
+}
+
+void TurtleLane::handle_after_collision(Frog& frog) {
+    MovingObject ttle = *mv[0];
+    frog.go(ttle.getSpeed());
+}
+
+void RoadLane::handle_after_collision(Frog &frog) {
+    frog.kill();
+}
