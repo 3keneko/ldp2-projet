@@ -83,6 +83,7 @@ class Log: public MovingObject {
     public:
         Log(int speed, unsigned int head, const unsigned int size, const unsigned lane_id):
             MovingObject(speed, head, size, lane_id) {}
+        bool collide(Frog& frog) final override;
         ~Log() {}
 };
 
