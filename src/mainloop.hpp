@@ -19,21 +19,19 @@ class MainLoop {
     std::shared_ptr<FrogView> fv;
     std::shared_ptr<Frog> frog;
     Controller c;
-    bool is_lost = false;
+    // bool is_lost = false;
   public:
     MainLoop(std::shared_ptr<BoardModel> bm, std::shared_ptr<BoardView> bv,
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
       bm(bm), bv(bv), fv(fv), frog(frog), c(Controller(frog)){}
     void update() {
-      if (!is_lost) {
+      if (frog->alive()) {
         bm->update();
         bv->draw();
         fv->draw();
         char key = Fl::event_key();
         c.processKey(key);
-        if (bm->any_collision(*frog)) {
-          is_lost = true;
-        }
+        bm->handle_collision(*frog);
         int s = Fl::event();
         if (s == FL_KEYUP) c.resetPressedKeys();
       } else {

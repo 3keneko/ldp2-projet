@@ -17,9 +17,9 @@ class BoardModel {
     void update() {
       time++;
       for (auto& c: lanes) {
-        auto try_rl = std::dynamic_pointer_cast<RoadLane>(c);
-        if (try_rl != nullptr) {
-          for (auto& car: try_rl->getMovingObjects()) { car->move(); }
+        auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(c);
+        if (try_mvl != nullptr) {
+          for (auto& mov_obj: try_mvl->getMovingObjects()) { mov_obj->move(); }
         }
       }
     }

@@ -34,18 +34,18 @@ void pack_initialize(const unsigned int& by_pack, const unsigned int& space_betw
 
 
 RoadLane::RoadLane(const unsigned int id_num, const unsigned int& car_by_pack, const unsigned int& space_between_cars,
-                   const unsigned& space_between_packs,const int& first_car_placement, const unsigned int& size_car, const int& speed): MovingObjectLane(id_num) {
+                   const unsigned& space_between_packs,const int& first_car_placement, const unsigned int& size_car, const int& speed): MovingObjectLane(id_num, speed) {
     pack_initialize<Car>(car_by_pack, space_between_cars, space_between_packs, first_car_placement,
                          size_car, mv, speed, id_num, constants::window::PADDING);
 }
 
 LogLane::LogLane(const unsigned int id_num, const unsigned int& log_by_pack, const unsigned int& space_between_logs,
-                   const unsigned& space_between_packs,const int& first_log_placement, const unsigned int& size_log, const int& speed): MovingObjectLane(id_num) {
+                   const unsigned& space_between_packs,const int& first_log_placement, const unsigned int& size_log, const int& speed): MovingObjectLane(id_num, speed) {
     pack_initialize<Log>(log_by_pack, space_between_logs, space_between_packs, first_log_placement, size_log, mv, speed, id_num, constants::window::PADDING);
 }
 
 TurtleLane::TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack, const unsigned int& space_between_turtles,
-                   const unsigned& space_between_packs,const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed): MovingObjectLane(id_num) {
+                   const unsigned& space_between_packs,const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed): MovingObjectLane(id_num, speed) {
     pack_initialize<Turtle>(turtle_by_pack, space_between_turtles, space_between_packs, first_turtle_placement, size_turtle, mv, speed, id_num, constants::window::PADDING);
 }
 
@@ -72,13 +72,11 @@ std::vector<std::shared_ptr<Turtle>> TurtleLane::getTurtles() const {
 }
 
 void LogLane::handle_after_collision(Frog &frog) {
-    MovingObject log = *mv[0];
-    frog.go(log.getSpeed());
+    frog.go(lane_speed);
 }
 
 void TurtleLane::handle_after_collision(Frog& frog) {
-    MovingObject ttle = *mv[0];
-    frog.go(ttle.getSpeed());
+    frog.go(lane_speed);
 }
 
 void RoadLane::handle_after_collision(Frog &frog) {

@@ -20,16 +20,18 @@ class MainInit {
     public:
         MainInit() {
             // Intializing the frog
-            Frog frog {1, 250};
+            Frog frog {0, 250};
             frg = std::make_shared<Frog>(frog);
             fv = std::make_shared<FrogView>(frg);
 
             // Initializing the lanes
             std::vector<std::shared_ptr<Lane>> lanes;
             auto test_lane = std::make_shared<RoadLane>(3, 40, 100, 30, 0, 20);
-            std::vector<std::shared_ptr<Lane>> v1 { test_lane };
+            auto log_lane = std::make_shared<LogLane>(4, 3, 10, 40, 30, 50, 1);
+            std::vector<std::shared_ptr<Lane>> v1 { test_lane,  log_lane };
             auto test_lane_view = std::make_shared<RoadLaneView>(test_lane);
-            std::vector<std::shared_ptr<LaneView>> v { test_lane_view };
+            auto log_lane_view = std::make_shared<LogLaneView>(log_lane);
+            std::vector<std::shared_ptr<LaneView>> v { test_lane_view, log_lane_view };
 
             // Putting the frog and the lanes together; initializing the board
             bm = std::make_shared<BoardModel>(v1);
