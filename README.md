@@ -39,7 +39,7 @@ Il manque une classe view pour turtle
 Ce serait bien qu'on initialise directment avec des lanes quand même :sob:, dans l'état actuel, 
 on initialise à chaque fois de manière brute.
 
-- [ ] Le contrôle de la grenouille est bugué <br/>
+- [X] Le contrôle de la grenouille est bugué <br/>
 Parfois, la grenouille avec de 2 ou 3 cases au lieu d'une.
 
 - [x] Gérer la mort <br/>
@@ -84,8 +84,10 @@ Dans le pdf, il demande de faire un plateau à 13 lanes, on devrait entre autre 
 - [ ] Faire en sorte que les turtles se jettent sous l'eau de temps en temps
 Les méthodes sont là, il y a plus qu'à combiner le tout
 
-- [ ] Afficher le nombre de vies
+- [X] Afficher le nombre de vies
 Actuellement, la grenouille marche avec un système de vie, il faudrait l'afficher en haut à gauche si possible
+--- Si on implémente le système des 5 grenouilles, il faudrat gérer le système de vies dans boardmodel et pas dans frog, car sinon le système de vies ne marchera que pour 
+une frog à la fois. A part si on garde la même frog dans toute la game. A voir sur le moment je dirais.
 
 - [X] Message de victoire
 Actuellement, on a juste une image de victoire, un message de victoire fait partie des conditions de base pour réussir de la partie

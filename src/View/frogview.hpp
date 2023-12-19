@@ -10,6 +10,7 @@ class FrogView {
 
 public:
     FrogView(std::shared_ptr<Frog> f): frog(f) {}
+    void showLives();
     void draw();
 };
 

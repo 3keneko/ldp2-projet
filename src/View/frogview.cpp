@@ -40,6 +40,20 @@ std::tuple<int, int> getImagePos(const Frog& frog) {
 /// ...
 ///
 
+// Draws the life counter in the board
+void FrogView::showLives() {
+    const unsigned int LIVE_SIZE = 25;
+    const unsigned int X_POS = 25;
+    const unsigned int Y_POS = 25;
+    const unsigned int DIST_BETWEEN = 50;
+    Fl_Color color_live;
+    for (int i = 0; i <= 2; i++) {
+        if (i < frog->getLives()) {color_live = FL_RED;}
+        else {color_live = FL_GRAY;}
+        fl_draw_box(FL_FLAT_BOX, X_POS + i * DIST_BETWEEN, Y_POS, LIVE_SIZE, LIVE_SIZE, color_live);
+    }
+}
+
 /// Draws the frog at the coordinates specified by
 /// getImagePos.
 void FrogView::draw() {
@@ -48,4 +62,5 @@ void FrogView::draw() {
     //auto frog_drawing = std::make_unique<Fl_PNG_Image>("14-1.png");
     //frog_drawing->draw(a, b, FROG_WIDTH, FROG_HEIGHT);
     fl_draw_box(FL_FLAT_BOX, a, b, frog::WIDTH, frog::HEIGHT, FL_GREEN);
+    showLives();
 }
