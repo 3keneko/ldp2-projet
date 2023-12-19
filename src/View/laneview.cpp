@@ -67,7 +67,7 @@ void LogLaneView::draw() {
 }
 
 void TurtleLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(tl->getId()),
+    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
                 constants::window::WIDTH, HEIGHT, FL_BLUE);
     for (auto& object: tv)
         object->draw();

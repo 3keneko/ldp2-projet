@@ -11,6 +11,7 @@
 #include <vector>
 #include "Model/frog.hpp"
 
+
 class MainInit {
     private:
         std::shared_ptr<BoardView> board;
@@ -33,12 +34,12 @@ class MainInit {
             lanes.push_back(std::make_shared<RoadLane>(5, 10, 150, 350, 0, 40, 3));
             lanes.push_back(std::make_shared<RoadLane>(6, 3, 150, 350, 0, 40, -2));
             lanes.push_back(std::make_shared<SafeLane>(7));
-            //lanes.push_back(std::make_shared<TurtleLane>(8, 5, 10, 200, 0, 50));
-            //lanes.push_back(std::make_shared<TurtleLane>(9, 5, 10, 200, 0, 50));
+            lanes.push_back(std::make_shared<TurtleLane>(8, 5, 10, 200, 0, 50, 1));
+            lanes.push_back(std::make_shared<TurtleLane>(9, 5, 10, 200, 0, 50, -1));
             lanes.push_back(std::make_shared<LogLane>(10, 3, 30, 350, 2, 200, 1));
             lanes.push_back(std::make_shared<LogLane>(11, 3, 30, 350, -2, 200, 2));
             lanes.push_back(std::make_shared<LogLane>(12, 3, 30, 350, 2, 200, -1));
-            // lanes.push_back(std::make_shared<FinishLane>(13));
+            lanes.push_back(std::make_shared<FinishLane>(13));
 
             std::vector<std::shared_ptr<MovingObjectLane>> v1 { };
             for (auto& lane: lanes) {
