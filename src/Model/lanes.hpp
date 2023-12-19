@@ -17,6 +17,13 @@ class Lane {
         virtual ~Lane() {}
 };
 
+class FinishLane: public Lane {
+    public:
+        FinishLane(const unsigned int id):
+            Lane(id) {}
+        ~FinishLane() {}
+};
+
 
 class SafeLane: public Lane {
     public:
@@ -24,6 +31,7 @@ class SafeLane: public Lane {
             Lane(id) {}
         ~SafeLane() {}
 };
+
 
 class MovingObjectLane: public Lane {
     protected:
@@ -59,11 +67,7 @@ class LogLane: public MovingObjectLane {
         ~LogLane() {}
 };
 
-class FinishLane: Lane {
-    public:
-        FinishLane(const unsigned int id): Lane(id) {}
-        ~FinishLane() {}
-};
+
 #include <iostream>
 class TurtleLane: public MovingObjectLane {
     public:

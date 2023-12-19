@@ -26,6 +26,7 @@ class LaneView {
     public:
         LaneView(std::shared_ptr<Lane> lane): lane(lane){}
         virtual void draw() = 0;
+        static std::shared_ptr<LaneView> makeView(std::shared_ptr<Lane> l);
         virtual ~LaneView() {}
 };
 
@@ -43,6 +44,13 @@ class SafeLaneView: public LaneView {
         SafeLaneView(std::shared_ptr<SafeLane> sfl): LaneView(sfl) {}
         void draw() final;
         ~SafeLaneView() {}
+};
+
+class FinishLaneView: public LaneView {
+    public:
+        FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {}
+        void draw() final;
+        ~FinishLaneView() {}
 };
 
 class RoadLaneView: public LaneView {
@@ -85,12 +93,4 @@ class TurtleLaneView: public LaneView {
         ~TurtleLaneView() {}
 };
 
-/*
-class FinishLaneView: public LaneView {
-    public:
-        FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {}
-        void draw() final;
-        ~FinishLaneView() {}
-};
-*/
 #endif // LANEVIEW_H_

@@ -26,23 +26,34 @@ class MainInit {
 
             // Initializing the lanes
             std::vector<std::shared_ptr<Lane>> lanes;
-            auto lane1 = std::make_shared<SafeLane>(1);
-            auto lane2 = std::make_shared<SafeLane>(2);
-            auto lane3 = std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5);
-            auto lane4 = std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5);
-            auto lane5 = std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5);
-            auto lane6 = std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5);
-            auto lane7 = std::make_shared<SafeLane>(7);
-            auto lane8 = std::make_shared<TurtleLane>(8, 5, 10, 200, 0, 50);
-            auto lane9 = std::make_shared<TurtleLane>(9, 5, 10, 200, 0, 50);
-            auto lane10 = std::make_shared<LogLane>(10, 3, 100, 350, 0, 200);
-            auto lane11 = std::make_shared<LogLane>(11, 3, 100, 350, 0, 200);
-            auto lane12 = std::make_shared<LogLane>(12, 3, 100, 350, 0, 200);
-            auto lane13 = std::make_shared<FinishLane>(13);
-            std::vector<std::shared_ptr<MovingObjectLane>> v1 { lane1, lane2, lane3, lane4, lane5, 
-                                                    lane6, lane7, lane8, lane9, lane10, 
-                                                    lane11, lane12, lane13};
-            // Problème au niveau du vecteur
+            lanes.push_back(std::make_shared<SafeLane>(1));
+            lanes.push_back(std::make_shared<SafeLane>(2));
+            lanes.push_back(std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5));
+            lanes.push_back(std::make_shared<RoadLane>(4, 3, 150, 350, 0, 150, 5));
+            lanes.push_back(std::make_shared<RoadLane>(5, 3, 150, 350, 0, 150, 5));
+            lanes.push_back(std::make_shared<RoadLane>(6, 3, 150, 350, 0, 150, 5));
+            lanes.push_back(std::make_shared<SafeLane>(7));
+            //lanes.push_back(std::make_shared<TurtleLane>(8, 5, 10, 200, 0, 50));
+            //lanes.push_back(std::make_shared<TurtleLane>(9, 5, 10, 200, 0, 50));
+            lanes.push_back(std::make_shared<LogLane>(10, 3, 100, 350, 0, 200));
+            lanes.push_back(std::make_shared<LogLane>(11, 3, 100, 350, 0, 200));
+            lanes.push_back(std::make_shared<LogLane>(12, 3, 100, 350, 0, 200));
+            // lanes.push_back(std::make_shared<FinishLane>(13));
+
+            std::vector<std::shared_ptr<MovingObjectLane>> v1 { };
+            for (auto& lane: lanes) {
+                auto moving_object_lane = std::dynamic_pointer_cast<MovingObjectLane>(lane);
+                if (moving_object_lane != nullptr) {
+                    v1.push_back(moving_object_lane);
+                }
+            }
+
+            std::vector<std::shared_ptr<LaneView>> v {};
+
+            for (auto& lane: lanes) {
+                v.push_back(LaneView::makeView(lane));
+            }
+            /*
             auto lane1_view = std::make_shared<SafeLaneView>(lane1);
             auto lane2_view = std::make_shared<SafeLaneView>(lane2);
             auto lane3_view = std::make_shared<RoadLaneView>(lane3);
@@ -61,9 +72,9 @@ class MainInit {
                                                        lane7_view, lane8_view, lane9_view,
                                                        lane10_view, lane11_view, lane12_view,
                                                      };
-
+            */
             // Putting the frog and the lanes together; initializing the board
-            bm = std::make_shared<BoardModel>(v1);
+            bm = std::make_shared<BoardModel>(lanes);
             board = std::make_shared<BoardView>(v, bm) ;
         }
         std::shared_ptr<BoardView> getBoardView() {
