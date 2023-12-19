@@ -87,7 +87,7 @@ Les méthodes sont là, il y a plus qu'à combiner le tout
 - [ ] Afficher le nombre de vies
 Actuellement, la grenouille marche avec un système de vie, il faudrait l'afficher en haut à gauche si possible
 
-- [ ] Message de victoire
+- [X] Message de victoire
 Actuellement, on a juste une image de victoire, un message de victoire fait partie des conditions de base pour réussir de la partie
 
 - [ ] Changer le design de la grenouille, pour qu'il puisse être orientable
