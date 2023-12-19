@@ -15,14 +15,10 @@
 // void FrogGraphics::moveRight() {}
 // void FrogGraphics::moveFrwrd() {}
 // void FrogGraphics::moveBckwrds() {}
-#include <FL/Enumerations.H>
 #include <iostream>
 #include "frogview.hpp"
 #include <memory>
 #include <tuple>
-#include <FL/Fl_Button.H>
-#include <FL/Fl_Box.H>
-#include <FL/fl_draw.H>
 #include "../constants.hpp"
 #include "../utils.hpp"
 
@@ -63,4 +59,29 @@ void FrogView::draw() {
     //frog_drawing->draw(a, b, FROG_WIDTH, FROG_HEIGHT);
     fl_draw_box(FL_FLAT_BOX, a, b, frog::WIDTH, frog::HEIGHT, FL_GREEN);
     showLives();
+}
+
+void FrogView::draw2() {
+    /*
+    int a, b;
+    std::tie(a, b) = getImagePos(*frog);
+    FrogDirection dir = frog->getDirection();
+    std::unique_ptr<Fl_JPEG_Image> to_draw;
+    switch(dir) {
+        case FrogDirection::North:
+            to_draw = std::make_unique<Fl_JPEG_Image>(frog_north_jpeg);
+            break;
+        case FrogDirection::South:
+            to_draw = std::make_unique<Fl_JPEG_Image>(frog_east_jpeg);
+            break;
+        case FrogDirection::West:
+            to_draw = std::make_unique<Fl_JPEG_Image>(frog_west_jpeg); 
+            break;
+        case FrogDirection::East:
+            to_draw = std::make_unique<Fl_JPEG_Image>(frog_east_jpeg);  
+            break;
+        default:
+    }
+    to_draw->draw(a, b, frog::WIDTH, frog::HEIGHT);
+    */
 }

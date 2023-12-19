@@ -16,23 +16,29 @@ int Frog::getLives() const {
     return lives;
 }
 
+FrogDirection Frog::getDirection() const {
+    return direction;
+}
+
 // Moving the frog (interacting with controller)
 void Frog::goUp() {
     lane_number++;
+    direction = FrogDirection::North;
 }
 
 void Frog::goDown() {
-    if (lane_number) {
-        lane_number--;
-    }
+    if (lane_number) lane_number--;
+    direction = FrogDirection::South;
 }
 
 void Frog::goLeft() {
     x -= LEAP_SIZE;
+    direction = FrogDirection::West;
 }
 
 void Frog::goRight() {
     x += LEAP_SIZE;
+    direction = FrogDirection::East;
 }
 
 

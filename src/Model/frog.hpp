@@ -2,10 +2,15 @@
 #define MODEL_H_
 #include "../constants.hpp"
 
+enum class FrogDirection {
+    North, South, East, West 
+};
+
 class Frog {
    private:
         unsigned int lane_number;
         int x;
+        FrogDirection direction = FrogDirection::North;
         int lives;
    public:
         Frog(unsigned int lane_number, int x):
@@ -15,6 +20,7 @@ class Frog {
         unsigned int getLane() const ;
         int getX() const;
         int getLives() const;
+        FrogDirection getDirection() const;
 
         // Methods in charge of moving the frog (interacting with the controller)
         void goUp();
