@@ -35,6 +35,7 @@ class MainLoop {
         fv->draw();
         char key = Fl::event_key();
         c.processKey(key);
+        c.decrement();
         bm->handle_collision(*frog);
         int s = Fl::event();
         if (s == FL_KEYUP) c.resetPressedKeys();

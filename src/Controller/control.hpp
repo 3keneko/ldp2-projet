@@ -16,9 +16,11 @@ class Controller {
     private:
         std::shared_ptr<Frog> f;
         std::map<char, bool> is_pressed;
+        unsigned int count = 0;
     public:
         Controller(std::shared_ptr<Frog> f):
             f(f), is_pressed({{'z', false}, {'d', false}, {'q', false}, {'s', false}}) {}
+        void decrement();
         void processKey(char& c);
         void updatePressedKeys(const char&& c);
         void resetPressedKeys();

@@ -1,4 +1,5 @@
 #include "frog.hpp"
+#include <iostream>
 
 using namespace constants::frog;
 
@@ -43,7 +44,7 @@ void Frog::go(int speed) {
 
 // Checks if the frog is inside the board
 bool Frog::inBoard() {
-    return ( 0 <= x ) &
+    return ( -25 <= x ) &
             ( x <= constants::window::WIDTH );
 }
 

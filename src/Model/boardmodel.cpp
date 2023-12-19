@@ -25,7 +25,7 @@ bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
 }
 */
 // To do after defining finnishLane
-bool BoardModel::inFinishLane(Frog& frog) {return frog.getLane() == 13;}
+bool BoardModel::inFinishLane(Frog& frog) {return frog.getLane() == constants::lanes::NUMBER;}
 /*
 bool BoardModel::isOnLog(Frog& frog, LogLane& ll) {
     auto log_list = ll.getLogs();
@@ -73,5 +73,8 @@ void BoardModel::handle_collision(Frog& frog) {
                 frog.kill();
             }
         }
+    }
+    if (isOutOfBoard(frog)) {
+        frog.kill();
     }
 }

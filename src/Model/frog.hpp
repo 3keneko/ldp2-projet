@@ -28,7 +28,7 @@ class Frog {
         bool inBoard();
 
         // Methods in charge of life and death of the frog
-        bool alive() {return lives != 0;}
+        bool alive() {return lives > 0;}
         void kill();
 
 

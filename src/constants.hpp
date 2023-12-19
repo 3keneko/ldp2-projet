@@ -9,7 +9,7 @@ namespace constants {
     }
     namespace lanes {
         const int NUMBER = 13;
-        const int HEIGHT = constants::window::HEIGHT / NUMBER;
+        const int HEIGHT = constants::window::HEIGHT / NUMBER - 2;
     }
     namespace frog {
         const int WIDTH = constants::lanes::HEIGHT;
