@@ -78,5 +78,27 @@ AMAZING
 - [ ] Rendre l'arrivée des objets sur le plateau plus smooth
 Actuellement, l'arrivée des objets sur le plateau se fait de manière beaucoup trop clunky, ce serait bien qu'ils rentrent sur le plateau de manière beaucoup plus smooth
 
-- [ ] Faire un plateau à 13 lanes
+- [x] Faire un plateau à 13 lanes
 Dans le pdf, il demande de faire un plateau à 13 lanes, on devrait entre autre augmenter la taille des lanes et de chaque frog.
+
+- [ ] Faire en sorte que les turtles se jettent sous l'eau de temps en temps
+Les méthodes sont là, il y a plus qu'à combiner le tout
+
+- [ ] Afficher le nombre de vies
+Actuellement, la grenouille marche avec un système de vie, il faudrait l'afficher en haut à gauche si possible
+
+- [ ] Message de victoire
+Actuellement, on a juste une image de victoire, un message de victoire fait partie des conditions de base pour réussir de la partie
+
+- [ ] Changer le design de la grenouille, pour qu'il puisse être orientable
+On utilisera `enum class` pour avoir les différentes possibilités d'orientation de la grenouille,
+la syntaxe (plutôt cool) est ainsi:
+
+``` cpp
+enum class Directions {
+  North,
+  South,
+  East,
+  West
+}
+```
