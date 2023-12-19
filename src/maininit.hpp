@@ -28,16 +28,16 @@ class MainInit {
             std::vector<std::shared_ptr<Lane>> lanes;
             lanes.push_back(std::make_shared<SafeLane>(1));
             lanes.push_back(std::make_shared<SafeLane>(2));
-            lanes.push_back(std::make_shared<RoadLane>(3, 3, 150, 350, 0, 150, 5));
-            lanes.push_back(std::make_shared<RoadLane>(4, 3, 150, 350, 0, 150, 5));
-            lanes.push_back(std::make_shared<RoadLane>(5, 3, 150, 350, 0, 150, 5));
-            lanes.push_back(std::make_shared<RoadLane>(6, 3, 150, 350, 0, 150, 5));
+            lanes.push_back(std::make_shared<RoadLane>(3, 3, 150, 350, 0, 30, 1));
+            lanes.push_back(std::make_shared<RoadLane>(4, 3, 150, 350, 0, 30, 2));
+            lanes.push_back(std::make_shared<RoadLane>(5, 10, 150, 350, 0, 40, 3));
+            lanes.push_back(std::make_shared<RoadLane>(6, 3, 150, 350, 0, 40, -2));
             lanes.push_back(std::make_shared<SafeLane>(7));
             //lanes.push_back(std::make_shared<TurtleLane>(8, 5, 10, 200, 0, 50));
             //lanes.push_back(std::make_shared<TurtleLane>(9, 5, 10, 200, 0, 50));
-            lanes.push_back(std::make_shared<LogLane>(10, 3, 100, 350, 0, 200));
-            lanes.push_back(std::make_shared<LogLane>(11, 3, 100, 350, 0, 200));
-            lanes.push_back(std::make_shared<LogLane>(12, 3, 100, 350, 0, 200));
+            lanes.push_back(std::make_shared<LogLane>(10, 3, 30, 350, 2, 200, 1));
+            lanes.push_back(std::make_shared<LogLane>(11, 3, 30, 350, -2, 200, 2));
+            lanes.push_back(std::make_shared<LogLane>(12, 3, 30, 350, 2, 200, -1));
             // lanes.push_back(std::make_shared<FinishLane>(13));
 
             std::vector<std::shared_ptr<MovingObjectLane>> v1 { };

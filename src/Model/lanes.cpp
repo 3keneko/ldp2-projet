@@ -50,6 +50,8 @@ TurtleLane::TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_
 }
 
 
+
+// specified getters
 template <class T>
 std::vector<std::shared_ptr<T>> preCastedGet(std::vector<std::shared_ptr<MovingObject>> mv) {
     std::vector<std::shared_ptr<T>> res {};
@@ -71,6 +73,8 @@ std::vector<std::shared_ptr<Turtle>> TurtleLane::getTurtles() const {
     return preCastedGet<Turtle>(mv);
 }
 
+
+// handling after collisions take place
 void LogLane::handle_after_collision(Frog &frog) {
     frog.go(lane_speed);
 }

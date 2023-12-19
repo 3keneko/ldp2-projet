@@ -27,6 +27,8 @@ using namespace constants::lanes;
 //         object->draw();
 // }
 
+const auto PURPLE = fl_rgb_color(186,85,211);
+
 std::shared_ptr<LaneView> LaneView::makeView(std::shared_ptr<Lane> l) {
     auto try_safe = std::dynamic_pointer_cast<SafeLane>(l);
     if (try_safe != nullptr) return std::make_shared<SafeLaneView>(try_safe);
@@ -49,7 +51,7 @@ std::shared_ptr<LaneView> LaneView::makeView(std::shared_ptr<Lane> l) {
 
 void SafeLaneView::draw() {
     fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-                constants::window::WIDTH, HEIGHT, FL_GREEN);
+                constants::window::WIDTH, HEIGHT, PURPLE);
 }
 
 void RoadLaneView::draw() {
