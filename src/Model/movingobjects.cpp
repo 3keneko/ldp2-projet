@@ -15,8 +15,8 @@ void MovingObject::move() {
 }
 
 bool MovingObject::collide(Frog& frog) {
-    return (static_cast<int>(getX() + getSize()) >= frog.getX()
-            && static_cast<int>(getX()) <= frog.getX() + constants::frog::WIDTH)
+    return ((getX() + static_cast<int>(getSize())) >= frog.getX()
+            && getX() <= frog.getX() + constants::frog::WIDTH)
             && frog.getLane() == getId();
 /*
     return ((static_cast<int>(getX()) <= frog.getX() &&
@@ -32,7 +32,7 @@ bool Turtle::collide(Frog& frog) {
 }
 
 bool Log::collide(Frog& frog) {
-    return (static_cast<int>(getX()) <= frog.getX()
-            && static_cast<int>(getX()+ getSize()) >= frog.getX() + constants::frog::WIDTH)
+    return (getX() <= frog.getX()
+            && (getX()+ static_cast<int>(getSize())) >= frog.getX() + constants::frog::WIDTH)
             && frog.getLane() == getId();
 }
