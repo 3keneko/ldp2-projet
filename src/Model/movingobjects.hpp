@@ -26,14 +26,11 @@ class MovingObject {
     unsigned getId() { return lane_id; }
 
     // returns the x coordinate of the center of the object
-    unsigned getCenterX() { return centerX; }
+    int getCenterX() { return centerX; }
 
-    std::tuple<unsigned, unsigned> getBoundaries() {
+    std::tuple<int, int> getBoundaries() {
 
-        int size_int = static_cast<int>(size);
-        if (centerX <= size_int / 2) {
-        return std::make_tuple(0, centerX+size_int/2);
-      }
+      int size_int = static_cast<int>(size);
       return std::make_tuple(centerX - size_int/2, centerX + size_int/2);
     }
 
@@ -46,7 +43,7 @@ class MovingObject {
     //   return std::make_tuple(centerX - size/2, getUpY());
     // }
     // returns the x coordinate of the top left element of the object
-    unsigned getUpX() {
+    int getUpX() {
       int size_int = static_cast<int>(size);
       return centerX <= size_int / 2 ? 0 : centerX - size_int/2;
     }

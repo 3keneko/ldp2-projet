@@ -36,10 +36,18 @@ class SquareDrawer {
                      Color&& color): x(x), y(y), size(size),
                                     fl_color(colors::color_convert(color)) {}
         SquareDrawer(int x, int y, int size, const Color& color):
-            x(x), y(y), fl_color(colors::color_convert(color)) {}
+            x(x), y(y), size(size),  fl_color(colors::color_convert(color)) {}
         void colorSwitch(const Color&& new_col) {
             fl_color = colors::color_convert(new_col);
         }
+        void colorSwitch(const Color& new_col) {
+            fl_color = colors::color_convert(new_col);
+        }
+        void updatePos(int x, int y) {
+            x=x;
+            y=y;
+        }
+        void updateX(int new_x) { x = new_x; }
         virtual void draw() {
             fl_draw_box(FL_FLAT_BOX, x, y, size, size, fl_color);
         }

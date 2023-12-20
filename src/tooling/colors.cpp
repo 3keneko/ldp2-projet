@@ -19,6 +19,8 @@ Fl_Color colors::color_convert(const Color& color) {
             return fl_rgb_color(139, 69, 16); // Brownish
         case Color::TURTLE:
             return fl_rgb_color(3, 75, 3); // Dark green
+        case Color::CAR:
+            return FL_BLUE;
         default:
             return fl_rgb_color(255, 255, 255); // Very white
     }
