@@ -75,7 +75,7 @@ Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il s
 donc rajoutons des voitures par paquets et tout, ce serait cool!
 AMAZING
 
-- [ ] Rendre l'arrivée des objets sur le plateau plus smooth
+- [x] Rendre l'arrivée des objets sur le plateau plus smooth
 Actuellement, l'arrivée des objets sur le plateau se fait de manière beaucoup trop clunky, ce serait bien qu'ils rentrent sur le plateau de manière beaucoup plus smooth
 
 - [x] Faire un plateau à 13 lanes

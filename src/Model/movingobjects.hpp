@@ -12,12 +12,12 @@ const int HEIGHT_LANE = 20;
 class MovingObject {
   protected:
     const int speed;
-    int centerX;
+    int x;
     const unsigned int size;
     const unsigned int lane_id;
   public:
-    MovingObject(const int speed, int centerX, const unsigned int size, const unsigned lane_id):
-      speed(speed), centerX(centerX), size(size), lane_id(lane_id) {}
+    MovingObject(const int speed, int x, const unsigned int size, const unsigned lane_id):
+      speed(speed), x(x), size(size), lane_id(lane_id) {}
 
     // moves the object
     void move();
@@ -26,12 +26,12 @@ class MovingObject {
     unsigned getId() { return lane_id; }
 
     // returns the x coordinate of the center of the object
-    int getCenterX() { return centerX; }
+    int getCenterX() { return x + static_cast<int>(size) / 2; }
 
     std::tuple<int, int> getBoundaries() {
 
       int size_int = static_cast<int>(size);
-      return std::make_tuple(centerX - size_int/2, centerX + size_int/2);
+      return std::make_tuple(x, x+size_int);
     }
 
     // returns the y coordinate of the top left element of the object
@@ -43,9 +43,8 @@ class MovingObject {
     //   return std::make_tuple(centerX - size/2, getUpY());
     // }
     // returns the x coordinate of the top left element of the object
-    int getUpX() {
-      int size_int = static_cast<int>(size);
-      return centerX <= size_int / 2 ? 0 : centerX - size_int/2;
+    int getX() {
+        return x;
     }
 
     // returns true if this element collides with the frog
