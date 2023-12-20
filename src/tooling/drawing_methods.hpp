@@ -5,6 +5,7 @@
 #include <FL/fl_draw.H>
 #include "colors.hpp"
 #include "../constants.hpp"
+#include <memory>
 
 class LaneDrawer {
     private:
@@ -72,11 +73,5 @@ class RectangleDrawer: public SquareDrawer {
 class CircleDrawer {
 
 };
-
-class ImgDrawer {
-
-};
-
-
 
 #endif // DRAWING_METHODS_H_

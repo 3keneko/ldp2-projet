@@ -54,26 +54,6 @@ class MainInit {
             for (auto& lane: lanes) {
                 v.push_back(LaneView::makeView(lane));
             }
-            /*
-            auto lane1_view = std::make_shared<SafeLaneView>(lane1);
-            auto lane2_view = std::make_shared<SafeLaneView>(lane2);
-            auto lane3_view = std::make_shared<RoadLaneView>(lane3);
-            auto lane4_view = std::make_shared<RoadLaneView>(lane4);
-            auto lane5_view = std::make_shared<RoadLaneView>(lane5);
-            auto lane6_view = std::make_shared<RoadLaneView>(lane6);
-            auto lane7_view = std::make_shared<SafeLaneView>(lane7);
-            auto lane8_view = std::make_shared<TurtleLaneView>(lane8);
-            auto lane9_view = std::make_shared<TurtleLaneView>(lane9);
-            auto lane10_view = std::make_shared<LogLaneView>(lane10);
-            auto lane11_view = std::make_shared<LogLaneView>(lane11);
-            auto lane12_view = std::make_shared<LogLaneView>(lane12);
-            // On a pas encore de classe FinishLaneView
-            std::vector<std::shared_ptr<LaneView>> v { lane1_view, lane2_view, lane3_view,
-                                                       lane4_view, lane5_view, lane6_view,
-                                                       lane7_view, lane8_view, lane9_view,
-                                                       lane10_view, lane11_view, lane12_view,
-                                                     };
-            */
             // Putting the frog and the lanes together; initializing the board
             bm = std::make_shared<BoardModel>(lanes);
             board = std::make_shared<BoardView>(v, bm) ;

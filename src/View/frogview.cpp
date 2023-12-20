@@ -21,6 +21,8 @@
 #include <tuple>
 #include "../constants.hpp"
 #include "../utils.hpp"
+#include "../tooling/colors.hpp"
+#include "../tooling/drawing_methods.hpp"
 
 using namespace constants;
 /// Retrieves the coordinate at which the frog should be placed
@@ -38,16 +40,14 @@ std::tuple<int, int> getImagePos(const Frog& frog) {
 
 // Draws the life counter in the board
 void FrogView::showLives() {
-    const unsigned int LIVE_SIZE = 25;
-    const unsigned int X_POS = 25;
-    const unsigned int Y_POS = 25;
-    const unsigned int DIST_BETWEEN = 50;
-    Fl_Color color_live;
+    constexpr unsigned int LIVE_SIZE = 25;
+    constexpr int X_POS = 25;
+    constexpr int Y_POS = 25;
+    constexpr int DIST_BETWEEN = 50;
     for (int i = 0; i <= 2; i++) {
-        if (i < frog->getLives()) {color_live = FL_RED;}
-        else {color_live = FL_GRAY;}
-        fl_draw_box(FL_FLAT_BOX, X_POS + i * DIST_BETWEEN,
-                    Y_POS, LIVE_SIZE, LIVE_SIZE, color_live);
+        SquareDrawer sq { X_POS+i*DIST_BETWEEN, Y_POS, LIVE_SIZE, Color::LIVE_ON };
+        if (i >= frog->getLives()) sq.colorSwitch(Color::LIVE_OFF);
+        sq.draw();
     }
 }
 
