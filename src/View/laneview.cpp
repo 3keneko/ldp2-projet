@@ -27,26 +27,28 @@ using namespace constants::lanes;
 //         object->draw();
 // }
 
-const auto PURPLE = fl_rgb_color(186,85,211);
-
 std::shared_ptr<LaneView> LaneView::makeView(std::shared_ptr<Lane> l) {
-    auto try_safe = std::dynamic_pointer_cast<SafeLane>(l);
-    if (try_safe != nullptr) return std::make_shared<SafeLaneView>(try_safe);
+  auto try_safe = std::dynamic_pointer_cast<SafeLane>(l);
+  if (try_safe != nullptr)
+    return std::make_shared<SafeLaneView>(try_safe);
 
-    auto try_road = std::dynamic_pointer_cast<RoadLane>(l);
-    if (try_road != nullptr) return std::make_shared<RoadLaneView>(try_road);
+  auto try_road = std::dynamic_pointer_cast<RoadLane>(l);
+  if (try_road != nullptr)
+    return std::make_shared<RoadLaneView>(try_road);
 
-    auto try_tl = std::dynamic_pointer_cast<TurtleLane>(l);
-    if (try_tl != nullptr) return std::make_shared<TurtleLaneView>(try_tl);
+  auto try_tl = std::dynamic_pointer_cast<TurtleLane>(l);
+  if (try_tl != nullptr)
+    return std::make_shared<TurtleLaneView>(try_tl);
 
-    auto try_log = std::dynamic_pointer_cast<LogLane>(l);
-    if (try_log != nullptr) return std::make_shared<LogLaneView>(try_log);
+  auto try_log = std::dynamic_pointer_cast<LogLane>(l);
+  if (try_log != nullptr)
+    return std::make_shared<LogLaneView>(try_log);
 
+  auto try_finish = std::dynamic_pointer_cast<FinishLane>(l);
+  if (try_finish != nullptr)
+    return std::make_shared<FinishLaneView>(try_finish);
 
-    auto try_finish = std::dynamic_pointer_cast<FinishLane>(l);
-    if (try_finish != nullptr) return std::make_shared<FinishLaneView>(try_finish);
-
-    return nullptr;
+  return nullptr;
 }
 
 void SafeLaneView::draw() {

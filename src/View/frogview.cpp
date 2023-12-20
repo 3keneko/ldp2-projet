@@ -46,7 +46,8 @@ void FrogView::showLives() {
     for (int i = 0; i <= 2; i++) {
         if (i < frog->getLives()) {color_live = FL_RED;}
         else {color_live = FL_GRAY;}
-        fl_draw_box(FL_FLAT_BOX, X_POS + i * DIST_BETWEEN, Y_POS, LIVE_SIZE, LIVE_SIZE, color_live);
+        fl_draw_box(FL_FLAT_BOX, X_POS + i * DIST_BETWEEN,
+                    Y_POS, LIVE_SIZE, LIVE_SIZE, color_live);
     }
 }
 
