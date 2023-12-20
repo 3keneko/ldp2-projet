@@ -10,6 +10,13 @@
 /// IT IS TO BE DELETED BEFORE WE SEND THE PROJECT BACK TO MR. IACONO
 #define PRINTTUP(V) std::get<0>(V) << " " << std::get<1>(V)
 
+void BoardModel::update_turtles(std::shared_ptr<Lane> lane) {
+    auto turtle_lane = std::dynamic_pointer_cast<TurtleLane>(lane);
+    if (turtle_lane) {
+        turtle_lane->dive_update();
+    }
+}
+
 // Returns False if frog is outside of the board
 bool BoardModel::isOutOfBoard(Frog& frog) {
     return !frog.inBoard();

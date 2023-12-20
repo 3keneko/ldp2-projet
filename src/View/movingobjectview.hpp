@@ -16,7 +16,7 @@ class MovingObjectView {
                 std::make_unique<RectangleDrawer>(mv->getX(), getLanePos(mv->getId()), mv->getSize(),
                                                   constants::lanes::HEIGHT, Color::UNKNOWN);
         }
-        void draw();
+        virtual void draw();
         std::shared_ptr<MovingObject> getMovin() { return mv; }
         virtual ~MovingObjectView() {}
 };
@@ -43,6 +43,7 @@ class TurtleView: public MovingObjectView {
         TurtleView(std::shared_ptr<Turtle> t): MovingObjectView(t) {
             if (object_drawer) object_drawer->colorSwitch(Color::TURTLE);
         }
+        void draw() final override;
         ~TurtleView() {}
 };
 

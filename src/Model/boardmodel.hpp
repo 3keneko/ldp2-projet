@@ -13,6 +13,7 @@ class BoardModel {
     unsigned time = 0;
   public:
     BoardModel(std::vector<std::shared_ptr<Lane>> mv): lanes(mv) {}
+    void update_turtles(std::shared_ptr<Lane> lane);
 
     // moves the objects on the board
     void update() {
@@ -22,6 +23,7 @@ class BoardModel {
         if (try_mvl != nullptr) {
           for (auto& mov_obj: try_mvl->getMovingObjects()) { mov_obj->move(); }
         }
+        update_turtles(c);
       }
     }
 

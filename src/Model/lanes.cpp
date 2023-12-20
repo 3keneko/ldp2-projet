@@ -44,9 +44,30 @@ LogLane::LogLane(const unsigned int id_num, const unsigned int& log_by_pack, con
     pack_initialize<Log>(log_by_pack, space_between_logs, space_between_packs, first_log_placement, size_log, mv, speed, id_num, constants::window::PADDING);
 }
 
-TurtleLane::TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack, const unsigned int& space_between_turtles,
-                   const unsigned& space_between_packs,const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed): MovingObjectLane(id_num, speed) {
-    pack_initialize<Turtle>(turtle_by_pack, space_between_turtles, space_between_packs, first_turtle_placement, size_turtle, mv, speed, id_num, constants::window::PADDING);
+TurtleLane::TurtleLane(const unsigned int id_num
+                        , const unsigned int& turtle_by_pack
+                        , const unsigned int& space_between_turtles
+                        , const unsigned& space_between_packs
+                        , const int& first_turtle_placement
+                        , const unsigned int& size_turtle
+                        , const int& speed 
+                        , const unsigned int diving_pack_id
+                        , const unsigned int diving_time
+                        , const unsigned int undiving_time)
+        : MovingObjectLane(id_num, speed)
+        , turtle_by_pack{turtle_by_pack}
+        , diving_pack_id{diving_pack_id}
+        , diving_time{diving_time}
+        , undiving_time{undiving_time} {
+    pack_initialize<Turtle>(turtle_by_pack
+                            , space_between_turtles
+                            , space_between_packs
+                            , first_turtle_placement
+                            , size_turtle
+                            , mv
+                            , speed
+                            , id_num
+                            , constants::window::PADDING);
 }
 
 
@@ -85,4 +106,34 @@ void TurtleLane::handle_after_collision(Frog& frog) {
 
 void RoadLane::handle_after_collision(Frog &frog) {
     frog.kill();
+}
+
+
+// Methods that handle diving turtles
+
+void TurtleLane::pack_dive() {
+    for (unsigned int i= diving_pack_id * turtle_by_pack
+            ; i < (diving_pack_id + 1) * turtle_by_pack; i++) {
+        // mv.at(i)->dive();
+    }
+}
+
+void TurtleLane::pack_undive() {
+    for (unsigned int i= diving_pack_id * turtle_by_pack
+            ; i < (diving_pack_id + 1) * turtle_by_pack; i++) {
+        // mv.at(i)->undive();
+    }
+}
+
+void TurtleLane::dive_update() {
+    if (is_diving && diving_count == 0) {
+        pack_undive();
+        // std::cout << "undive" << std::endl;
+        diving_count += undiving_time;
+    } else if (!is_diving && diving_count == 0) {
+        pack_dive();
+        // std::cout << "dive" << std::endl;
+        diving_count += diving_time;
+    }
+    diving_count--;
 }

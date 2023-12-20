@@ -12,3 +12,8 @@ void MovingObjectView::draw() {
     object_drawer->draw();
   }
 }
+
+void TurtleView::draw() {
+    auto turtle = std::dynamic_pointer_cast<Turtle>(mv);
+    if (!turtle->isDiving()) MovingObjectView::draw();
+}

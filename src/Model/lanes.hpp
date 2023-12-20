@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
-#include <iostream>Ah n
+#include <iostream>
 
 /// An abstract class that helps model a lane
 class Lane {
@@ -70,13 +70,30 @@ class LogLane: public MovingObjectLane {
 
 
 class TurtleLane: public MovingObjectLane {
+    unsigned int turtle_by_pack;
+    unsigned int diving_pack_id;
+    bool is_diving = true;
+    unsigned int diving_time;   // In frames
+    unsigned int undiving_time;
+    unsigned int diving_count = 0;
     public:
-        TurtleLane(const unsigned int id_num, const unsigned int& turtle_by_pack,
-            const unsigned int& space_between_turtles, const unsigned& space_between_packs,
-                   const int& first_turtle_placement, const unsigned int& size_turtle, const int& speed=1);
+        TurtleLane(const unsigned int id_num
+                   , const unsigned int& turtle_by_pack
+                   , const unsigned int& space_between_turtles
+                   , const unsigned& space_between_packs
+                   , const int& first_turtle_placement
+                   , const unsigned int& size_turtle
+                   , const int& speed=1
+                   , const unsigned int diving_pack_id = 0
+                   , const unsigned int diving_time = 120
+                   , const unsigned int undiving_time = 120);
         std::vector<std::shared_ptr<Turtle>> getTurtles() const;
         void handle_after_collision(Frog& frog) override;
         bool water_lane() const override { return 1; }
+        // Methods that handle diving turtles
+        void pack_dive();
+        void pack_undive();
+        void dive_update();
         ~TurtleLane() {}
 };
 

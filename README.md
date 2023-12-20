@@ -83,6 +83,7 @@ Dans le pdf, il demande de faire un plateau à 13 lanes, on devrait entre autre 
 
 - [ ] Faire en sorte que les turtles se jettent sous l'eau de temps en temps
 Les méthodes sont là, il y a plus qu'à combiner le tout
+--- Occupé et bientôt fini !
 
 - [X] Afficher le nombre de vies
 Actuellement, la grenouille marche avec un système de vie, il faudrait l'afficher en haut à gauche si possible
@@ -93,6 +94,9 @@ Actuellement, on a juste une image de victoire, un message de victoire fait part
 - [X] Changer le design de la grenouille, pour qu'il puisse être orientable
 On utilisera `enum class` pour avoir les différentes possibilités d'orientation de la grenouille,
 la syntaxe (plutôt cool) est ainsi:
+
+- [ ] Changer les collisions des frogs
+Actuellement, on peut être au bord de la frog sans tomber dans l'eau. Il suffit de faire la même implémentation de collide que pour les logs.
 
 ``` cpp
 enum class Directions {
