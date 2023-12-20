@@ -90,4 +90,5 @@ void FrogView::draw() {
     current_image.changeY(b);
     current_image.changeImg(to_draw);
     current_image.draw();
+    showLives();
 }
