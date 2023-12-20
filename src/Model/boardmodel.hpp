@@ -9,7 +9,7 @@
 
 class BoardModel {
   private:
-    std::vector<std::shared_ptr<Lane>> lanes;
+    std::vector<std::shared_ptr<Lane>> lanes {};
     unsigned time = 0;
   public:
     BoardModel(std::vector<std::shared_ptr<Lane>> mv): lanes(mv) {}
@@ -34,6 +34,12 @@ class BoardModel {
     // bool isOnTurtle(Frog& frog, TurtleLane& tl);
     // bool isDrowning(Frog& frog, WaterLane& wl)
 
+    void addLane(std::shared_ptr<Lane> lane) {
+      lanes.push_back(lane);
+    }
+    std::vector<std::shared_ptr<Lane>> getLanes() {
+      return lanes;
+    }
     /// Collision handlers
     bool any_collision(Frog& frog);
     void handle_collision(Frog& frog);
