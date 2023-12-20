@@ -13,7 +13,7 @@ class MovingObjectView {
     public:
         MovingObjectView(std::shared_ptr<MovingObject> mv): mv(mv) {
             object_drawer = mv == nullptr ? nullptr :
-                std::make_unique<RectangleDrawer>(mv->getUpX(), getLanePos(mv->getId()), mv->getSize(),
+                std::make_unique<RectangleDrawer>(mv->getX(), getLanePos(mv->getId()), mv->getSize(),
                                                   constants::lanes::HEIGHT, Color::UNKNOWN);
         }
         void draw();

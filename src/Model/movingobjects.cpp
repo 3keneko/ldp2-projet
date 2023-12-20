@@ -5,22 +5,24 @@
 
 void MovingObject::move() {
     using namespace constants;
-    centerX += speed;
-    if (centerX < 0) {
-        centerX += window::WIDTH + window::PADDING;
+    x += speed;
+    if (x < -static_cast<int>(size)) {
+        x += window::WIDTH + window::PADDING + static_cast<int>(size);
     }
-    centerX %= (window::WIDTH + window::PADDING);
+    if (x > window::WIDTH + window::PADDING + static_cast<int>(size)) {
+        x = -static_cast<int>(size);
+    }
 }
 
 bool MovingObject::collide(Frog& frog) {
-    return (static_cast<int>(getUpX() + getSize()) >= frog.getX()
-            && static_cast<int>(getUpX()) <= frog.getX() + constants::frog::WIDTH)
+    return (static_cast<int>(getX() + getSize()) >= frog.getX()
+            && static_cast<int>(getX()) <= frog.getX() + constants::frog::WIDTH)
             && frog.getLane() == getId();
 /*
-    return ((static_cast<int>(getUpX()) <= frog.getX() && 
-            static_cast<int>(getUpX() + getSize()) >= frog.getX()) 
-            || (static_cast<int>(getUpX()) <= frog.getX() + constants::frog::WIDTH 
-            && static_cast<int>(getUpX()+ getSize()) >= frog.getX() + constants::frog::WIDTH))
+    return ((static_cast<int>(getX()) <= frog.getX() &&
+            static_cast<int>(getX() + getSize()) >= frog.getX())
+            || (static_cast<int>(getX()) <= frog.getX() + constants::frog::WIDTH
+            && static_cast<int>(getX()+ getSize()) >= frog.getX() + constants::frog::WIDTH))
             && frog.getLane() == getId();
 */
 }
@@ -30,7 +32,7 @@ bool Turtle::collide(Frog& frog) {
 }
 
 bool Log::collide(Frog& frog) {
-    return (static_cast<int>(getUpX()) <= frog.getX()
-            && static_cast<int>(getUpX()+ getSize()) >= frog.getX() + constants::frog::WIDTH)
+    return (static_cast<int>(getX()) <= frog.getX()
+            && static_cast<int>(getX()+ getSize()) >= frog.getX() + constants::frog::WIDTH)
             && frog.getLane() == getId();
 }

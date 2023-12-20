@@ -1,8 +1,5 @@
 #include "laneview.hpp"
 #include "../constants.hpp"
-#include <FL/Enumerations.H>
-#include <FL/Fl_Box.H>
-#include <FL/fl_draw.H>
 #include <memory>
 #include "../utils.hpp"
 
