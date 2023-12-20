@@ -9,6 +9,9 @@
 #include <string>
 
 /*
+#include <iostream>
+#define PRINTVEC(v) for(auto& x: v) std::cout << x << " ";
+
 template <class T>
 std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {
     if (type == 'S' || type=='F') return std::make_shared<T>(init_vec.at(0));
@@ -19,18 +22,16 @@ std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {
 std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
     char laneType;
     ss >> laneType;
-#include <iostream>
-    std::cout << laneType << "\n";
-    std::string value;
+    int value;
     std::vector<int> init_list {};
-    while (std::getline(ss, value, ',' )) {
-        try {
-            int val = std::stoi(value);
-            init_list.push_back(val);
-        }
-        catch (...) {}
+    while (ss >> value) {
+        std::cout << "hi mom" << "\n";
+        init_list.push_back(value);
+        if (ss.peek() == ',') ss.ignore();
     }
-    std::cout << laneType << init_list[0] << "\n";
+    std::cout << laneType << " " << std::endl;
+    PRINTVEC(init_list);
+    std::cout << std::endl;
     switch (laneType) {
         case 'S':
             return init_from_init_vec<SafeLane>(init_list, 'S');
@@ -44,6 +45,7 @@ std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
             return init_from_init_vec<FinishLane>(init_list, 'F');
         default:
             throw std::runtime_error("No matching lane!");
+
     }
 }
 
@@ -64,6 +66,7 @@ void MainInit::init_from_file(std::string path_to_file) {
         while (std::getline(myFile, line)) {
             std::stringstream ss(line);
             bm->addLane(processStringAsLane(ss));
+            //processStringAsLane(ss);
         }
     }
 
@@ -78,7 +81,6 @@ void MainInit::init_from_file(std::string path_to_file) {
 
 }
 */
-
 void MainInit::classic_init() {
             // Intializing the frog
             Frog frog {0, 250};
