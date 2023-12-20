@@ -53,6 +53,8 @@ void FrogView::showLives() {
 
 /// Draws the frog at the coordinates specified by
 /// getImagePos.
+
+/*
 void FrogView::draw() {
     int a, b;
     std::tie(a, b) = getImagePos(*frog);
@@ -61,28 +63,31 @@ void FrogView::draw() {
     fl_draw_box(FL_FLAT_BOX, a, b, frog::WIDTH, frog::HEIGHT, FL_GREEN);
     showLives();
 }
+*/
 
-void FrogView::draw2() {
-    /*
+void FrogView::draw() {
     int a, b;
     std::tie(a, b) = getImagePos(*frog);
     FrogDirection dir = frog->getDirection();
-    std::unique_ptr<Fl_JPEG_Image> to_draw;
+    std::string to_draw;
     switch(dir) {
         case FrogDirection::North:
-            to_draw = std::make_unique<Fl_JPEG_Image>(frog_north_jpeg);
+            to_draw = frog_north_jpeg;
             break;
         case FrogDirection::South:
-            to_draw = std::make_unique<Fl_JPEG_Image>(frog_east_jpeg);
+            to_draw = frog_south_jpeg;
             break;
         case FrogDirection::West:
-            to_draw = std::make_unique<Fl_JPEG_Image>(frog_west_jpeg); 
+            to_draw = frog_west_jpeg; 
             break;
         case FrogDirection::East:
-            to_draw = std::make_unique<Fl_JPEG_Image>(frog_east_jpeg);  
+            to_draw = frog_east_jpeg;  
             break;
         default:
+            break;
     }
-    to_draw->draw(a, b, frog::WIDTH, frog::HEIGHT);
-    */
+    current_image.changeX(a);
+    current_image.changeY(b);
+    current_image.changeImg(to_draw);
+    current_image.draw();
 }

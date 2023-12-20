@@ -75,7 +75,7 @@ Actuellement le plateau est plutôt vide de voitures etc, j'aimerai bien qu'il s
 donc rajoutons des voitures par paquets et tout, ce serait cool!
 AMAZING
 
-- [x] Rendre l'arrivée des objets sur le plateau plus smooth
+- [X] Rendre l'arrivée des objets sur le plateau plus smooth
 Actuellement, l'arrivée des objets sur le plateau se fait de manière beaucoup trop clunky, ce serait bien qu'ils rentrent sur le plateau de manière beaucoup plus smooth
 
 - [x] Faire un plateau à 13 lanes
@@ -90,7 +90,7 @@ Actuellement, la grenouille marche avec un système de vie, il faudrait l'affich
 - [X] Message de victoire
 Actuellement, on a juste une image de victoire, un message de victoire fait partie des conditions de base pour réussir de la partie
 
-- [ ] Changer le design de la grenouille, pour qu'il puisse être orientable
+- [X] Changer le design de la grenouille, pour qu'il puisse être orientable
 On utilisera `enum class` pour avoir les différentes possibilités d'orientation de la grenouille,
 la syntaxe (plutôt cool) est ainsi:
 
