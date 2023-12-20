@@ -13,6 +13,7 @@ enum class Color {
     WATER,
     SAFE,
     LOG,
+    UNKNOWN,
 };
 
 

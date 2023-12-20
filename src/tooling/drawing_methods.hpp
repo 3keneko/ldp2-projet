@@ -11,8 +11,11 @@ class LaneDrawer {
         int pos_y;
         Fl_Color fl_color;
     public:
-        LaneDrawer(int pos_y, Color& color):
+        LaneDrawer(int pos_y, Color&& color):
             pos_y(pos_y), fl_color(colors::color_convert(color)) {}
+        void colorSwitch(const Color& new_col) {
+            fl_color = colors::color_convert(new_col);
+        }
         void draw() {
             fl_draw_box(FL_FLAT_BOX, 0, pos_y,
                         constants::window::WIDTH,
@@ -30,9 +33,11 @@ class SquareDrawer {
         Fl_Color fl_color;
     public:
         SquareDrawer(int x, int y, int size,
-                     const Color& color): x(x), y(y), size(size),
+                     Color&& color): x(x), y(y), size(size),
                                     fl_color(colors::color_convert(color)) {}
-        void colorSwitch(const Color& new_col) {
+        SquareDrawer(int x, int y, int size, const Color& color):
+            x(x), y(y), fl_color(colors::color_convert(color)) {}
+        void colorSwitch(const Color&& new_col) {
             fl_color = colors::color_convert(new_col);
         }
         virtual void draw() {
@@ -45,8 +50,11 @@ class RectangleDrawer: public SquareDrawer {
     private:
         int size_w;
     public:
+        RectangleDrawer(int x, int y, int size_w, int size, Color&& color):
+            SquareDrawer(x, y, size, color), size_w(size_w) {}
         RectangleDrawer(int x, int y, int size_w, int size, const Color& color):
             SquareDrawer(x, y, size, color), size_w(size_w) {}
+
         void draw() override {
             fl_draw_box(FL_FLAT_BOX, x, y, size_w, size, fl_color);
         }

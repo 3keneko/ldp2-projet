@@ -6,6 +6,10 @@
 #include <vector>
 #include "../Model/lanes.hpp"
 #include "movingobjectview.hpp"
+#include "../tooling/drawing_methods.hpp"
+#include "../utils.hpp"
+#include "../tooling/colors.hpp"
+
 /*
 class LaneView {
     protected:
@@ -23,8 +27,10 @@ class LaneView {
 class LaneView {
     protected:
         std::shared_ptr<Lane> lane;
+        LaneDrawer ld;
     public:
-        LaneView(std::shared_ptr<Lane> lane): lane(lane){}
+        LaneView(std::shared_ptr<Lane> lane):
+            lane(lane), ld(LaneDrawer(getLanePos(lane->getId()), Color::UNKNOWN)) {}
         virtual void draw() = 0;
         static std::shared_ptr<LaneView> makeView(std::shared_ptr<Lane> l);
         virtual ~LaneView() {}
@@ -41,14 +47,16 @@ class SafeLaneView: public LaneView {
     // private:
     //     std::shared_ptr<SafeLane> sfl;
     public:
-        SafeLaneView(std::shared_ptr<SafeLane> sfl): LaneView(sfl) {}
+        SafeLaneView(std::shared_ptr<SafeLane> sfl): LaneView(sfl) {ld.colorSwitch(Color::SAFE);}
         void draw() final;
         ~SafeLaneView() {}
 };
 
 class FinishLaneView: public LaneView {
     public:
-        FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {}
+        FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {
+            ld.colorSwitch(Color::FROG);
+        }
         void draw() final;
         ~FinishLaneView() {}
 };
@@ -58,6 +66,7 @@ class RoadLaneView: public LaneView {
         std::vector<std::shared_ptr<CarView>> cv;
     public:
         RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(rl) {
+            ld.colorSwitch(Color::ROAD);
             for (auto& car: rl->getMovingObjects()) {
                 cv.push_back(std::make_shared<CarView>(std::static_pointer_cast<Car>(car)));
             }
@@ -71,6 +80,7 @@ class LogLaneView: public LaneView {
         std::vector<std::shared_ptr<LogView>> lv;
     public:
         LogLaneView(std::shared_ptr<LogLane> ll): LaneView(ll) {
+            ld.colorSwitch(Color::WATER);
             for (auto& _log: ll->getMovingObjects()) {
                 lv.push_back(std::make_shared<LogView>(std::static_pointer_cast<Log>(_log)));
             }
@@ -85,6 +95,7 @@ class TurtleLaneView: public LaneView {
         std::vector<std::shared_ptr<TurtleView>> tv;
     public:
         TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(tl) {
+            ld.colorSwitch(Color::WATER);
             for (auto& turtle: tl->getMovingObjects()) {
                 tv.push_back(std::make_shared<TurtleView>(std::static_pointer_cast<Turtle>(turtle)));
             }

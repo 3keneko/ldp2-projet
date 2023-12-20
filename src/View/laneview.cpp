@@ -52,25 +52,21 @@ std::shared_ptr<LaneView> LaneView::makeView(std::shared_ptr<Lane> l) {
 }
 
 void SafeLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-                constants::window::WIDTH, HEIGHT, PURPLE);
+    ld.draw();
 }
 
 void RoadLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-               constants::window::WIDTH, HEIGHT, FL_BLACK);
+    ld.draw();
     for (auto& car: cv) {car->draw();}
 }
 
 void LogLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-                constants::window::WIDTH, HEIGHT, FL_BLUE);
+    ld.draw();
     for (auto& _log: lv) {_log->draw();}
 }
 
 void TurtleLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-                constants::window::WIDTH, HEIGHT, FL_BLUE);
+    ld.draw();
     for (auto& object: tv)
         object->draw();
 }
@@ -79,6 +75,5 @@ void TurtleLaneView::draw() {
 // void FinishLaneView::draw() {}
 
 void FinishLaneView::draw() {
-    fl_draw_box(FL_FLAT_BOX, 0, getLanePos(lane->getId()),
-                constants::window::WIDTH, HEIGHT, FL_GREEN);
+    ld.draw();
 }
