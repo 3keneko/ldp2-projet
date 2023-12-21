@@ -21,15 +21,16 @@ class Lane {
 
 class FinishLane: public Lane {
     private:
-        std::vector<WaterLilies> lilies;
+        std::vector<std::shared_ptr<WaterLilies>> lilies;
     public:
         FinishLane(const unsigned int id):
             Lane(id) {
             int inc = (constants::window::WIDTH - constants::waterlilies::SIZE) / 3;
-            lilies = { WaterLilies(0), WaterLilies(inc), WaterLilies(2*inc), WaterLilies(3*inc) } ;
+            lilies = { std::make_shared<WaterLilies>(0),
+            std::make_shared<WaterLilies>(inc), std::make_shared<WaterLilies>(2*inc), std::make_shared<WaterLilies>(3*inc) } ;
         }
 
-        std::vector<WaterLilies> getLilies() {
+        std::vector<std::shared_ptr<WaterLilies>> getLilies() {
             return lilies;
         }
 

@@ -16,12 +16,7 @@ using namespace constants::frog;
 class FrogView {    
     std::shared_ptr<Frog> frog;
     // Paths to the images of the frog
-    const std::string frog_north_jpeg = "../imgs/frog_north.jpeg";
-    const std::string frog_south_jpeg = "../imgs/frog_south.jpeg";
-    const std::string frog_west_jpeg = "../imgs/frog_west.jpeg";
-    const std::string frog_east_jpeg = "../imgs/frog_east.jpeg";
-    // Image of the frog
-    JPEGDrawer current_image{frog_north_jpeg, frog->getX(), 
+    JPEGDrawer current_image{paths::frog_north_jpeg, frog->getX(),
                                 static_cast<int>(frog->getLane()), HEIGHT, WIDTH};
 public:
     FrogView(std::shared_ptr<Frog> f): frog(f) {}

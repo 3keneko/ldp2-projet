@@ -36,13 +36,13 @@ bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
 bool BoardModel::gameWon() {
     auto lilies = the_finish_lane->getLilies();
     return std::all_of(lilies.begin(), lilies.end(),
-                       [](WaterLilies& lily) { return lily.hasBeenVisited(); });
+                       [](auto& lily) { return lily->hasBeenVisited(); });
 }
 
 bool BoardModel::frogOnLily(Frog& frog) {
     for (auto& lily: the_finish_lane->getLilies()) {
-        if (lily.collide(frog)) {
-            lily.visit();
+        if (lily->collide(frog)) {
+            lily->visit();
             return true;
         }
     }

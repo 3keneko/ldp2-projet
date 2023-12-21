@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
   MainInit m {};
   // m.welcomeUser();
   m.init_from_file("levels/level6.csv");
+  //m.init_from_file("levels/sure_win.csv");
   //m.classic_init();
   auto ml = std::make_unique<MainLoop>(m.getBoardModel(), m.getBoardView(), m.getFrogView(), m.getFrog());
   MainWindow window(std::move(ml));

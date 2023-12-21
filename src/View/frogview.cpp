@@ -72,22 +72,21 @@ void FrogView::draw() {
     std::string to_draw;
     switch(dir) {
         case FrogDirection::North:
-            to_draw = frog_north_jpeg;
+            to_draw = paths::frog_north_jpeg;
             break;
         case FrogDirection::South:
-            to_draw = frog_south_jpeg;
+            to_draw = paths::frog_south_jpeg;
             break;
         case FrogDirection::West:
-            to_draw = frog_west_jpeg; 
+            to_draw = paths::frog_west_jpeg;
             break;
         case FrogDirection::East:
-            to_draw = frog_east_jpeg;  
+            to_draw = paths::frog_east_jpeg;
             break;
         default:
             break;
     }
-    current_image.changeX(a);
-    current_image.changeY(b);
+    current_image.changePos(a, b);
     current_image.changeImg(to_draw);
     current_image.draw();
     showLives();

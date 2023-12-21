@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#include <string>
+
 namespace constants {
     namespace window {
         const int WIDTH = 500;
@@ -23,6 +25,14 @@ namespace constants {
     namespace waterlilies {
         const int SIZE = 40;
     }
+}
+
+namespace paths {
+    const std::string frog_north_jpeg = "../imgs/frog_north.jpeg";
+    const std::string frog_south_jpeg = "../imgs/frog_south.jpeg";
+    const std::string frog_west_jpeg = "../imgs/frog_west.jpeg";
+    const std::string frog_east_jpeg = "../imgs/frog_east.jpeg";
+
 }
 
 #endif // CONSTANTS_H_

@@ -60,7 +60,7 @@ class FinishLaneView: public LaneView {
         FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {
             ld.colorSwitch(Color::WATER);
             for (auto& _lily: fl->getLilies()) {
-                auto lily_view = std::make_shared<LiliesView>(std::make_shared<WaterLilies>(_lily));
+                auto lily_view = std::make_shared<LiliesView>(_lily);
                 lilies.push_back(lily_view);
             }
         }
