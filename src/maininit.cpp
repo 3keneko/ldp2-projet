@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include <string>
 
-/*
 #include <iostream>
 #define PRINTVEC(v) for(auto& x: v) std::cout << x << " ";
 
@@ -19,30 +18,34 @@ std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {
                                     init_vec.at(3), init_vec.at(4), init_vec.at(5), init_vec.at(6));
 }
 
+template <class T>
+std::shared_ptr<T> init_big_from_stream(std::stringstream& ss) {
+    unsigned id_num, by_pack, between_elems, between_packs, size;
+    int first_placement, speed;
+    ss >> id_num >> by_pack >>  between_elems >> between_packs
+                >> first_placement >> size >> speed;
+    return std::make_shared<T>(id_num, by_pack, between_elems, between_packs,
+                            first_placement, size, speed);
+
+}
+
 std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
     char laneType;
     ss >> laneType;
-    int value;
-    std::vector<int> init_list {};
-    while (ss >> value) {
-        std::cout << "hi mom" << "\n";
-        init_list.push_back(value);
-        if (ss.peek() == ',') ss.ignore();
-    }
-    std::cout << laneType << " " << std::endl;
-    PRINTVEC(init_list);
-    std::cout << std::endl;
+    unsigned id_num;
     switch (laneType) {
         case 'S':
-            return init_from_init_vec<SafeLane>(init_list, 'S');
+            ss >> id_num;
+            return std::make_shared<SafeLane>(id_num);
         case 'R':
-            return init_from_init_vec<RoadLane>(init_list, 'R');
+            return init_big_from_stream<RoadLane>(ss);
         case 'T':
-            return init_from_init_vec<TurtleLane>(init_list, 'T');
+            return init_big_from_stream<TurtleLane>(ss);
         case 'L':
-            return init_from_init_vec<LogLane>(init_list, 'L');
+            return init_big_from_stream<LogLane>(ss);
         case 'F':
-            return init_from_init_vec<FinishLane>(init_list, 'F');
+            ss >> id_num;
+            return std::make_shared<FinishLane>(id_num);
         default:
             throw std::runtime_error("No matching lane!");
 
@@ -54,6 +57,7 @@ void MainInit::init_from_file(std::string path_to_file) {
     Frog frog {0, 250};
     frg = std::make_shared<Frog>(frog);
     fv = std::make_shared<FrogView>(frg);
+    std::vector<std::shared_ptr<Lane>> lanes {};
 
     // https://www.gormanalysis.com/blog/reading-and-writing-csv-files-with-cpp/
     std::ifstream myFile(path_to_file);
@@ -65,7 +69,7 @@ void MainInit::init_from_file(std::string path_to_file) {
     if (myFile.good()) {
         while (std::getline(myFile, line)) {
             std::stringstream ss(line);
-            bm->addLane(processStringAsLane(ss));
+            lanes.push_back(processStringAsLane(ss));
             //processStringAsLane(ss);
         }
     }
@@ -73,14 +77,14 @@ void MainInit::init_from_file(std::string path_to_file) {
     myFile.close();
     std::vector<std::shared_ptr<LaneView>> v {};
 
-    for (auto& lane: bm->getLanes()) {
+    for (auto& lane: lanes) {
         v.push_back(LaneView::makeView(lane));
     }
 
+    bm = std::make_shared<BoardModel>(lanes);
     board = std::make_shared<BoardView>(v, bm);
 
 }
-*/
 void MainInit::classic_init() {
             // Intializing the frog
             Frog frog {0, 250};

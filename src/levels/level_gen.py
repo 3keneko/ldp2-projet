@@ -18,8 +18,8 @@ for i in range(2, 10):
                 space_in_pack = random.randint(10, 40) if lt != "T" else random.randint(10, 15)
                 space_between_packs = random.randint(50, 100)
                 first_placement = random.randint(-100, 100)
-                size_each = random.randint(30, 50) if lt in "TR" else random.randint(60, 90)
-                speeds = [*range(-5, 6)]
+                size_each = random.randint(30, 50) if lt in "TR" else random.randint(130, 200)
+                speeds = [*range(-3, 4)]
                 speeds.remove(0)
                 speed = random.choice(speeds)
                 f.write(f"{lt} {the_id} {by_pack} {space_in_pack} {space_between_packs} {first_placement} {size_each} {speed}\n")
