@@ -73,4 +73,6 @@ void TurtleLaneView::draw() {
 
 void FinishLaneView::draw() {
     ld.draw();
+    for (auto& object: lilies)
+      object->draw();
 }

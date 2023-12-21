@@ -1,12 +1,25 @@
 #include "maininit.hpp"
 #include "Model/boardmodel.hpp"
 #include "Model/lanes.hpp"
+#include "menuwindow.hpp"
 #include <fstream>
 #include <memory>
 #include <pthread.h>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+
+
+
+void MainInit::welcomeUser() {
+    while (!can_start) {
+        MenuWindow mw {};
+        Fl_Box welcome(50, 100, 300, 100, "un jeu lenny&lucas");
+        mw.draw();
+        Fl::run();
+    }
+}
+
 
 template <class T>
 std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {

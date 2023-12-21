@@ -2,6 +2,7 @@
 #define LANE_H_
 #include "frog.hpp"
 #include "movingobjects.hpp"
+#include "waterlilies.hpp"
 #include <vector>
 #include <memory>
 #include <algorithm>
@@ -19,9 +20,19 @@ class Lane {
 };
 
 class FinishLane: public Lane {
+    private:
+        std::vector<WaterLilies> lilies;
     public:
         FinishLane(const unsigned int id):
-            Lane(id) {}
+            Lane(id) {
+            int inc = (constants::window::WIDTH - constants::waterlilies::SIZE) / 3;
+            lilies = { WaterLilies(0), WaterLilies(inc), WaterLilies(2*inc), WaterLilies(3*inc) } ;
+        }
+
+        std::vector<WaterLilies> getLilies() {
+            return lilies;
+        }
+
         ~FinishLane() {}
 };
 

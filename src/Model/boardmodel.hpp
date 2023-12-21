@@ -9,10 +9,19 @@
 
 class BoardModel {
   private:
+    std::shared_ptr<FinishLane> the_finish_lane;
     std::vector<std::shared_ptr<Lane>> lanes {};
     unsigned time = 0;
   public:
-    BoardModel(std::vector<std::shared_ptr<Lane>> mv): lanes(mv) {}
+    BoardModel(std::vector<std::shared_ptr<Lane>> lanes): lanes(lanes) {
+    for (auto& lane: lanes) {
+        auto try_fl = std::dynamic_pointer_cast<FinishLane>(lane);
+        if (try_fl != nullptr) {
+            the_finish_lane = try_fl;
+            break;
+        }
+    }
+    }
     void update_turtles(std::shared_ptr<Lane> lane);
 
     // moves the objects on the board
@@ -27,10 +36,11 @@ class BoardModel {
       }
     }
 
+    bool gameWon();
     // Collision methods
     bool isOutOfBoard(Frog& frog);
     // bool collidesWithAuto(Frog &frog, RoadLane& lane);
-    bool inFinishLane(Frog& frog);
+    bool frogOnLily(Frog& frog);
 
     // bool isOnLog(Frog &frog, LogLane& lane);
     // bool isOnTurtle(Frog& frog, TurtleLane& tl);

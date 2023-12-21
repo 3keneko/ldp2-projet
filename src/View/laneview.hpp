@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include "../Model/lanes.hpp"
+#include "liliesview.hpp"
 #include "movingobjectview.hpp"
 #include "../tooling/drawing_methods.hpp"
 #include "../utils.hpp"
@@ -53,9 +54,15 @@ class SafeLaneView: public LaneView {
 };
 
 class FinishLaneView: public LaneView {
+    private:
+        std::vector<std::shared_ptr<LiliesView>> lilies;
     public:
         FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {
-            ld.colorSwitch(Color::FROG);
+            ld.colorSwitch(Color::WATER);
+            for (auto& _lily: fl->getLilies()) {
+                auto lily_view = std::make_shared<LiliesView>(std::make_shared<WaterLilies>(_lily));
+                lilies.push_back(lily_view);
+            }
         }
         void draw() final;
         ~FinishLaneView() {}

@@ -6,6 +6,7 @@ namespace constants {
         const int WIDTH = 500;
         const int HEIGHT = 500;
         const int PADDING = 100;
+        constexpr double RPS = 60;
     }
     namespace lanes {
         const int NUMBER = 13;
@@ -18,6 +19,9 @@ namespace constants {
     }
     namespace turtle {
         const int LENGTH = constants::frog::WIDTH;
+    }
+    namespace waterlilies {
+        const int SIZE = 40;
     }
 }
 

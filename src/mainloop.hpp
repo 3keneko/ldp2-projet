@@ -26,7 +26,7 @@ class MainLoop {
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
       bm(bm), bv(bv), fv(fv), frog(frog), c(Controller(frog)){}
     void update() {
-      if (bm->inFinishLane(*frog)) {
+      if (bm->gameWon()) {
         FullScreenJPEGImage won_screen {"../imgs/won.jpeg"};
         won_screen.draw();
       } else if (frog->alive()) {

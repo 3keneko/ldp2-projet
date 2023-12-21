@@ -54,12 +54,17 @@ bool Frog::inBoard() {
             ( x <= constants::window::WIDTH );
 }
 
+void Frog::resetPos() {
+    x = constants::window::WIDTH / 2;
+    lane_number = 0;
+}
+
 
 // In charge of life and death of the Frog
 void Frog::kill() {
     lives--;
     if (alive()) {
-        x = constants::window::WIDTH / 2;
-        lane_number = 0;
+        resetPos();
     }
 }
+

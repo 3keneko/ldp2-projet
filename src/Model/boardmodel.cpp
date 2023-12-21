@@ -1,6 +1,7 @@
 #include "boardmodel.hpp"
 #include "frog.hpp"
 #include "lanes.hpp"
+#include "waterlilies.hpp"
 #include <memory>
 #include <algorithm>
 
@@ -31,8 +32,22 @@ bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
                                 }); 
 }
 */
-// To do after defining finnishLane
-bool BoardModel::inFinishLane(Frog& frog) {return frog.getLane() == constants::lanes::NUMBER;}
+
+bool BoardModel::gameWon() {
+    auto lilies = the_finish_lane->getLilies();
+    return std::all_of(lilies.begin(), lilies.end(),
+                       [](WaterLilies& lily) { return lily.hasBeenVisited(); });
+}
+
+bool BoardModel::frogOnLily(Frog& frog) {
+    for (auto& lily: the_finish_lane->getLilies()) {
+        if (lily.collide(frog)) {
+            lily.visit();
+            return true;
+        }
+    }
+    return false;
+}
 /*
 bool BoardModel::isOnLog(Frog& frog, LogLane& ll) {
     auto log_list = ll.getLogs();
@@ -71,13 +86,21 @@ bool BoardModel::any_collision(Frog& frog) {
 }
 
 void BoardModel::handle_collision(Frog& frog) {
-    for (auto& lane: lanes) {
-        if (lane->getId() == frog.getLane()) {
-            auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
-            if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
-                try_mvl->handle_after_collision(frog);
-            } else if (try_mvl != nullptr && try_mvl->water_lane()) {
-                frog.kill();
+    if (frog.getLane() == constants::lanes::NUMBER) {
+        bool got_one = frogOnLily(frog);
+        if (!got_one) frog.kill();
+        else {
+            frog.resetPos();
+        }
+    } else {
+        for (auto& lane: lanes) {
+            if (lane->getId() == frog.getLane()) {
+                auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
+                if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
+                    try_mvl->handle_after_collision(frog);
+                } else if (try_mvl != nullptr && try_mvl->water_lane()) {
+                    frog.kill();
+                }
             }
         }
     }

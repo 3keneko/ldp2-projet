@@ -6,7 +6,6 @@
 
 const int HEIGHT_LANE = 20;
 
-
 /// An abstract class that represents moving objects
 
 class MovingObject {

@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
   std::srand(static_cast<unsigned>(time(nullptr)));
   MainInit maininit {};
   MainInit m {};
+  // m.welcomeUser();
   m.init_from_file("levels/level6.csv");
   //m.classic_init();
   auto ml = std::make_unique<MainLoop>(m.getBoardModel(), m.getBoardView(), m.getFrogView(), m.getFrog());
