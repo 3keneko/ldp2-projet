@@ -49,6 +49,7 @@ class MovingObject {
 
     // returns true if this element collides with the frog
     virtual bool collide(Frog& frog);
+    virtual bool collide2(Frog& frog);
 
     int getSpeed() const { return speed; }
 

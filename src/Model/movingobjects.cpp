@@ -14,10 +14,19 @@ void MovingObject::move() {
     }
 }
 
+// When the frog touches the object
 bool MovingObject::collide(Frog& frog) {
     return ((getX() + static_cast<int>(getSize())) >= frog.getX()
             && getX() <= frog.getX() + constants::frog::WIDTH)
             && frog.getLane() == getId();
+}
+
+// When the frog is entirely on the object
+bool MovingObject::collide2(Frog& frog) {
+    return (getX() <= frog.getX()
+            && (getX()+ static_cast<int>(getSize())) >= frog.getX() + constants::frog::WIDTH)
+            && frog.getLane() == getId();
+}
 /*
     return ((static_cast<int>(getX()) <= frog.getX() &&
             static_cast<int>(getX() + getSize()) >= frog.getX())
@@ -25,14 +34,11 @@ bool MovingObject::collide(Frog& frog) {
             && static_cast<int>(getX()+ getSize()) >= frog.getX() + constants::frog::WIDTH))
             && frog.getLane() == getId();
 */
-}
 
 bool Turtle::collide(Frog& frog) {
-    return !diving && MovingObject::collide(frog);
+    return !diving && MovingObject::collide2(frog);
 }
 
 bool Log::collide(Frog& frog) {
-    return (getX() <= frog.getX()
-            && (getX()+ static_cast<int>(getSize())) >= frog.getX() + constants::frog::WIDTH)
-            && frog.getLane() == getId();
+    return MovingObject::collide2(frog);
 }
