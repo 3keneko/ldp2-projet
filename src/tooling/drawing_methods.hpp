@@ -55,8 +55,28 @@ class SquareDrawer {
         virtual ~SquareDrawer() {}
 };
 
+class Text {
+    protected:
+        std::string s;
+        int x_text, y_text;
+        int fontSize;
+        Color color;
+    public:
+        // Constructor
+        Text(std::string s, int x, int y, int fontSize = 20, Color color = Color::TEXT)
+            : s{s}, x_text{x}, y_text{y}, fontSize{fontSize}, color{color} {}
+
+        // Draw
+        void draw();
+
+        // Setters and getters
+        std::string getString() { return s; }
+        void setString(const std::string &newString) { s = newString; }
+};
+
+
 class RectangleDrawer: public SquareDrawer {
-    private:
+    protected:
         int size_w;
     public:
         RectangleDrawer(int x, int y, int size_w, int size, Color&& color):
@@ -67,11 +87,31 @@ class RectangleDrawer: public SquareDrawer {
         void draw() override {
             fl_draw_box(FL_FLAT_BOX, x, y, size_w, size, fl_color);
         }
+        int getCenterX() const;
+        int getCenterY() const;
         ~RectangleDrawer() {}
 };
 
-class CircleDrawer {
+class ClickableRectangle: public RectangleDrawer {
+    public:
+        ClickableRectangle(int x, int y, int size_w, int size
+                            , Color color = Color::CLICKABLE)
+            : RectangleDrawer{x, y, size_w, size, color} {}
+        bool contains(int xMouse, int yMouse);
+        virtual void onClick() {}
+        virtual ~ClickableRectangle() {}
+};
 
+class ClickableRectangleWithText: public ClickableRectangle, public Text {
+    public:
+        ClickableRectangleWithText(int x, int y, int size_w, int size
+                                    , std::string s, int fontsize = 20
+                                    , Color color = Color::CLICKABLE
+                                    , Color text_color = Color::TEXT)
+            : ClickableRectangle{x, y, size_w, size, color}
+            , Text{s, x + size_w / 2, y + size / 2, fontsize, text_color} {}
+        void draw() override;
+        ~ClickableRectangleWithText() {}
 };
 
 #endif // DRAWING_METHODS_H_
