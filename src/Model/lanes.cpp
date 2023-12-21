@@ -113,26 +113,27 @@ void RoadLane::handle_after_collision(Frog &frog) {
 
 void TurtleLane::pack_dive() {
     for (unsigned int i= diving_pack_id * turtle_by_pack
-            ; i < (diving_pack_id + 1) * turtle_by_pack; i++) {
-        // mv.at(i)->dive();
+            ; i <= (diving_pack_id + 1) * turtle_by_pack; i++) {
+        mv.at(i)->dive();
     }
+    is_diving = true;
 }
 
 void TurtleLane::pack_undive() {
     for (unsigned int i= diving_pack_id * turtle_by_pack
-            ; i < (diving_pack_id + 1) * turtle_by_pack; i++) {
-        // mv.at(i)->undive();
+            ; i <= (diving_pack_id + 1) * turtle_by_pack; i++) {
+        mv.at(i)->undive();
     }
+    is_diving = false;
 }
 
 void TurtleLane::dive_update() {
     if (is_diving && diving_count == 0) {
         pack_undive();
-        // std::cout << "undive" << std::endl;
         diving_count += undiving_time;
-    } else if (!is_diving && diving_count == 0) {
+    } 
+    if (!is_diving && diving_count == 0) {
         pack_dive();
-        // std::cout << "dive" << std::endl;
         diving_count += diving_time;
     }
     diving_count--;

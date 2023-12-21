@@ -3,6 +3,7 @@
 #include "frog.hpp"
 #include <memory>
 #include <tuple>
+#include <iostream>
 
 const int HEIGHT_LANE = 20;
 
@@ -50,6 +51,11 @@ class MovingObject {
     virtual bool collide(Frog& frog);
 
     int getSpeed() const { return speed; }
+
+    // Methods regarding diving turtles
+    virtual void dive() {}
+    virtual void undive() {}
+    virtual bool isDiving() const {return 0;}
     virtual ~MovingObject() {}
 };
 
@@ -67,9 +73,9 @@ class Turtle: public MovingObject {
     public:
         Turtle(int speed, const unsigned int head, const unsigned int size, const unsigned lane_id):
             MovingObject(speed, head, size, lane_id), diving(false) {}
-        void dive() { diving=true;}
-        void undive() { diving=false;}
-        bool isDiving() const { return diving; }
+        void dive() final override { diving=true;}
+        void undive() final override { diving=false;}
+        bool isDiving() const final override { return diving; }
         bool collide(Frog& frog) final override;
         ~Turtle() {}
 };
