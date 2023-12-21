@@ -58,7 +58,7 @@ DONE!!!!
 ~~Oui stp :pleading_face:~~
 On va plutôt colorer les classes filles de WaterLanes en bleu, colorer waterlanes directement s'annonce plus coton pour l'instant
 
-- [ ] Définir les objets de finnishLane <br/>
+- [x] Définir les objets de finnishLane <br/>
 D'accord définir de nouveaux objets imobiles (finnishCase?) et puis le mettre dans finnishLane
 Définir des collisions avec ces objets
 Définir des collisions avec toute la lane sauf ces objets (la mort quoi)
