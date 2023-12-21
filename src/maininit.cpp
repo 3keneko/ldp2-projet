@@ -8,9 +8,6 @@
 #include <stdexcept>
 #include <string>
 
-#include <iostream>
-#define PRINTVEC(v) for(auto& x: v) std::cout << x << " ";
-
 template <class T>
 std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {
     if (type == 'S' || type=='F') return std::make_shared<T>(init_vec.at(0));

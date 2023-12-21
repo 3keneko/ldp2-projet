@@ -57,8 +57,11 @@ class LogLane: public MovingObjectLane {
     public:
         // LogLane(const unsigned int id_num) : MovingObjectLane(id_num) {}
 
-        LogLane(const unsigned int id_num, const unsigned int& log_by_pack, const unsigned int& space_between_logs,
-                const unsigned& space_between_packs,const int& first_log_placement, const unsigned int& size_log, const int& speed=0);
+        LogLane(const unsigned int id_num, const unsigned int& log_by_pack,
+                const unsigned int& space_between_logs,
+                const unsigned& space_between_packs,
+                const int& first_log_placement,
+                const unsigned int& size_log, const int& speed=0);
             // for (auto& log: mv) {
             //     log = std::dynamic_pointer_cast<Log>(log);
             // }

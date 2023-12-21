@@ -14,6 +14,7 @@
 
 class MainInit {
     private:
+        bool can_start = false;
         std::shared_ptr<BoardView> board;
         std::shared_ptr<Frog> frg;
         std::shared_ptr<BoardModel> bm;
@@ -21,6 +22,9 @@ class MainInit {
     public:
         MainInit() {}
 
+        void welcomeUser();
+
+        // initializing from file and stuff
         void classic_init();
         void init_from_file(std::string path_to_file);
 

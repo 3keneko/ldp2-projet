@@ -1,18 +1,18 @@
 #ifndef MAINWINDOW_H_
 #define MAINWINDOW_H_
+#include "constants.hpp"
 #include "mainloop.hpp"
 #include <FL/Fl_Window.H>
 #include <FL/Fl.H>
 
 const double refreshPerSecond = 60;
-const int windowWidth = 500;
-const int windowHeight = 500;
 
 class MainWindow : public Fl_Window {
   private:
     std::unique_ptr<MainLoop> main;
     public:
-        MainWindow(std::unique_ptr<MainLoop> main) : Fl_Window(650, 650, windowWidth, windowHeight, "Frogger Game"), main(std::move(main)) {
+        MainWindow(std::unique_ptr<MainLoop> main) : Fl_Window(650, 650, constants::window::WIDTH,
+                                                               constants::window::HEIGHT, "Frogger Game"), main(std::move(main)) {
             Fl::add_timeout(1.0/refreshPerSecond, Timer_CB, this);
             resizable(this);
         }

@@ -12,9 +12,8 @@
 void init() {}
 
 int main(int argc, char *argv[]) {
-  std::cout << "1" << std::endl;
-  MainInit maininit {};
   std::srand(static_cast<unsigned>(time(nullptr)));
+  MainInit maininit {};
   MainInit m {};
   m.init_from_file("levels/level6.csv");
   //m.classic_init();
