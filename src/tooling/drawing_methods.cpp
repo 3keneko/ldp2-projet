@@ -25,3 +25,7 @@ void RectangleWithText::draw() {
     RectangleDrawer::draw();
     Text::draw();
 }
+
+bool ClickableRectangleWithText::contains(int xMouse, int yMouse) {
+    return RectangleDrawer::contains(xMouse, yMouse);
+}

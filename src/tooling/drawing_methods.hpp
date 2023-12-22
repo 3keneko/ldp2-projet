@@ -7,7 +7,14 @@
 #include "../constants.hpp"
 #include <memory>
 
-class LaneDrawer {
+class ToDraw {
+    public:
+    ToDraw() = default;
+    virtual void draw() = 0;
+    virtual ~ToDraw() = default;
+};
+
+class LaneDrawer: public ToDraw{
     private:
         int pos_y;
         Fl_Color fl_color;
@@ -17,7 +24,7 @@ class LaneDrawer {
         void colorSwitch(const Color& new_col) {
             fl_color = colors::color_convert(new_col);
         }
-        void draw() {
+        void draw() final override {
             fl_draw_box(FL_FLAT_BOX, 0, pos_y,
                         constants::window::WIDTH,
                         constants::lanes::HEIGHT,
@@ -26,7 +33,7 @@ class LaneDrawer {
         ~LaneDrawer() {}
 };
 
-class SquareDrawer {
+class SquareDrawer: public ToDraw{
     protected:
         int x;
         int y;
@@ -49,13 +56,13 @@ class SquareDrawer {
             y=y;
         }
         void updateX(int new_x) { x = new_x; }
-        virtual void draw() {
+        virtual void draw() override{
             fl_draw_box(FL_FLAT_BOX, x, y, size, size, fl_color);
         }
         virtual ~SquareDrawer() {}
 };
 
-class Text {
+class Text: public ToDraw{
     protected:
         std::string s;
         int x_text, y_text;
@@ -67,11 +74,11 @@ class Text {
             : s{s}, x_text{x}, y_text{y}, fontSize{fontSize}, color{color} {}
 
         // Draw
-        void draw();
-
+        virtual void draw() override;
         // Setters and getters
         std::string getString() { return s; }
         void setString(const std::string &newString) { s = newString; }
+        virtual ~Text() {}
 };
 
 class RectangleDrawer: public SquareDrawer {
@@ -88,7 +95,7 @@ class RectangleDrawer: public SquareDrawer {
         }
         int getCenterX() const;
         int getCenterY() const;
-        bool contains(int xMouse, int yMouse);
+        virtual bool contains(int xMouse, int yMouse);
         virtual ~RectangleDrawer() {}
 };
 
@@ -103,7 +110,9 @@ class Clickable {
     std::shared_ptr<MessageReceiver> mr;
     public:
         Clickable(std::shared_ptr<MessageReceiver> mr): mr{mr} {}
+        virtual void draw() = 0;
         virtual void onClick() {mr->act();}
+        virtual bool contains(int xMouse, int yMouse) = 0;
         virtual ~Clickable() {}
 };
 
@@ -127,7 +136,9 @@ class ClickableRectangleWithText: public RectangleWithText, public Clickable {
                                     , Color text_color = Color::TEXT)
             : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}
             , Clickable{mr} {}
-        ~ClickableRectangleWithText() {};
+            void draw() override {RectangleWithText::draw();}
+            bool contains(int xMouse, int yMouse) override;
+        ~ClickableRectangleWithText() {}
 };
 
 #endif // DRAWING_METHODS_H_
