@@ -74,44 +74,60 @@ class Text {
         void setString(const std::string &newString) { s = newString; }
 };
 
-
 class RectangleDrawer: public SquareDrawer {
     protected:
         int size_w;
     public:
-        RectangleDrawer(int x, int y, int size_w, int size, Color&& color):
+        RectangleDrawer(int x, int y, int size_w, int size, Color&& color = Color::MENURECTANGLE):
             SquareDrawer(x, y, size, color), size_w(size_w) {}
-        RectangleDrawer(int x, int y, int size_w, int size, const Color& color):
+        RectangleDrawer(int x, int y, int size_w, int size, const Color& color = Color::MENURECTANGLE):
             SquareDrawer(x, y, size, color), size_w(size_w) {}
 
-        void draw() override {
+        virtual void draw() override {
             fl_draw_box(FL_FLAT_BOX, x, y, size_w, size, fl_color);
         }
         int getCenterX() const;
         int getCenterY() const;
-        ~RectangleDrawer() {}
-};
-
-class ClickableRectangle: public RectangleDrawer {
-    public:
-        ClickableRectangle(int x, int y, int size_w, int size
-                            , Color color = Color::CLICKABLE)
-            : RectangleDrawer{x, y, size_w, size, color} {}
         bool contains(int xMouse, int yMouse);
-        virtual void onClick() {}
-        virtual ~ClickableRectangle() {}
+        virtual ~RectangleDrawer() {}
 };
 
-class ClickableRectangleWithText: public ClickableRectangle, public Text {
+class MessageReceiver {
     public:
-        ClickableRectangleWithText(int x, int y, int size_w, int size
+        MessageReceiver() = default;
+        virtual void act() = 0;
+        virtual ~MessageReceiver() = default;    
+};
+
+class Clickable {
+    std::shared_ptr<MessageReceiver> mr;
+    public:
+        Clickable(std::shared_ptr<MessageReceiver> mr): mr{mr} {}
+        virtual void onClick() {mr->act();}
+        virtual ~Clickable() {}
+};
+
+class RectangleWithText: public RectangleDrawer, public Text {
+    public:
+        RectangleWithText(int x, int y, int size_w, int size
                                     , std::string s, int fontsize = 20
-                                    , Color color = Color::CLICKABLE
+                                    , Color color = Color::MENURECTANGLE
                                     , Color text_color = Color::TEXT)
-            : ClickableRectangle{x, y, size_w, size, color}
+            : RectangleDrawer{x, y, size_w, size, color}
             , Text{s, x + size_w / 2, y + size / 2, fontsize, text_color} {}
-        void draw() override;
-        ~ClickableRectangleWithText() {}
+        virtual void draw() override;
+        virtual ~RectangleWithText() {}
+};
+
+class ClickableRectangleWithText: public RectangleWithText, public Clickable {
+    public:
+        ClickableRectangleWithText(int x, int y, int size_w, int size, std::string s
+                                    , std::shared_ptr<MessageReceiver> mr
+                                    , int fontsize = 20, Color color = Color::MENURECTANGLE
+                                    , Color text_color = Color::TEXT)
+            : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}
+            , Clickable{mr} {}
+        ~ClickableRectangleWithText() {};
 };
 
 #endif // DRAWING_METHODS_H_

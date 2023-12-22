@@ -16,12 +16,12 @@ int RectangleDrawer::getCenterY() const {
     return y + (size / 2);
 }
 
-bool ClickableRectangle::contains(int xMouse, int yMouse) {
+bool RectangleDrawer::contains(int xMouse, int yMouse) {
     return x <= xMouse && xMouse <= x + size_w 
             && y <= yMouse && yMouse <= y + size;
 }
 
-void ClickableRectangleWithText::draw() {
-    ClickableRectangle::draw();
+void RectangleWithText::draw() {
+    RectangleDrawer::draw();
     Text::draw();
 }

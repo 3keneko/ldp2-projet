@@ -23,7 +23,7 @@ Fl_Color colors::color_convert(const Color& color) {
             return FL_YELLOW;
         case Color::TEXT:
             return FL_BLACK;
-        case Color::CLICKABLE:
+        case Color::MENURECTANGLE:
             return FL_GRAY;
         case Color::UNKNOWN:
         default:
