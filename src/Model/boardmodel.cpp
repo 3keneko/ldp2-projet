@@ -12,10 +12,9 @@
 #define PRINTTUP(V) std::get<0>(V) << " " << std::get<1>(V)
 
 void BoardModel::update_turtles(std::shared_ptr<Lane> lane) {
-    auto turtle_lane = std::dynamic_pointer_cast<TurtleLane>(lane);
-    if (turtle_lane) {
-        turtle_lane->dive_update();
-    }
+    // auto test = std::static_pointer_cast<TurtleLane>(lane);
+    // if (test) 
+    lane->dive_update();
 }
 
 // Returns False if frog is outside of the board

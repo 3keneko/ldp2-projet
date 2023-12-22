@@ -20,7 +20,11 @@ Fl_Color colors::color_convert(const Color& color) {
         case Color::TURTLE:
             return fl_rgb_color(3, 75, 3); // Dark green
         case Color::CAR:
-            return FL_BLUE;
+            return FL_YELLOW;
+        case Color::TEXT:
+            return FL_BLACK;
+        case Color::CLICKABLE:
+            return FL_GRAY;
         case Color::UNKNOWN:
         default:
             return fl_rgb_color(255, 255, 255); // Very white

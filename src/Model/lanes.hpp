@@ -16,6 +16,7 @@ class Lane {
         Lane(const unsigned int id_num):
             id_num(id_num) {}
         unsigned int getId() const { return id_num; }
+        virtual void dive_update() {}
         virtual ~Lane() {}
 };
 
@@ -108,7 +109,7 @@ class TurtleLane: public MovingObjectLane {
         // Methods that handle diving turtles
         void pack_dive();
         void pack_undive();
-        void dive_update();
+        void dive_update() final override;
         ~TurtleLane() {}
 };
 

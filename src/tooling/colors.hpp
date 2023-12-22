@@ -14,6 +14,8 @@ enum class Color {
     SAFE,
     LOG,
     CAR,
+    TEXT,
+    CLICKABLE,
     UNKNOWN,
 };
 
