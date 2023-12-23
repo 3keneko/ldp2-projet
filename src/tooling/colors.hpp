@@ -15,7 +15,7 @@ enum class Color {
     LOG,
     CAR,
     TEXT,
-    CLICKABLE,
+    MENURECTANGLE,
     UNKNOWN,
 };
 

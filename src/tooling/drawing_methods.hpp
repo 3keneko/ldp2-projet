@@ -7,7 +7,14 @@
 #include "../constants.hpp"
 #include <memory>
 
-class LaneDrawer {
+class ToDraw {
+    public:
+    ToDraw() = default;
+    virtual void draw() = 0;
+    virtual ~ToDraw() = default;
+};
+
+class LaneDrawer: public ToDraw{
     private:
         int pos_y;
         Fl_Color fl_color;
@@ -17,7 +24,7 @@ class LaneDrawer {
         void colorSwitch(const Color& new_col) {
             fl_color = colors::color_convert(new_col);
         }
-        void draw() {
+        void draw() final override {
             fl_draw_box(FL_FLAT_BOX, 0, pos_y,
                         constants::window::WIDTH,
                         constants::lanes::HEIGHT,
@@ -26,7 +33,7 @@ class LaneDrawer {
         ~LaneDrawer() {}
 };
 
-class SquareDrawer {
+class SquareDrawer: public ToDraw{
     protected:
         int x;
         int y;
@@ -49,13 +56,13 @@ class SquareDrawer {
             y=y;
         }
         void updateX(int new_x) { x = new_x; }
-        virtual void draw() {
+        virtual void draw() override{
             fl_draw_box(FL_FLAT_BOX, x, y, size, size, fl_color);
         }
         virtual ~SquareDrawer() {}
 };
 
-class Text {
+class Text: public ToDraw{
     protected:
         std::string s;
         int x_text, y_text;
@@ -67,50 +74,70 @@ class Text {
             : s{s}, x_text{x}, y_text{y}, fontSize{fontSize}, color{color} {}
 
         // Draw
-        void draw();
-
+        virtual void draw() override;
         // Setters and getters
         std::string getString() { return s; }
         void setString(const std::string &newString) { s = newString; }
+        virtual ~Text() {}
 };
-
 
 class RectangleDrawer: public SquareDrawer {
     protected:
         int size_w;
     public:
-        RectangleDrawer(int x, int y, int size_w, int size, Color&& color):
+        RectangleDrawer(int x, int y, int size_w, int size, Color&& color = Color::MENURECTANGLE):
             SquareDrawer(x, y, size, color), size_w(size_w) {}
-        RectangleDrawer(int x, int y, int size_w, int size, const Color& color):
+        RectangleDrawer(int x, int y, int size_w, int size, const Color& color = Color::MENURECTANGLE):
             SquareDrawer(x, y, size, color), size_w(size_w) {}
 
-        void draw() override {
+        virtual void draw() override {
             fl_draw_box(FL_FLAT_BOX, x, y, size_w, size, fl_color);
         }
         int getCenterX() const;
         int getCenterY() const;
-        ~RectangleDrawer() {}
+        virtual bool contains(int xMouse, int yMouse);
+        virtual ~RectangleDrawer() {}
 };
 
-class ClickableRectangle: public RectangleDrawer {
+class MessageReceiver {
     public:
-        ClickableRectangle(int x, int y, int size_w, int size
-                            , Color color = Color::CLICKABLE)
-            : RectangleDrawer{x, y, size_w, size, color} {}
-        bool contains(int xMouse, int yMouse);
-        virtual void onClick() {}
-        virtual ~ClickableRectangle() {}
+        MessageReceiver() = default;
+        virtual void act() = 0;
+        virtual ~MessageReceiver() = default;    
 };
 
-class ClickableRectangleWithText: public ClickableRectangle, public Text {
+class Clickable {
+    std::shared_ptr<MessageReceiver> mr;
     public:
-        ClickableRectangleWithText(int x, int y, int size_w, int size
+        Clickable(std::shared_ptr<MessageReceiver> mr): mr{mr} {}
+        virtual void draw() = 0;
+        virtual void onClick() {mr->act();}
+        virtual bool contains(int xMouse, int yMouse) = 0;
+        virtual ~Clickable() {}
+};
+
+class RectangleWithText: public RectangleDrawer, public Text {
+    public:
+        RectangleWithText(int x, int y, int size_w, int size
                                     , std::string s, int fontsize = 20
-                                    , Color color = Color::CLICKABLE
+                                    , Color color = Color::MENURECTANGLE
                                     , Color text_color = Color::TEXT)
-            : ClickableRectangle{x, y, size_w, size, color}
+            : RectangleDrawer{x, y, size_w, size, color}
             , Text{s, x + size_w / 2, y + size / 2, fontsize, text_color} {}
-        void draw() override;
+        virtual void draw() override;
+        virtual ~RectangleWithText() {}
+};
+
+class ClickableRectangleWithText: public RectangleWithText, public Clickable {
+    public:
+        ClickableRectangleWithText(int x, int y, int size_w, int size, std::string s
+                                    , std::shared_ptr<MessageReceiver> mr
+                                    , int fontsize = 20, Color color = Color::MENURECTANGLE
+                                    , Color text_color = Color::TEXT)
+            : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}
+            , Clickable{mr} {}
+            void draw() override {RectangleWithText::draw();}
+            bool contains(int xMouse, int yMouse) override;
         ~ClickableRectangleWithText() {}
 };
 
