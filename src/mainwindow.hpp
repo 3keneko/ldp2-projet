@@ -1,22 +1,27 @@
 #ifndef MAINWINDOW_H_
 #define MAINWINDOW_H_
-#include "constants.hpp"
-#include "mainloop.hpp"
+
 #include <FL/Fl_Window.H>
 #include <FL/Fl.H>
 
+#include "ContentManagers/gameloop.hpp"
+#include "ContentManagers/content_manager.hpp"
+
+#include "constants.hpp"
+
 class MainWindow : public Fl_Window {
   private:
-    std::unique_ptr<MainLoop> main;
+    std::unique_ptr<ContentManager> contents;
     public:
-        MainWindow(std::unique_ptr<MainLoop> main) :
-            Fl_Window(650, 650, constants::window::WIDTH, constants::window::HEIGHT, "Frogger Game"), main(std::move(main)) {
+        MainWindow(std::unique_ptr<ContentManager> contents) :
+            Fl_Window(650, 650, constants::window::WIDTH, constants::window::HEIGHT, "Frogger Game"),
+            contents(std::move(contents)) {
             Fl::add_timeout(1.0/constants::window::RPS, Timer_CB, this);
             resizable(this);
         }
         void draw() override {
             Fl_Window::draw();
-            main->update();
+            contents->show();
         }
 
         static void Timer_CB(void *userdata) {

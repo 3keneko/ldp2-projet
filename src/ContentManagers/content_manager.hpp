@@ -8,7 +8,8 @@ class ContentManager {
     private:
         std::unique_ptr<WindowContents> contents;
     public:
-        ContentManager() {}
+        ContentManager(std::unique_ptr<WindowContents> first_contents):
+        contents(std::move(first_contents)) {}
 
         void changeContents(std::unique_ptr<WindowContents> new_contents) {
             contents = std::move(new_contents);
