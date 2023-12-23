@@ -4,21 +4,21 @@
 #include "window_contents.hpp"
 #include <memory>
 
-class ContentSwapper {
+class ContentManager {
     private:
         std::unique_ptr<WindowContents> contents;
     public:
-        ContentSwapper() {}
+        ContentManager() {}
 
         void changeContents(std::unique_ptr<WindowContents> new_contents) {
             contents = std::move(new_contents);
         }
 
-        void draw() {
+        void show() {
             contents->draw();
         }
 
-        ~ContentSwapper() {}
+        ~ContentManager() {}
 };
 
 

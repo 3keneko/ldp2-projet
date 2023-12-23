@@ -8,10 +8,10 @@
 #include "../Model/boardmodel.hpp"
 #include "../Model/lanes.hpp"
 
-#include "maininit.hpp"
-#include "menuwindow.hpp"
+#include "gameinit.hpp"
 
-void MainInit::welcomeUser() {
+/*
+void GameInit::welcomeUser() {
     while (!can_start) {
         MenuWindow mw {};
         Fl_Box welcome(50, 100, 300, 100, "un jeu lenny&lucas");
@@ -19,7 +19,7 @@ void MainInit::welcomeUser() {
         Fl::run();
     }
 }
-
+*/
 
 template <class T>
 std::shared_ptr<T> init_from_init_vec(std::vector<int> init_vec, char type) {
@@ -63,7 +63,7 @@ std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
 }
 
 
-void MainInit::init_from_file(std::string& path_to_file) {
+void GameInit::init_from_file(std::string const& path_to_file) {
     Frog frog {0, 250};
     frg = std::make_shared<Frog>(frog);
     fv = std::make_shared<FrogView>(frg);
@@ -96,7 +96,7 @@ void MainInit::init_from_file(std::string& path_to_file) {
 
 }
 
-void MainInit::classic_init() {
+void GameInit::classic_init() {
             // Intializing the frog
             Frog frog {0, 250};
             frg = std::make_shared<Frog>(frog);

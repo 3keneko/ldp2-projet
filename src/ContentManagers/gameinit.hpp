@@ -1,5 +1,5 @@
-#ifndef MAININIT_H_
-#define MAININIT_H_
+#ifndef GAMEINIT_H_
+#define GAMEINIT_H_
 
 #include <memory>
 #include <vector>
@@ -14,7 +14,7 @@
 #include "../Model/lanes.hpp"
 #include "../Model/frog.hpp"
 
-class MainInit {
+class GameInit {
     private:
         bool can_start = false;
         std::shared_ptr<BoardView> board;
@@ -22,13 +22,13 @@ class MainInit {
         std::shared_ptr<BoardModel> bm;
         std::shared_ptr<FrogView> fv;
     public:
-        MainInit() {}
+        GameInit() {}
 
         void welcomeUser();
 
         // initializing from file and stuff
         void classic_init();
-        void init_from_file(std::string& path_to_file);
+        void init_from_file(std::string const& path_to_file);
 
         std::shared_ptr<BoardView> getBoardView() {
             return board;
@@ -42,7 +42,7 @@ class MainInit {
         std::shared_ptr<FrogView> getFrogView() {
             return fv;
         }
-        ~MainInit() {}
+        ~GameInit() {}
 };
 
-#endif // MAININIT_H_
+#endif // GAMEINIT_H_
