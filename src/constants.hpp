@@ -35,4 +35,12 @@ namespace paths {
 
 }
 
+
+enum class actions {
+    STARTGAME,
+    NOTHING,
+    EDIT,
+    LEVELS,
+};
+
 #endif // CONSTANTS_H_

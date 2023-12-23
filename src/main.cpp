@@ -19,7 +19,8 @@ int main(int argc, char *argv[]) {
   auto g = std::make_unique<GameLoop>("levels/level6.csv");
   //m.init_from_file("levels/sure_win.csv");
   //m.classic_init();
-  auto c = std::make_unique<ContentManager>(std::move(g));
+  auto c = std::make_unique<ContentManager>(nullptr);
+  c->start_game(std::move(g));
 
   MainWindow window(std::move(c));
   window.show(argc, argv);

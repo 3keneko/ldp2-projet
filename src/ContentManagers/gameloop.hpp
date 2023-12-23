@@ -20,9 +20,8 @@
 
 
 #include "gameinit.hpp"
-#include "window_contents.hpp"
 
-class GameLoop: public WindowContents {
+class GameLoop {
   private:
     std::shared_ptr<BoardModel> bm;
     std::shared_ptr<BoardView> bv;
@@ -34,9 +33,9 @@ class GameLoop: public WindowContents {
   public:
     GameLoop(std::shared_ptr<BoardModel> bm, std::shared_ptr<BoardView> bv,
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
-      WindowContents(), bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
+      bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
 
-    GameLoop(std::string const& path): WindowContents() {
+    GameLoop(std::string const& path) {
       GameInit init {};
       init.init_from_file(path);
       bm = init.getBoardModel();
@@ -47,7 +46,7 @@ class GameLoop: public WindowContents {
     }
 
 
-    void draw() override {
+    void update() {
 
       if (bm->gameWon()) {
         FullScreenJPEGImage won_screen {"../imgs/won.jpeg"};
