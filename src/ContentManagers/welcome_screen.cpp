@@ -1,10 +1,6 @@
 #include "welcome_screen.hpp"
 #include "gameloop.hpp"
 
-// void start_game_callback(Button* button, void*) {
-//     button->make_pay();
-// }
-
 void WelcomeScreen::draw() {
     start_game_button->draw();
     Text welcome { "Lenny & Lucas game", 100, 200 };
@@ -12,8 +8,7 @@ void WelcomeScreen::draw() {
 }
 
 void WelcomeScreen::informManager() {
-    start_game_button->callback(Button::make_pay);
-    if (start_game_button->getPayoff() != actions::NOTHING) {
+    if (true) {
         auto g = std::make_unique<GameLoop>( "../levels/level1.csv" );
         cm->start_game(std::move(g));
     }

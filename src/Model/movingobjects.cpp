@@ -36,7 +36,7 @@ bool Turtle::collide(Frog& frog) {
 }
 
 bool Log::collide(Frog& frog) {
-    return getX() + static_cast<int>(getSize()) >= frog.getX()
-            && getX() <= frog.getX() + constants::frog::WIDTH
-            && frog.getLane() == getId();   
+    return getX() <= frog.getX()
+            && getX()+ static_cast<int>(getSize()) >= frog.getX() + constants::frog::WIDTH
+            && frog.getLane() == getId();
 }

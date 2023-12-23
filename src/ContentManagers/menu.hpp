@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "../tooling/drawing_methods.hpp"
+#include "../tooling/buttons.hpp"
 
 class Menu {
     std::vector<std::shared_ptr<ToDraw>> objects;
