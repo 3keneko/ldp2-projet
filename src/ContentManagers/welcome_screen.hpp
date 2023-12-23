@@ -6,7 +6,7 @@
 #include "../tooling/buttons.hpp"
 
 class WelcomeScreen: public WindowContents {
-   private:m
+   private:
         std::unique_ptr<ActionButton> start_game_button = std::make_unique<ActionButton>(
                 constants::window::WIDTH/2 - constants::buttons::WIDTH/2,
                 constants::buttons::START_Y,
