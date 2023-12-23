@@ -24,6 +24,16 @@ class MainWindow : public Fl_Window {
             contents->show();
         }
 
+        int handle(int event) override {
+            switch (event) {
+                case FL_PUSH:
+                    contents->manage_button_push(Fl::event_x(), Fl::event_y());
+                    return 1;
+                default:
+                    return 0;
+            }
+            return 0;
+        }
         static void Timer_CB(void *userdata) {
             MainWindow *o = static_cast<MainWindow*>(userdata);
             o->redraw();

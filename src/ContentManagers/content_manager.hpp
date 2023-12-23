@@ -17,6 +17,8 @@ class ContentManager {
             contents = std::move(new_contents);
         }
 
+        void manage_button_push(int x, int y);
+
         void start_game(std::unique_ptr<GameLoop> g) {
             gl = std::move(g);
         }
@@ -33,6 +35,7 @@ class WindowContents {
         WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
         virtual void informManager() = 0;
+        virtual void manage_button_push(int x, int y) = 0;
         // virtual void action() = 0;
         virtual ~WindowContents() {}
 };

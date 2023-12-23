@@ -6,7 +6,7 @@
 
 class WelcomeScreen: public WindowContents {
    private:
-        std::unique_ptr<Button> start_game_button = std::make_unique<Button>( constants::window::WIDTH/2 - constants::buttons::WIDTH/2,
+        std::unique_ptr<ClickableRectangleWithText> start_game_button = std::make_unique<ClickableRectangleWithText>( constants::window::WIDTH/2 - constants::buttons::WIDTH/2,
                         constants::buttons::START_Y,
                         constants::buttons::WIDTH,
                         constants::buttons::HEIGHT,

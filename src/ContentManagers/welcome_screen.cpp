@@ -12,6 +12,7 @@ void WelcomeScreen::draw() {
 }
 
 void WelcomeScreen::informManager() {
+    start_game_button->callback(Button::make_pay);
     if (start_game_button->getPayoff() != actions::NOTHING) {
         auto g = std::make_unique<GameLoop>( "../levels/level1.csv" );
         cm->start_game(std::move(g));

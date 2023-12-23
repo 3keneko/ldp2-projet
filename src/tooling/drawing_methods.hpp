@@ -191,6 +191,7 @@ class Button: public Fl_Button {
         }
         static void make_pay(Fl_Widget* w, void*) {
             auto b = static_cast<Button*>(w);
+            std::cout << "yo" << std::endl;
             b->exchange();
         } // {
         //    this->curr_payoff = payoff;
