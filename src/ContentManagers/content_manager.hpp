@@ -13,10 +13,18 @@ class ContentManager {
     public:
         ContentManager(std::unique_ptr<WindowContents> first_contents):
             contents(std::move(first_contents)), gl(nullptr) {}
+
         void changeContents(std::unique_ptr<WindowContents> new_contents) {
             contents = std::move(new_contents);
         }
-
+        void updateWithAction(actions action) {
+            switch (action) {
+                case actions::STARTGAME:
+                    GameInit g {  };
+                    g.init_from_file("levels/level1.csv");
+                    gl = std::make_shared<GameLoop>(g);
+            }
+        }
         void start_game(std::unique_ptr<GameLoop> g) {
             gl = std::move(g);
         }

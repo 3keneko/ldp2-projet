@@ -16,6 +16,8 @@ void Menu::add_object(std::shared_ptr<ToDraw> obj) {
     objects.push_back(obj);
 }
 
+/*
 void Menu::add_button(std::shared_ptr<Clickable> button) {
     buttons.push_back(button);
 }
+*/
