@@ -13,12 +13,16 @@ class WelcomeScreen: public WindowContents {
                 constants::buttons::WIDTH,
                 constants::buttons::HEIGHT,
                 "START GAME",
-                actions::STARTGAME );
+                actions::STARTGAME,
+                getCM());
         actions to_take = actions::NOTHING;
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
         // start_game_button->callback([](Button* b) {b->make_pay();});
         }
+        void manage_button_push(int x, int y) override {
+             start_game_button->manageClick(x, y);
+         }
         void draw() override;
         void informManager() override;
         // void action() override;

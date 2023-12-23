@@ -21,9 +21,9 @@ int main(int argc, char *argv[]) {
   //m.init_from_file("levels/sure_win.csv");
   //m.classic_init();
   auto c = std::make_shared<ContentManager>(nullptr);
-  c->start_game(std::move(g));
-  // auto ws = std::make_unique<WelcomeScreen>(c);
-  // c->changeContents(std::move(ws));
+  // c->start_game(std::move(g));
+  auto ws = std::make_unique<WelcomeScreen>(c);
+  c->changeContents(std::move(ws));
   MainWindow window(c);
   window.show(argc, argv);
   return Fl::run();

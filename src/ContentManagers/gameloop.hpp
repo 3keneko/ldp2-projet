@@ -35,8 +35,8 @@ class GameLoop {
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
       bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
 
-    GameLoop(GameInit& gi): bm(gi.getBoardModel()), bv(gi.getBoardView()),
-                            fv(gi.getFrogView()), frog(gi.getFrog()) {}
+    GameLoop(std::shared_ptr<GameInit> gi): bm(gi->getBoardModel()), bv(gi->getBoardView()),
+                            fv(gi->getFrogView()), frog(gi->getFrog()), c(std::make_shared<Controller>(frog)) {}
     GameLoop(std::string const& path) {
       GameInit init {};
       init.init_from_file(path);

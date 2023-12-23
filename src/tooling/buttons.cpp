@@ -5,11 +5,10 @@ void RectangleWithText::draw() {
     Text::draw();
 }
 
-/*
 bool ActionButton::contains(int xMouse, int yMouse) {
     return RectangleDrawer::contains(xMouse, yMouse);
 }
-*/
+
 void ActionButton::manageClick(int xMouse, int yMouse) {
     if (this->contains(xMouse, yMouse)) {
         cm_ptr->updateWithAction(action);
