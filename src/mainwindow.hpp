@@ -11,11 +11,11 @@
 
 class MainWindow : public Fl_Window {
   private:
-    std::unique_ptr<ContentManager> contents;
+    std::shared_ptr<ContentManager> contents;
     public:
-        MainWindow(std::unique_ptr<ContentManager> contents) :
+        MainWindow(std::shared_ptr<ContentManager> contents) :
             Fl_Window(650, 650, constants::window::WIDTH, constants::window::HEIGHT, "Frogger Game"),
-            contents(std::move(contents)) {
+            contents(contents) {
             Fl::add_timeout(1.0/constants::window::RPS, Timer_CB, this);
             resizable(this);
         }

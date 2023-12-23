@@ -27,13 +27,13 @@ class ContentManager {
 };
 
 class WindowContents {
-   private:
+   protected:
         std::shared_ptr<ContentManager> cm; // Observer
     public:
-        WindowContents() {}
+        WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
         virtual void informManager() = 0;
-        virtual void action() = 0;
+        // virtual void action() = 0;
         virtual ~WindowContents() {}
 };
 

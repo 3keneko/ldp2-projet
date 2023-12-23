@@ -25,6 +25,12 @@ namespace constants {
     namespace waterlilies {
         const int SIZE = 40;
     }
+    namespace buttons {
+        const int WIDTH = 100;
+        const int HEIGHT = 40;
+
+        constexpr int START_Y = 40;
+    }
 }
 
 namespace paths {

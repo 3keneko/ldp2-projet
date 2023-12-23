@@ -2,7 +2,10 @@
 #define DRAWING_METHODS_H_
 
 #include <FL/Enumerations.H>
+#include <FL/Fl_Button.H>
 #include <FL/fl_draw.H>
+#include <FL/Fl.H>
+
 #include "colors.hpp"
 #include "../constants.hpp"
 #include <memory>
@@ -70,9 +73,11 @@ class Text: public ToDraw{
         Color color;
     public:
         // Constructor
-        Text(std::string s, int x, int y, int fontSize = 20, Color color = Color::TEXT)
+        Text(std::string&& s, int x, int y, int fontSize = 20, Color color = Color::TEXT)
             : s{s}, x_text{x}, y_text{y}, fontSize{fontSize}, color{color} {}
 
+        Text(std::string const& s, int x, int y, int fontSize = 20, Color color = Color::TEXT)
+            : s{s}, x_text{x}, y_text{y}, fontSize{fontSize}, color{color} {}
         // Draw
         virtual void draw() override;
         // Setters and getters
@@ -139,6 +144,47 @@ class ClickableRectangleWithText: public RectangleWithText, public Clickable {
             void draw() override {RectangleWithText::draw();}
             bool contains(int xMouse, int yMouse) override;
         ~ClickableRectangleWithText() {}
+};
+
+
+ // #include <iostream>
+
+class Button: public Fl_Button {
+    private:
+        actions payoff;
+        actions curr_payoff = actions::NOTHING;
+    public:
+        Button(int x, int y, int W, int H, const char* label,
+               actions&& payoff):
+            Fl_Button(x, y, W, H, label), payoff(payoff) { this->value(0); }
+        bool pushed() {
+            return value() == 1;
+        }
+        void draw() override {
+            Fl_Button::draw();
+        }
+        /*
+        int handle(int event) override {
+
+            // std::cout << "yes" << std::endl;
+            switch (event) {
+                case FL_PUSH:
+                    if (Fl::event_button() == FL_LEFT_MOUSE && Fl::event_inside(this)) {
+                        curr_payoff = payoff;
+                        return 1;
+                    }
+                    break;
+            }
+            return Fl_Button::handle(event);
+        }
+        */
+        void make_pay() {
+            this->curr_payoff = payoff;
+        }
+        actions getPayoff() {
+            return curr_payoff;
+        }
+        ~Button() {}
 };
 
 #endif // DRAWING_METHODS_H_
