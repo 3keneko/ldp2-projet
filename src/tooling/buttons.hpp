@@ -39,7 +39,7 @@ class ActionButton: public RectangleWithText, public Clickable {
             : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}
             , Clickable(), action(action), cm_ptr(cm_ptr) {}
         void draw() override {RectangleWithText::draw();}
-        actions manageClick(int xMouse, int yMouse);
+        void manageClick(int xMouse, int yMouse);
         bool contains(int xMouse, int yMouse) override;
         ~ActionButton() {}
 };
