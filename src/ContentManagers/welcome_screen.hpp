@@ -14,7 +14,7 @@ class WelcomeScreen: public WindowContents {
                         actions::STARTGAME );
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
-        // start_game_button->callback([](Button* b) {b->make_pay();});
+                start_game_button->callback(Button::make_pay);
         }
         void draw() override;
         void informManager() override;

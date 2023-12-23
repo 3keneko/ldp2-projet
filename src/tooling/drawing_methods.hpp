@@ -147,8 +147,7 @@ class ClickableRectangleWithText: public RectangleWithText, public Clickable {
 };
 
 
- // #include <iostream>
-
+#include <iostream>
 class Button: public Fl_Button {
     private:
         actions payoff;
@@ -177,10 +176,29 @@ class Button: public Fl_Button {
             }
             return Fl_Button::handle(event);
         }
+
         */
-        void make_pay() {
-            this->curr_payoff = payoff;
+        //void onPush(Fl_Widget* f, void*) {
+        //    this->make_pay();
+        // }
+        /*
+        void onPush(void*) {
+            Button::onPush(this);
         }
+        */
+        void exchange() {
+            this->curr_payoff = this->payoff;
+        }
+        static void make_pay(Fl_Widget* w, void*) {
+            auto b = static_cast<Button*>(w);
+            b->exchange();
+        } // {
+        //    this->curr_payoff = payoff;
+        // }
+        // static void make_pay_static(Fl_Widget* w, void* f) {
+        //    if ( (FL_Button*) w)->value()) {
+        //    exchange
+        // }
         actions getPayoff() {
             return curr_payoff;
         }

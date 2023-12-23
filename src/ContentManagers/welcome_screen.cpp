@@ -1,9 +1,9 @@
 #include "welcome_screen.hpp"
 #include "gameloop.hpp"
 
-void start_game_callback(Button* button, void*) {
-    button->make_pay();
-}
+// void start_game_callback(Button* button, void*) {
+//     button->make_pay();
+// }
 
 void WelcomeScreen::draw() {
     start_game_button->draw();
