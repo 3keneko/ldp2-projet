@@ -7,6 +7,10 @@ void ContentManager::show() {
         contents->draw();
     }
 }
+
 void ContentManager::manage_button_push(int x, int y) {
-    contents->manage_button_push(x, y);
+        if (gl != nullptr) {
+                return;
+            }
+        contents->manage_button_push(x, y);
 }

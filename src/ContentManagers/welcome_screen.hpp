@@ -6,7 +6,7 @@
 #include "../tooling/buttons.hpp"
 
 class WelcomeScreen: public WindowContents {
-   private:
+   private:m
         std::unique_ptr<ActionButton> start_game_button = std::make_unique<ActionButton>(
                 constants::window::WIDTH/2 - constants::buttons::WIDTH/2,
                 constants::buttons::START_Y,
@@ -16,9 +16,10 @@ class WelcomeScreen: public WindowContents {
                 actions::STARTGAME,
                 getCM());
         actions to_take = actions::NOTHING;
+
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
-        // start_game_button->callback([](Button* b) {b->make_pay();});
+                start_game_button->callback(Button::make_pay);
         }
         void manage_button_push(int x, int y) override {
              start_game_button->manageClick(x, y);

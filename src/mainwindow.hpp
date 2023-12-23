@@ -23,6 +23,7 @@ class MainWindow : public Fl_Window {
             Fl_Window::draw();
             contents->show();
         }
+
         int handle(int event) override {
             switch (event) {
                 case FL_PUSH:

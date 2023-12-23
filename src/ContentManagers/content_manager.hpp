@@ -31,6 +31,7 @@ class ContentManager {
         }
 
         void manage_button_push(int x, int y);
+
         void start_game(std::unique_ptr<GameLoop> g) {
             gl = std::move(g);
         }
