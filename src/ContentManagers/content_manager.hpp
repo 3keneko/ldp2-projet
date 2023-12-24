@@ -20,9 +20,10 @@ class ContentManager {
         void updateWithAction(actions action) {
             switch (action) {
                 case actions::STARTGAME: {
-                    auto gi = std::make_shared<GameInit>();
+                    contents.reset();
+                    auto gi = std::make_unique<GameInit>();
                     gi->init_from_file("levels/level1.csv");
-                    gl = std::make_unique<GameLoop>(gi);
+                    gl = std::make_unique<GameLoop>(std::move(gi));
                     break;
                 }
                 default:
@@ -38,7 +39,7 @@ class ContentManager {
 
         void show();
 
-        ~ContentManager() {}
+        ~ContentManager() { std::cout << "destroyed cm" << std::endl;}
 };
 
 class WindowContents {
@@ -53,7 +54,7 @@ class WindowContents {
         std::weak_ptr<ContentManager> getCM() {
             return cm;
         }
-        virtual ~WindowContents() {}
+        virtual ~WindowContents() {std::cout << "wc destroyed" << std::endl;}
 };
 
 

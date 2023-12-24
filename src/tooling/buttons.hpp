@@ -44,5 +44,4 @@ class ActionButton: public RectangleWithText, public Clickable {
         ~ActionButton() {}
 };
 
-
 #endif // BUTTONS_H_

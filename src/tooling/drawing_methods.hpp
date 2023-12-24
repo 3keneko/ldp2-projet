@@ -64,6 +64,7 @@ class SquareDrawer: public ToDraw{
         }
         virtual ~SquareDrawer() {}
 };
+#include <iostream>
 
 class Text: public ToDraw{
     protected:
@@ -83,7 +84,7 @@ class Text: public ToDraw{
         // Setters and getters
         std::string getString() { return s; }
         void setString(const std::string &newString) { s = newString; }
-        virtual ~Text() {}
+        virtual ~Text() {std::cout << "text destroyed" << std::endl;}
 };
 
 class RectangleDrawer: public SquareDrawer {
