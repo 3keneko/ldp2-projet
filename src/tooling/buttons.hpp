@@ -30,10 +30,10 @@ class RectangleWithText: public RectangleDrawer, public Text {
 class ActionButton: public RectangleWithText, public Clickable {
     private:
         actions action;
-        std::shared_ptr<ContentManager> cm_ptr;
+        std::weak_ptr<ContentManager> cm_ptr;
     public:
         ActionButton(int x, int y, int size_w, int size, std::string s, actions action
-                     , std::shared_ptr<ContentManager> cm_ptr
+                     , std::weak_ptr<ContentManager> cm_ptr
                      , int fontsize = 20, Color color = Color::MENURECTANGLE
                      , Color text_color = Color::TEXT)
             : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}

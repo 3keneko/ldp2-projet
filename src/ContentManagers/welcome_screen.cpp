@@ -8,8 +8,8 @@ void WelcomeScreen::draw() {
 }
 
 void WelcomeScreen::informManager() {
-    if (true) {
+    if (auto cm_shared = cm.lock()) {
         auto g = std::make_unique<GameLoop>( "../levels/level1.csv" );
-        cm->start_game(std::move(g));
+        cm_shared->start_game(std::move(g));
     }
 }

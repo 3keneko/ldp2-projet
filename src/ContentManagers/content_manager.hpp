@@ -43,14 +43,14 @@ class ContentManager {
 
 class WindowContents {
    protected:
-        std::shared_ptr<ContentManager> cm; // Observer
+        std::weak_ptr<ContentManager> cm; // Observer
     public:
         WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
         virtual void informManager() = 0;
         virtual void manage_button_push(int x, int y) = 0;
         // virtual void action() = 0;
-        std::shared_ptr<ContentManager> getCM() {
+        std::weak_ptr<ContentManager> getCM() {
             return cm;
         }
         virtual ~WindowContents() {}
