@@ -16,7 +16,7 @@ class WelcomeScreen: public WindowContents {
                 actions::STARTGAME,
                 getCM());
         actions to_take = actions::NOTHING;
-
+        Text welcome { "Lenny & Lucas prod", 100, 200 };
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
         }
