@@ -20,12 +20,14 @@ class ContentManager {
         void updateWithAction(actions action) {
             switch (action) {
                 case actions::STARTGAME: {
-                    contents.reset();
                     auto gi = std::make_unique<GameInit>();
                     gi->init_from_file("levels/level1.csv");
                     gl = std::make_unique<GameLoop>(std::move(gi));
                     break;
                 }
+                case actions::EDIT:
+                case actions::LEVELS:
+                case actions::NOTHING:
                 default:
                     return;
             }

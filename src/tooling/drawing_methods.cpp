@@ -6,7 +6,7 @@ void Text::draw() {
     int width = 0;
     int height = 0;
     fl_measure(s.c_str(), width, height, true);
-    fl_draw(s.c_str(), x_text / 2, y_text - fl_descent());
+    fl_draw(s.c_str(), x_text - width / 2, y_text - fl_descent() + height / 2);
 }
 
 int RectangleDrawer::getCenterX() const {
