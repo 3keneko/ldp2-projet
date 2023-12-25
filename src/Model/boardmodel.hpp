@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <memory>
+#include <iostream>
+
 #include "lanes.hpp"
 #include "movingobjects.hpp"
-#include <iostream>
+#include "score.hpp"
 
 class BoardModel {
   private:
