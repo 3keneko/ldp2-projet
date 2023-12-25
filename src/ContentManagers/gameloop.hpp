@@ -13,6 +13,7 @@
 #include "../View/frogview.hpp"
 #include "../Model/frog.hpp"
 #include "../Controller/control.hpp"
+#include "../View/scoreview.hpp"
 
 
 #include "../constants.hpp"
@@ -28,6 +29,7 @@ class GameLoop {
     std::shared_ptr<FrogView> fv;
     std::shared_ptr<Frog> frog;
     std::shared_ptr<Score> score;
+    std::shared_ptr<ScoreView> sv;
     std::shared_ptr<Controller> c;
     // bool is_lost = false;
   public:
@@ -36,7 +38,8 @@ class GameLoop {
       bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
 
     GameLoop(std::shared_ptr<GameInit> gi): bm(gi->getBoardModel()), bv(gi->getBoardView()),
-                            fv(gi->getFrogView()), frog(gi->getFrog()), score(gi->getScore()), c(std::make_shared<Controller>(frog)) {}
+                            fv(gi->getFrogView()), frog(gi->getFrog()), score(gi->getScore()), 
+                            sv{gi->getScoreView()}, c(std::make_shared<Controller>(frog)) {}
 
     GameLoop(std::string const& path) {
       GameInit init {};
@@ -47,6 +50,7 @@ class GameLoop {
       fv = init.getFrogView();
       c = std::make_shared<Controller>(frog);
       score = init.getScore();
+      sv = init.getScoreView();
     }
 
 
@@ -61,6 +65,7 @@ class GameLoop {
         bm->update();
         bv->draw();
         fv->draw();
+        sv->draw();
 
         char key = Fl::event_key();
         c->processKey(key);

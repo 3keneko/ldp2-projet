@@ -95,6 +95,7 @@ void GameInit::init_from_file(std::string const& path_to_file) {
         std::getline(myScore, score_str);
         score = std::make_shared<Score>(std::stoi(score_str));
     }
+    sv = std::make_shared<ScoreView>(score);
 
     Frog frog {0, 250, score};
     frg = std::make_shared<Frog>(frog);
@@ -139,7 +140,8 @@ void GameInit::classic_init() {
             for (auto& lane: lanes) {
                 v.push_back(LaneView::makeView(lane));
             }
-            // Putting the frog and the lanes together; initializing the board
+            // Putting the frog, the score, and the lanes together; initializing the board
             bm = std::make_shared<BoardModel>(lanes);
             board = std::make_shared<BoardView>(v, bm) ;
+            sv = std::make_shared<ScoreView>(score);
 }
