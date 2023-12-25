@@ -64,7 +64,7 @@ std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
 
 
 void GameInit::init_from_file(std::string const& path_to_file) {
-    Frog frog {0, 250};
+    Frog frog {0, 250, score};
     frg = std::make_shared<Frog>(frog);
     fv = std::make_shared<FrogView>(frg);
     std::vector<std::shared_ptr<Lane>> lanes {};
@@ -91,14 +91,20 @@ void GameInit::init_from_file(std::string const& path_to_file) {
         v.push_back(LaneView::makeView(lane));
     }
 
+    std::string file_name = path_to_file.substr(0, path_to_file.length() - 4);
+    std::ifstream myScore(file_name + "_score.csv");
+    std::string score_str;
+    if (myScore.good()) {
+        std::getline(myScore, score_str);
+        score = std::make_shared<Score>(std::stoi(score_str));
+    }
     bm = std::make_shared<BoardModel>(lanes);
     board = std::make_shared<BoardView>(v, bm);
 
 }
 
 void GameInit::classic_init() {
-            // Intializing the frog
-            Frog frog {0, 250};
+            Frog frog {0, 250, score};
             frg = std::make_shared<Frog>(frog);
             fv = std::make_shared<FrogView>(frg);
 

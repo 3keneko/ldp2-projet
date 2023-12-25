@@ -57,6 +57,7 @@ bool Frog::inBoard() {
 void Frog::resetPos() {
     x = constants::window::WIDTH / 2;
     lane_number = 0;
+    score->reset_best_lane();
 }
 
 
@@ -68,3 +69,7 @@ void Frog::kill() {
     }
 }
 
+void Frog::inWaterLilies() {
+    resetPos();
+    score->reached_waterlily();
+}

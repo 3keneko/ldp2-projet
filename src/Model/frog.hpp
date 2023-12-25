@@ -1,20 +1,26 @@
-#ifndef MODEL_H_
-#define MODEL_H_
+#ifndef FROG_H_
+#define FROG_H_
+
+#include <memory>
+
 #include "../constants.hpp"
+#include "score.hpp"
 
 enum class FrogDirection {
     North, South, East, West 
 };
 
 class Frog {
-   private:
+  private:
+        // Frog Position and Direction (important for display)
         unsigned int lane_number;
         int x;
         FrogDirection direction = FrogDirection::North;
         int lives;
+        std::shared_ptr<Score> score;
    public:
-        Frog(unsigned int lane_number, int x):
-                lane_number(lane_number), x(x), lives(3) {}
+        Frog(unsigned int lane_number, int x, std::shared_ptr<Score> score):
+                lane_number(lane_number), x(x), lives(3), score(score) {}
 
         // Standard getters
         unsigned int getLane() const ;
@@ -37,9 +43,9 @@ class Frog {
         void resetPos();
         bool alive() {return lives > 0;}
         void kill();
-
+        void inWaterLilies();
 
         ~Frog(){}
 };
 
-#endif // MODEL_H_
+#endif // FROG_H_

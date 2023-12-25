@@ -27,7 +27,7 @@ class GameLoop {
     std::shared_ptr<BoardView> bv;
     std::shared_ptr<FrogView> fv;
     std::shared_ptr<Frog> frog;
-
+    std::shared_ptr<Score> score;
     std::shared_ptr<Controller> c;
     // bool is_lost = false;
   public:
@@ -36,7 +36,8 @@ class GameLoop {
       bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
 
     GameLoop(std::shared_ptr<GameInit> gi): bm(gi->getBoardModel()), bv(gi->getBoardView()),
-                            fv(gi->getFrogView()), frog(gi->getFrog()), c(std::make_shared<Controller>(frog)) {}
+                            fv(gi->getFrogView()), frog(gi->getFrog()), score(gi->getScore()), c(std::make_shared<Controller>(frog)) {}
+
     GameLoop(std::string const& path) {
       GameInit init {};
       init.init_from_file(path);
@@ -45,6 +46,7 @@ class GameLoop {
       frog = init.getFrog();
       fv = init.getFrogView();
       c = std::make_shared<Controller>(frog);
+      score = init.getScore();
     }
 
 
@@ -54,6 +56,7 @@ class GameLoop {
         FullScreenJPEGImage won_screen {"../imgs/won.jpeg"};
         won_screen.draw();
       } else if (frog->alive()) {
+        score->update(frog->getLane());
 
         bm->update();
         bv->draw();
@@ -65,7 +68,7 @@ class GameLoop {
 
         bm->handle_collision(*frog);
 
-
+        std::cout << score->getScore() << std::endl;
         int s = Fl::event();
 
         if (s == FL_KEYUP) c->resetPressedKeys();

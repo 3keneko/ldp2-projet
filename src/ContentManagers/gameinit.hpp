@@ -10,9 +10,12 @@
 #include "../View/laneview.hpp"
 #include "../View/movingobjectview.hpp"
 
+
+#include "../Model/score.hpp"
 #include "../Model/boardmodel.hpp"
 #include "../Model/lanes.hpp"
 #include "../Model/frog.hpp"
+
 
 class GameInit {
     private:
@@ -21,6 +24,7 @@ class GameInit {
         std::shared_ptr<Frog> frg;
         std::shared_ptr<BoardModel> bm;
         std::shared_ptr<FrogView> fv;
+        std::shared_ptr<Score> score = std::make_shared<Score>(0);
     public:
         GameInit() {}
 
@@ -42,6 +46,7 @@ class GameInit {
         std::shared_ptr<FrogView> getFrogView() {
             return fv;
         }
+        std::shared_ptr<Score> getScore() { return score; }
         ~GameInit() {}
 };
 

@@ -1,10 +1,11 @@
+#include <memory>
+#include <algorithm>
+
+
 #include "boardmodel.hpp"
 #include "frog.hpp"
 #include "lanes.hpp"
 #include "waterlilies.hpp"
-#include <memory>
-#include <algorithm>
-
 
 /// THIS MACRO IS DEFINED FOR DEBUGGING, IT HELPS
 /// PRINT OUT THE TUPLE V MORE EASILY
@@ -86,17 +87,21 @@ bool BoardModel::any_collision(Frog& frog) {
 
 void BoardModel::handle_collision(Frog& frog) {
     if (frog.getLane() == constants::lanes::NUMBER) {
+        // First we handle collisions with the waterlilies
         bool got_one = frogOnLily(frog);
         if (!got_one) frog.kill();
         else {
-            frog.resetPos();
+            frog.inWaterLilies();
         }
+
     } else {
+        // We then handle collisions with the rest of the objects
         for (auto& lane: lanes) {
             if (lane->getId() == frog.getLane()) {
                 auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
                 if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
                     try_mvl->handle_after_collision(frog);
+                // In water lane but not in object means instant death...
                 } else if (try_mvl != nullptr && try_mvl->water_lane()) {
                     frog.kill();
                 }
