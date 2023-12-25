@@ -64,9 +64,6 @@ std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
 
 
 void GameInit::init_from_file(std::string const& path_to_file) {
-    Frog frog {0, 250, score};
-    frg = std::make_shared<Frog>(frog);
-    fv = std::make_shared<FrogView>(frg);
     std::vector<std::shared_ptr<Lane>> lanes {};
 
     // https://www.gormanalysis.com/blog/reading-and-writing-csv-files-with-cpp/
@@ -98,6 +95,11 @@ void GameInit::init_from_file(std::string const& path_to_file) {
         std::getline(myScore, score_str);
         score = std::make_shared<Score>(std::stoi(score_str));
     }
+
+    Frog frog {0, 250, score};
+    frg = std::make_shared<Frog>(frog);
+    fv = std::make_shared<FrogView>(frg);
+
     bm = std::make_shared<BoardModel>(lanes);
     board = std::make_shared<BoardView>(v, bm);
 

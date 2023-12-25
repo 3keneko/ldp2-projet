@@ -81,7 +81,7 @@ Actuellement, l'arrivée des objets sur le plateau se fait de manière beaucoup 
 - [x] Faire un plateau à 13 lanes
 Dans le pdf, il demande de faire un plateau à 13 lanes, on devrait entre autre augmenter la taille des lanes et de chaque frog.
 
-- [ ] Faire en sorte que les turtles se jettent sous l'eau de temps en temps
+- [x] Faire en sorte que les turtles se jettent sous l'eau de temps en temps
 Les méthodes sont là, il y a plus qu'à combiner le tout
 --- Occupé et bientôt fini !
 
@@ -95,7 +95,7 @@ Actuellement, on a juste une image de victoire, un message de victoire fait part
 On utilisera `enum class` pour avoir les différentes possibilités d'orientation de la grenouille,
 la syntaxe (plutôt cool) est ainsi:
 
-- [ ] Changer les collisions des frogs
+- [x] Changer les collisions des frogs
 Actuellement, on peut être au bord de la frog sans tomber dans l'eau. Il suffit de faire la même implémentation de collide que pour les logs.
 
 ``` cpp
@@ -106,3 +106,8 @@ enum class Directions {
   West
 }
 ```
+
+- [ ] Ajouter le score et l'afficher en bas à droite
+- [ ] Save the score (idée actuelle: mettre une ligne tout en bas des files levels qui met le score principal)
+- [ ] Ajouter le menu pour sélectionner les niveaux et le score :thumsbup:
+We got this!
