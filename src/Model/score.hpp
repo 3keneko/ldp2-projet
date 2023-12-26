@@ -1,6 +1,8 @@
 #ifndef SCORE_H_
 #define SCORE_H_
 
+#include <string>
+
 class Score {
     private:
         unsigned the_score = 0;
@@ -30,5 +32,9 @@ class Score {
         }
         ~Score() = default;
 }; 
+
+// Takes the adress of a csv level file and returns the associated csv score file
+// as an adress of the form "../levels/level..._score.csv".
+std::string getLevelScoreAdress(const std::string& level_adress);
 
 #endif // SCORE_H_
