@@ -2,7 +2,7 @@
 #include <memory>
 #include <type_traits>
 #include "ContentManagers/content_manager.hpp"
-#include "ContentManagers/gameinit.hpp"
+#include "ContentManagers/boardfromfile.hpp"
 #include "ContentManagers/gameloop.hpp"
 #include "ContentManagers/welcome_screen.hpp"
 #include "mainwindow.hpp"

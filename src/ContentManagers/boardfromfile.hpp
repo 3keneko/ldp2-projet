@@ -26,7 +26,7 @@ class BoardFromFile {
         std::shared_ptr<BoardModel> bm;
         std::shared_ptr<FrogView> fv;
         std::shared_ptr<Score> score = std::make_shared<Score>(0);
-        std::shared_ptr<ScoreView> sv;
+        std::shared_ptr<ScoreView> sv = std::make_shared<ScoreView>(score);
     public:
         BoardFromFile() {}
 

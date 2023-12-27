@@ -8,8 +8,7 @@
 #include "../Model/boardmodel.hpp"
 #include "../Model/lanes.hpp"
 
-#include "gameinit.hpp"
-
+#include "boardfromfile.hpp"
 
 template <class T>
 std::shared_ptr<T> init_big_from_stream(std::stringstream& ss) {

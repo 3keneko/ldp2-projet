@@ -1,6 +1,7 @@
 #ifndef CONTENT_MANAGER_H_
 #define CONTENT_MANAGER_H_
 
+#include "boardfromfile.hpp"
 #include "gameloop.hpp"
 #include <memory>
 
@@ -20,7 +21,7 @@ class ContentManager {
         void updateWithAction(actions action) {
             switch (action) {
                 case actions::STARTGAME: {
-                    auto gi = std::make_unique<GameInit>();
+                    auto gi = std::make_unique<BoardFromFile>();
                     gi->init_from_file("levels/level1.csv");
                     gl = std::make_unique<GameLoop>(std::move(gi));
                     break;
