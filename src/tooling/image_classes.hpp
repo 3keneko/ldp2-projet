@@ -4,9 +4,9 @@
 #include <string>
 #include <Fl/Fl_JPEG_Image.H>
 #include <memory>
-#include "../constants.hpp"
 #include <iostream>
 
+#include "../constants.hpp"
 class FullScreenJPEGImage {
     protected:
         std::unique_ptr<Fl_JPEG_Image> jpeg_img;

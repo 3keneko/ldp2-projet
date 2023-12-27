@@ -73,7 +73,6 @@ class GameLoop {
 
         bm->handle_collision(*frog);
 
-        std::cout << score->getScore() << std::endl;
         int s = Fl::event();
 
         if (s == FL_KEYUP) c->resetPressedKeys();

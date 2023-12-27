@@ -1,13 +1,14 @@
 #ifndef LANE_H_
 #define LANE_H_
-#include "frog.hpp"
-#include "movingobjects.hpp"
-#include "waterlilies.hpp"
+
 #include <vector>
 #include <memory>
 #include <algorithm>
 #include <iostream>
 
+#include "frog.hpp"
+#include "movingobjects.hpp"
+#include "waterlilies.hpp"
 /// An abstract class that helps model a lane
 class Lane {
     private:
@@ -75,9 +76,7 @@ class LogLane: public MovingObjectLane {
                 const unsigned& space_between_packs,
                 const int& first_log_placement,
                 const unsigned int& size_log, const int& speed=0);
-            // for (auto& log: mv) {
-            //     log = std::dynamic_pointer_cast<Log>(log);
-            // }
+
         bool water_lane() const override { return 1; }
         void handle_after_collision(Frog& frog) override;
         std::vector<std::shared_ptr<Log>> getLogs() const;
@@ -118,11 +117,6 @@ class RoadLane: public MovingObjectLane {
         RoadLane(const unsigned int id_num, const unsigned int& car_by_pack,
                  const unsigned int& space_between_cars, const unsigned& space_between_packs,
                  const int& first_car_placement, const unsigned int& size_car, const int& speed=1);
-            // for (auto& car: mv) {
-            //     auto car_attempt = std::dynamic_pointer_cast<Car>(car);
-            //     if (car_attempt == nullptr) std::cout << "problem with the cars" << std::endl;
-            //     car = car_attempt;
-            // }
         bool water_lane() const override { return 0; }
         void handle_after_collision(Frog& frog) override;
         std::vector<std::shared_ptr<Car>> getCars() const;

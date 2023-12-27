@@ -41,7 +41,7 @@ class ContentManager {
 
         void show();
 
-        ~ContentManager() { std::cout << "destroyed cm" << std::endl;}
+        ~ContentManager() { }
 };
 
 class WindowContents {
@@ -56,7 +56,7 @@ class WindowContents {
         std::weak_ptr<ContentManager> getCM() {
             return cm;
         }
-        virtual ~WindowContents() {std::cout << "wc destroyed" << std::endl;}
+        virtual ~WindowContents() {}
 };
 
 
