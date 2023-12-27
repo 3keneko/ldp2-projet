@@ -20,7 +20,7 @@
 #include "../tooling/image_classes.hpp"
 
 
-#include "gameinit.hpp"
+#include "boardfromfile.hpp"
 
 class GameLoop {
   private:
@@ -37,12 +37,12 @@ class GameLoop {
              std::shared_ptr<FrogView> fv, std::shared_ptr<Frog> frog):
       bm(bm), bv(bv), fv(fv), frog(frog), c(std::make_shared<Controller>(frog)){}
 
-    GameLoop(std::shared_ptr<GameInit> gi): bm(gi->getBoardModel()), bv(gi->getBoardView()),
+    GameLoop(std::shared_ptr<BoardFromFile> gi): bm(gi->getBoardModel()), bv(gi->getBoardView()),
                             fv(gi->getFrogView()), frog(gi->getFrog()), score(gi->getScore()), 
                             sv{gi->getScoreView()}, c(std::make_shared<Controller>(frog)) {}
 
     GameLoop(std::string const& path) {
-      GameInit init {};
+      BoardFromFile init {};
       init.init_from_file(path);
       bm = init.getBoardModel();
       bv = init.getBoardView();
@@ -54,34 +54,7 @@ class GameLoop {
     }
 
 
-    void update() {
-
-      if (bm->gameWon()) {
-        FullScreenJPEGImage won_screen {"../imgs/won.jpeg"};
-        won_screen.draw();
-      } else if (frog->alive()) {
-        score->update(frog->getLane());
-
-        bm->update();
-        bv->draw();
-        fv->draw();
-        sv->draw();
-
-        char key = Fl::event_key();
-        c->processKey(key);
-        c->decrement();
-
-        bm->handle_collision(*frog);
-
-        int s = Fl::event();
-
-        if (s == FL_KEYUP) c->resetPressedKeys();
-      } else {
-        FullScreenJPEGImage lost_screen {"../imgs/Untitled.jpeg" };
-        lost_screen.draw();
-      }
-
-    }
+    void update();
 
     std::shared_ptr<BoardModel> getModel() { return bm; }
     std::shared_ptr<BoardView> getView() { return bv; }
