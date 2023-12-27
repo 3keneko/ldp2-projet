@@ -107,7 +107,10 @@ enum class Directions {
 }
 ```
 
-- [ ] Ajouter le score et l'afficher en bas à droite
+- [x] Ajouter le score et l'afficher en bas à droite
+- [ ] Le terminal est trop bruyant en jeu, retirer les cout incessants
+- [ ] S'assurer qu'on puisse écrire un score dans une file quand le truc est gros
+- [ ] Ajouter la possibilité d'accéder au menu chargé des niveaux et du score.
 - [ ] Save the score (idée actuelle: mettre une ligne tout en bas des files levels qui met le score principal)
 - [ ] Ajouter le menu pour sélectionner les niveaux et le score :thumsbup:
 We got this!
