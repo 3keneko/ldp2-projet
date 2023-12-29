@@ -28,8 +28,13 @@ namespace constants {
     namespace buttons {
         const int WIDTH = 100;
         const int HEIGHT = 40;
-
         constexpr int START_Y = 40;
+    }
+    namespace score {
+        const unsigned curr_x = 400;
+        const unsigned curr_y = 470;
+        const unsigned best_x = 30;
+        const unsigned best_y = 470;
     }
 }
 
@@ -38,8 +43,9 @@ namespace paths {
     const std::string frog_south_jpeg = "../imgs/frog_south.jpeg";
     const std::string frog_west_jpeg = "../imgs/frog_west.jpeg";
     const std::string frog_east_jpeg = "../imgs/frog_east.jpeg";
-    const std::string scores = "../levels/scores.csv";
+    const std::string scores = "levels/scores.csv";
 }
+
 
 enum class actions {
     STARTGAME,
@@ -47,5 +53,6 @@ enum class actions {
     EDIT,
     LEVELS,
 };
+
 
 #endif // CONSTANTS_H_

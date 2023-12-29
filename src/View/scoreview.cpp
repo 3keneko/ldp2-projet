@@ -1,7 +1,7 @@
 #include "scoreview.hpp"
 
-ScoreView::ScoreView(std::shared_ptr<Score> score): score{score}, 
-    score_text{Text{std::to_string(score->getScore()), 400, 475}} {}
+ScoreView::ScoreView(std::shared_ptr<Score> score, int const& x, int const& y): score{score},
+    score_text{Text{std::to_string(score->getScore()), x, y}} {}
 
 
 std::string ScoreView::stringForScore() {

@@ -9,7 +9,7 @@ class ScoreView {
     std::shared_ptr<Score> score;
     Text score_text;
 public:
-    ScoreView(std::shared_ptr<Score> score);
+    ScoreView(std::shared_ptr<Score> score, int const& x, int const& y);
     std::string stringForScore();
     void draw();
     ~ScoreView() {}

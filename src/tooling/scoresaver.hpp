@@ -5,11 +5,12 @@
 #include <map>
 
 #include "../Model/score.hpp"
+#include "../constants.hpp"
 
 class ScoreSaver {
     private:
         unsigned lvl;
-        const std::string file_name { "scores.csv" };
+        const std::string file_name { paths::scores };
         std::map<unsigned, unsigned> scores;
     public:
         ScoreSaver(unsigned level): lvl(level) {}

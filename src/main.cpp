@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
   std::srand(static_cast<unsigned>(time(nullptr)));
   // MainInit m {};
   // m.welcomeUser();
-  auto g = std::make_unique<GameLoop>("levels/level1.csv");
+  auto g = std::make_unique<GameLoop>( 1 );
   //m.init_from_file("levels/sure_win.csv");
   //m.classic_init();
   auto c = std::make_shared<ContentManager>(nullptr);

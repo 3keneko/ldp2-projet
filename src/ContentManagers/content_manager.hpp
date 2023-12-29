@@ -21,9 +21,9 @@ class ContentManager {
         void updateWithAction(actions action) {
             switch (action) {
                 case actions::STARTGAME: {
-                    auto gi = std::make_unique<BoardFromFile>();
-                    gi->init_from_file("levels/level1.csv");
-                    gl = std::make_unique<GameLoop>(std::move(gi));
+                    // auto gi = std::make_unique<BoardFromFile>();
+                    // gi->init_from_lvl(1);
+                    gl = std::make_unique<GameLoop>(1);
                     break;
                 }
                 case actions::EDIT:

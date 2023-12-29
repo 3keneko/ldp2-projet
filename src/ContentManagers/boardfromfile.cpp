@@ -51,7 +51,7 @@ std::vector<std::shared_ptr<Lane>> file_as_board(std::string const& path_to_file
     // https://www.gormanalysis.com/blog/reading-and-writing-csv-files-with-cpp/
     std::ifstream myFile(path_to_file);
 
-    if (!myFile.is_open()) throw std::runtime_error("Could not open file!");
+    if (!myFile.is_open()) throw std::runtime_error("Could not open " + path_to_file);
 
     std::string line;
 
@@ -88,11 +88,6 @@ void BoardFromFile::init_from_file(std::string const& path_to_file) {
     }
     sv = std::make_shared<ScoreView>(score);
     */
-    Frog frog {0, 250, score};
-    frg = std::make_shared<Frog>(frog);
-    fv = std::make_shared<FrogView>(frg);
-
     bm = std::make_shared<BoardModel>(lanes);
     board = std::make_shared<BoardView>(v, bm);
-
 }

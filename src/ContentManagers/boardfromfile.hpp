@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#include "../tooling/scoresaver.hpp"
+
 #include "../View/boardview.hpp"
 #include "../View/frogview.hpp"
 #include "../View/laneview.hpp"
@@ -25,14 +27,20 @@ class BoardFromFile {
         std::shared_ptr<Frog> frg;
         std::shared_ptr<BoardModel> bm;
         std::shared_ptr<FrogView> fv;
-        std::shared_ptr<Score> score = std::make_shared<Score>(0);
-        std::shared_ptr<ScoreView> sv = std::make_shared<ScoreView>(score);
-    public:
-        BoardFromFile() {}
+        std::unique_ptr<ScoreSaver> ssv;
 
         // initializing from file
         void init_from_file(std::string const& path_to_file);
 
+    public:
+        BoardFromFile() {}
+
+        void init_from_lvl(unsigned i) {
+            std::string path_file = "levels/level" + std::to_string(i) + ".csv";
+            this->init_from_file(path_file); //+ std::to_string(i)
+                                 //+ ".csv");
+            ssv = std::make_unique<ScoreSaver>(i);
+        }
         std::shared_ptr<BoardView> getBoardView() {
             return board;
         }
@@ -45,11 +53,8 @@ class BoardFromFile {
         std::shared_ptr<FrogView> getFrogView() {
             return fv;
         }
-        std::shared_ptr<Score> getScore() {
-            return score; 
-        }
-        std::shared_ptr<ScoreView> getScoreView() {
-            return sv;
+        std::unique_ptr<ScoreSaver> getScoreSaver() {
+            return std::move(ssv);
         }
         ~BoardFromFile() {}
 };
