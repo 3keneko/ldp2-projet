@@ -1,17 +1,19 @@
-#include "savescore.hpp"
+#include "scoresaver.hpp"
 
 #include <fstream>
 #include <sstream>
 
-void SaveScore::writeToFile() {
+void ScoreSaver::writeToFile() {
     std::ofstream myFile;
     myFile.open(file_name);
-    // myFile << score->getScore();
+    for (auto& [level, score]: scores) {
+        myFile << level << " " << score << std::endl;
+    }
     myFile.close();
 }
 
 
-void SaveScore::getFromFile() {
+void ScoreSaver::getFromFile() {
     std::ifstream myFile;
     myFile.open(file_name);
     std::string line;
@@ -20,8 +22,15 @@ void SaveScore::getFromFile() {
         while (std::getline(myFile, line)) {
             std::stringstream ss(line);
             ss >> level >> score;
-            scores.insert(level, score);
+            scores.insert({ level, score });
         }
     }
     myFile.close();
+}
+
+
+void ScoreSaver::setNewScore(Score const& score) {
+    if (getHighScore() < score) {
+        scores[lvl] = score.getScore();
+    }
 }

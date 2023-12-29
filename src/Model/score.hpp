@@ -2,6 +2,7 @@
 #define SCORE_H_
 
 #include <string>
+#include <compare>
 
 class Score {
     private:
@@ -30,6 +31,10 @@ class Score {
         void reset_best_lane() {
             max_lane = 0;
         }
+
+        friend bool operator<(Score const& s1, Score const& s2);
+        friend bool operator>(Score const& s1, Score const& s2);
+        friend bool operator==(Score const& s1, Score const& s2);
         ~Score() = default;
 }; 
 

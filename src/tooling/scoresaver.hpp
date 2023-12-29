@@ -1,24 +1,25 @@
-#ifndef SAVESCORE_H_
-#define SAVESCORE_H_
+#ifndef SCORESAVER_H_
+#define SCORESAVER_H_
 
 #include <memory>
 #include <map>
 
 #include "../Model/score.hpp"
 
-class SaveScore {
+class ScoreSaver {
     private:
         unsigned lvl;
         const std::string file_name { "scores.csv" };
         std::map<unsigned, unsigned> scores;
     public:
-        SaveScore(unsigned level): lvl(level) {}
+        ScoreSaver(unsigned level): lvl(level) {}
         void writeToFile();
         void getFromFile();
 
         Score getHighScore() { return Score(scores.at(lvl)); }
-        ~SaveScore() {}
+        void setNewScore(Score const& score);
+        ~ScoreSaver() {}
 };
 
 
-#endif // SAVESCORE_H_
+#endif // SCORESAVER_H_

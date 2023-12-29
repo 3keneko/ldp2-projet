@@ -1,5 +1,6 @@
 #include "score.hpp"
 #include <iostream>
+#include <compare>
 
 std::string getLevelScoreAdress(const std::string& level_adress) {
     unsigned int STR_SIZE = static_cast<unsigned int>(level_adress.size());
@@ -18,4 +19,16 @@ std::string getLevelScoreAdress(const std::string& level_adress) {
     }
 
     return "../levels/level" + level_id + "_score.csv";
+}
+
+
+bool operator<(Score const& s1, Score const& s2) {
+    return s1.the_score < s2.the_score;
+}
+bool operator>(Score const& s1, Score const& s2) {
+    return s1.the_score > s2.the_score;
+}
+
+bool operator==(Score const& s1, Score const& s2) {
+    return s1.the_score == s2.the_score;
 }
