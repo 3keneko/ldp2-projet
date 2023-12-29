@@ -38,9 +38,8 @@ namespace paths {
     const std::string frog_south_jpeg = "../imgs/frog_south.jpeg";
     const std::string frog_west_jpeg = "../imgs/frog_west.jpeg";
     const std::string frog_east_jpeg = "../imgs/frog_east.jpeg";
-
+    const std::string scores = "../levels/scores.csv";
 }
-
 
 enum class actions {
     STARTGAME,
