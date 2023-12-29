@@ -2,19 +2,21 @@
 #define SAVESCORE_H_
 
 #include <memory>
+#include <map>
+
 #include "../Model/score.hpp"
 
 class SaveScore {
     private:
-        std::unique_ptr<const std::string> file_name;
-        std::shared_ptr<Score> score;
+        unsigned lvl;
+        const std::string file_name { "scores.csv" };
+        std::map<unsigned, unsigned> scores;
     public:
-        SaveScore(const std::string& file_name, std::shared_ptr<Score> sc):
-            file_name(std::make_unique<const std::string>(file_name)), score(sc) {}
+        SaveScore(unsigned level): lvl(level) {}
         void writeToFile();
         void getFromFile();
 
-        std::shared_ptr<Score> get_score() { return score; }
+        Score getHighScore() { return Score(scores.at(lvl)); }
         ~SaveScore() {}
 };
 
