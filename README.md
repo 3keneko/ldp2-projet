@@ -111,6 +111,9 @@ enum class Directions {
 - [x] Le terminal est trop bruyant en jeu, retirer les cout incessants
 - [ ] S'assurer qu'on puisse écrire un score dans une file 
 - [ ] Ajouter la possibilité d'accéder au menu chargé des niveaux et du score.
-- [ ] Save the score (idée actuelle: mettre une ligne tout en bas des files levels qui met le score principal)
+- [ ] Save the score ~~(idée actuelle: mettre une ligne tout en bas des files levels qui met le score principal)~~ remplacé par le très efficace "une file par score"
 - [ ] Ajouter le menu pour sélectionner les niveaux et le score :thumsbup:
 We got this!
+- [ ] Idées pour faire un éditeur de niveau facile
+1. N'autoriser que l'édition de niveaux, pas la création
+2. Quand on edit, on ne fait que rajouter une ligne à la file
