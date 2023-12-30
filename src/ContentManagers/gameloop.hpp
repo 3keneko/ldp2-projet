@@ -66,7 +66,8 @@ class GameLoop {
       ssv->getFromFile();
       best_score = std::make_shared<Score>(ssv->getHighScore().getScore());
       bs_show = std::make_unique<ScoreView>(best_score,
-                                            constants::score::best_x, constants::score::best_y);
+                                            constants::score::best_x, constants::score::best_y,
+                                            true);
     }
 
 

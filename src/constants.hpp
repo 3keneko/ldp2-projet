@@ -33,7 +33,7 @@ namespace constants {
     namespace score {
         const unsigned curr_x = 400;
         const unsigned curr_y = 470;
-        const unsigned best_x = 30;
+        const unsigned best_x = 100;
         const unsigned best_y = 470;
     }
 }
