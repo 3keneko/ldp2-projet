@@ -29,6 +29,10 @@ namespace constants {
         const int WIDTH = 100;
         const int HEIGHT = 40;
         constexpr int START_Y = 40;
+        constexpr int INC_X = 400;
+        constexpr int INC_Y = 100;
+        constexpr int MIN_X = 400;
+        constexpr int MIN_Y = 300;
     }
     namespace score {
         const unsigned curr_x = 400;
@@ -52,6 +56,8 @@ enum class actions {
     NOTHING,
     EDIT,
     LEVELS,
+    INCR,
+    DIMIN,
 };
 
 

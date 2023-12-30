@@ -24,7 +24,7 @@ class WelcomeScreen: public WindowContents {
              start_game_button->manageClick(x, y);
          }
         void draw() override;
-        void informManager() override;
+        // void informManager() override;
         // void action() override;
         ~WelcomeScreen() {}
 

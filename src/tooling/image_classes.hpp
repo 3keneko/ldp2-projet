@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../constants.hpp"
+
 class FullScreenJPEGImage {
     protected:
         std::unique_ptr<Fl_JPEG_Image> jpeg_img;

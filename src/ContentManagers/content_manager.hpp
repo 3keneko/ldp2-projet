@@ -18,21 +18,7 @@ class ContentManager {
         void changeContents(std::unique_ptr<WindowContents> new_contents) {
             contents = std::move(new_contents);
         }
-        void updateWithAction(actions action) {
-            switch (action) {
-                case actions::STARTGAME: {
-                    // auto gi = std::make_unique<BoardFromFile>();
-                    // gi->init_from_lvl(1);
-                    gl = std::make_unique<GameLoop>(1);
-                    break;
-                }
-                case actions::EDIT:
-                case actions::LEVELS:
-                case actions::NOTHING:
-                default:
-                    return;
-            }
-        }
+        void updateWithAction(actions& action);
 
         void manage_button_push(int x, int y);
 
@@ -51,8 +37,9 @@ class WindowContents {
     public:
         WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
-        virtual void informManager() = 0;
+        // virtual void informManager() = 0;
         virtual void manage_button_push(int x, int y) = 0;
+        virtual void manageAction(actions& action) { }
         // virtual void action() = 0;
         std::weak_ptr<ContentManager> getCM() {
             return cm;
