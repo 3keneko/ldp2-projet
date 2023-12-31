@@ -27,7 +27,7 @@ class MainWindow : public Fl_Window {
         int handle(int event) override {
             switch (event) {
                 case FL_PUSH:
-                    contents->manage_button_push(Fl::event_x(), Fl::event_y());
+                    contents->manageButtonPush(Fl::event_x(), Fl::event_y());
                     return 1;
                 default:
                     return 0;

@@ -1,4 +1,11 @@
 #include "content_manager.hpp"
+#include "level_select.hpp"
+#include <memory>
+
+
+void ContentManager::changeContents(std::unique_ptr<WindowContents> new_contents) {
+    contents = std::move(new_contents);
+}
 
 void ContentManager::show() {
     if (gl != nullptr) {
@@ -8,11 +15,12 @@ void ContentManager::show() {
     }
 }
 
-void ContentManager::manage_button_push(int x, int y) {
-        if (gl != nullptr) {
-                return;
-            }
-        contents->manage_button_push(x, y);
+void ContentManager::manageButtonPush(int x, int y) {
+    std:: cout << x << " " << y << std::endl;
+    if (gl != nullptr) {
+            return;
+        }
+    contents->manageButtonPush(x, y);
 }
 
 void ContentManager::updateWithAction(actions& action) {
@@ -25,10 +33,18 @@ void ContentManager::updateWithAction(actions& action) {
                 }
                 case actions::INCR:
                 case actions::DIMIN:
+                    std::cout << "okay 1" << std::endl;
                     contents->manageAction(action);
                     break;
+                case actions::LEVELS: {
+                    auto lev_sel = std::make_unique<LevelSelect>(
+                        nullptr
+                        // std::weak_ptr<ContentManager>(this)
+                    );
+                    changeContents(std::move(lev_sel));
+                    break;
+                }
                 case actions::EDIT:
-                case actions::LEVELS:
                 case actions::NOTHING:
                 default:
                     return;

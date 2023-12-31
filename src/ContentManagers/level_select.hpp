@@ -7,7 +7,7 @@
 #include <memory>
 #include <string>
 
-class LevelSelect: WindowContents {
+class LevelSelect: public WindowContents {
     private:
         unsigned selected_level = 1;
 
@@ -29,13 +29,15 @@ class LevelSelect: WindowContents {
             actions::DIMIN,
             getCM());
 
-        Text lvl_show { std::to_string(selected_level),
+        Text lvl_show { "Selected level: " + std::to_string(selected_level),
             constants::window::WIDTH / 2,
             constants::window::HEIGHT / 2,
-            50 };
+            50
+    };
 
     public:
         LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
+        LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {}
         // void informManager() override;
         void draw() override {
             increase_lvl->draw();
@@ -43,9 +45,13 @@ class LevelSelect: WindowContents {
             lvl_show.draw();
         }
 
-        void manage_button_push(int x, int y) override {
+        void manageButtonPush(int x, int y) override {
             increase_lvl->manageClick(x, y);
             reduce_lvl->manageClick(x, y);
+        }
+
+        unsigned getLevel() {
+            return selected_level;
         }
 
         void manageAction(actions& action) override {

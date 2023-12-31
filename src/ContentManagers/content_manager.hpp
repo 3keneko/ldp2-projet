@@ -15,12 +15,10 @@ class ContentManager {
         ContentManager(std::unique_ptr<WindowContents> first_contents):
             contents(std::move(first_contents)), gl(nullptr) {}
 
-        void changeContents(std::unique_ptr<WindowContents> new_contents) {
-            contents = std::move(new_contents);
-        }
+        void changeContents(std::unique_ptr<WindowContents> new_contents);
         void updateWithAction(actions& action);
 
-        void manage_button_push(int x, int y);
+        void manageButtonPush(int x, int y);
 
         void start_game(std::unique_ptr<GameLoop> g) {
             gl = std::move(g);
@@ -36,14 +34,19 @@ class WindowContents {
         std::weak_ptr<ContentManager> cm; // Observer
     public:
         WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
+        WindowContents(std::weak_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
         // virtual void informManager() = 0;
-        virtual void manage_button_push(int x, int y) = 0;
-        virtual void manageAction(actions& action) { }
+        virtual void manageButtonPush(int x, int y) = 0;
+        virtual void manageAction([[maybe_unused]] actions& action) { }
         // virtual void action() = 0;
         std::weak_ptr<ContentManager> getCM() {
             return cm;
         }
+
+        // void setContentManager(ContentManager& new_cm) {
+        //    cm = std::shared_ptr<ContentManager>(&new_cm);
+        // }
         virtual ~WindowContents() {}
 };
 
