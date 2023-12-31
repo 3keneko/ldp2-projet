@@ -16,15 +16,18 @@ class ContentManager {
             contents(std::move(first_contents)), gl(nullptr) {}
 
         void changeContents(std::unique_ptr<WindowContents> new_contents);
-        void updateWithAction(actions& action);
 
         void manageButtonPush(int x, int y);
+
+        void contentManageAction(actions& action);
 
         void start_game(std::unique_ptr<GameLoop> g) {
             gl = std::move(g);
         }
 
         void show();
+
+        static void updateWithAction(std::shared_ptr<ContentManager> cm, actions& action);
 
         ~ContentManager() { }
 };

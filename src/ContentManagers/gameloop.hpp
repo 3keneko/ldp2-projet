@@ -55,7 +55,8 @@ class GameLoop {
       score = std::make_shared<Score>(0);
       sv = std::make_shared<ScoreView>(score,
                                        constants::score::curr_x,
-                                       constants::score::curr_y);
+                                       constants::score::curr_y
+      );
 
       Frog frg {0, 250, score};
       frog = std::make_shared<Frog>(frg);

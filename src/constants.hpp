@@ -58,6 +58,7 @@ enum class actions {
     LEVELS,
     INCR,
     DIMIN,
+    STARTAFTERSEL,
 };
 
 
