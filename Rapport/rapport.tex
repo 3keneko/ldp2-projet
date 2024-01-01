@@ -6,6 +6,7 @@
             bottom = 1.5cm,
             footskip = 0cm]{geometry}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{wrapfig}
 
 \title{\textbf{Rapport pour le projet de INFOF202}}
 \author{
@@ -34,7 +35,32 @@ Ouvrons le jeu et voyons ce qui se passe.
 
 
 \section{Structure des fichiers: Utilisation du MVC}
-% Parler de l'orga des ficheirs
+% Parler de l'orga des fichiers
+
+La structure des fichiers peut se diviser en plusieurs parties: les fichiers du jeu, ceux des menus, les mains et les images du jeu. \\
+
+\begin{wrapfigure}{r}{3cm}
+\includegraphics[width=3cm]{Images/folders.jpg}
+\end{wrapfigure}
+
+Le dossier \texttt{ContentManagers} contient tout les fichiers de code en rapport avec la gestion des menus du jeu. \\
+
+Les dossiers \texttt{Controller}, \texttt{Model} et \texttt{View} contiennent le code parmettant de faire tourner le jeu (la partie plateau, qui ne compte pas le menu).
+Cette disposition met en évidence l'utilisation du MVC. Prenons la gestion de la grenouille comme exemple. 
+Les fichiers gérant les contrôles de celle-ci se trouvent dans le dossier \texttt{Controller}, ceux qui gèrent ses propriétés dans le plateau se trouvent dans \texttt{Model} et enfin, ceux qui gèrent son affichage se trouvent dans \texttt{View}. Tout le code de ces fichiers est utilisé dans les fichiers de \texttt{GameManagers} pour avoir un jeu fonctionnel.\\
+
+Le dossier \texttt{levels} contient les données des niveaux sauvegardés en fichiers \texttt{.csv}, et les scores obtenus sur ceux-ci. Plus de détails seront donnés dans les chapitres concernés. \\
+
+Le dossier \texttt{tooling} contient tout les outils construits grâce aux outils venant la librairie FLTK qui sont surtout utilisés dans la partie \texttt{View} et \texttt{ContentManagers}. \\
+
+Le fichiers \texttt{constants.hpp} contient toutes les constantes utilisées dans le projet, comme par exemple la taille des bouttons dans le menu. \\
+
+Enfin, les fichiers \texttt{main.cpp} et \texttt{mainwindow.hpp} s'occupent d'assembler le tout, pour obtenir l'application Frogger au complet.
+
+
+
+
+
 
 
 \section{Fichiers et classes principales}
