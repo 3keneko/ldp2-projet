@@ -19,7 +19,7 @@ class LevelSelect: public WindowContents {
             constants::buttons::HEIGHT,
             "+",
             actions::INCR,
-            getCM()
+            this
     };
 
         ActionButton reduce_lvl {
@@ -29,7 +29,7 @@ class LevelSelect: public WindowContents {
             constants::buttons::HEIGHT,
             "-",
             actions::DIMIN,
-            getCM()
+            this
     };
 
         Text lvl_show { "Selected level: " + std::to_string(selected_level),
@@ -44,7 +44,7 @@ class LevelSelect: public WindowContents {
             constants::buttons::HEIGHT,
             "START GAME",
             actions::STARTAFTERSEL,
-            getCM()
+            this
     };
     public:
         LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}

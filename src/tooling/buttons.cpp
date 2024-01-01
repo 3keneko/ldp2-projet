@@ -10,12 +10,6 @@ bool ActionButton::contains(int xMouse, int yMouse) {
 }
 
 void ActionButton::manageClick(int xMouse, int yMouse) {
-    if (this->contains(xMouse, yMouse)) {
-        if (auto shared_cm_ptr = cm_ptr.lock()) {
-            ContentManager::updateWithAction(shared_cm_ptr, action);
-        }
-        else {
-            throw 1;
-        }
-    }
+    if (this->contains(xMouse, yMouse))
+        wc->manageAction(action);
 }

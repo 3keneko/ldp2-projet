@@ -41,7 +41,7 @@ class WindowContents {
         virtual void draw() = 0;
         // virtual void informManager() = 0;
         virtual void manageButtonPush(int x, int y) = 0;
-        virtual void manageAction([[maybe_unused]] actions& action) { }
+        virtual void manageAction(actions& action) = 0;
         // virtual void action() = 0;
         std::weak_ptr<ContentManager> getCM() {
             return cm;

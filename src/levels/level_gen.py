@@ -18,7 +18,7 @@ for i in range(2, 10):
                 space_in_pack = random.randint(10, 40) if lt != "T" else random.randint(10, 15)
                 space_between_packs = random.randint(50, 100)
                 first_placement = random.randint(-100, 100)
-                size_each = random.randint(30, 50) if lt in "TR" else random.randint(130, 200)
+                size_each = random.randint(30, 50) if lt == "R" else (random.randint(60, 90) if lt == "T" else random.randint(130, 200))
                 speeds = [*range(-3, 4)]
                 speeds.remove(0)
                 speed = random.choice(speeds)

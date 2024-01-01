@@ -30,14 +30,15 @@ class RectangleWithText: public RectangleDrawer, public Text {
 class ActionButton: public RectangleWithText, public Clickable {
     private:
         actions action;
-        std::weak_ptr<ContentManager> cm_ptr;
+        WindowContents* wc; // ActionButtons don't own the window they're pointing to, it wouldn't make sense to use
+                            // Smart Pointers here
     public:
         ActionButton(int x, int y, int size_w, int size, std::string s, actions action
-                     , std::weak_ptr<ContentManager> cm_ptr
+                     , WindowContents* wc
                      , int fontsize = 20, Color color = Color::MENURECTANGLE
                      , Color text_color = Color::TEXT)
             : RectangleWithText{x, y, size_w, size, s, fontsize, color, text_color}
-            , Clickable(), action(action), cm_ptr(cm_ptr) {}
+            , Clickable(), action(action), wc(wc) {}
         void draw() override {RectangleWithText::draw();}
         void manageClick(int xMouse, int yMouse);
         bool contains(int xMouse, int yMouse) override;
