@@ -12,52 +12,55 @@ class LevelSelect: public WindowContents {
     private:
         unsigned selected_level = 1;
 
-        std::unique_ptr<ActionButton> increase_lvl = std::make_unique<ActionButton>(
+        ActionButton increase_lvl {
             constants::buttons::INC_X,
             constants::buttons::INC_Y,
             constants::buttons::WIDTH,
             constants::buttons::HEIGHT,
             "+",
             actions::INCR,
-            getCM());
+            getCM()
+    };
 
-        std::unique_ptr<ActionButton> reduce_lvl = std::make_unique<ActionButton>(
+        ActionButton reduce_lvl {
             constants::buttons::MIN_X,
             constants::buttons::MIN_Y,
             constants::buttons::WIDTH,
             constants::buttons::HEIGHT,
             "-",
             actions::DIMIN,
-            getCM());
+            getCM()
+    };
 
         Text lvl_show { "Selected level: " + std::to_string(selected_level),
             constants::window::WIDTH / 2,
             constants::window::HEIGHT / 2,
             50
     };
-        std::unique_ptr<ActionButton> play_game = std::make_unique<ActionButton>(
+        ActionButton play_game {
             constants::window::WIDTH/2,
             100,
             constants::buttons::WIDTH,
             constants::buttons::HEIGHT,
             "START GAME",
             actions::STARTAFTERSEL,
-            getCM());
+            getCM()
+    };
     public:
         LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
         LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {}
         // void informManager() override;
         void draw() override {
-            increase_lvl->draw();
-            reduce_lvl->draw();
-            play_game->draw();
+            increase_lvl.draw();
+            reduce_lvl.draw();
+            play_game.draw();
             lvl_show.draw();
         }
 
         void manageButtonPush(int x, int y) override {
-            increase_lvl->manageClick(x, y);
-            reduce_lvl->manageClick(x, y);
-            play_game->manageClick(x, y);
+            increase_lvl.manageClick(x, y);
+            reduce_lvl.manageClick(x, y);
+            play_game.manageClick(x, y);
         }
 
         unsigned getLevel() {
