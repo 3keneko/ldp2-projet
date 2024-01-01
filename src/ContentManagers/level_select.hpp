@@ -4,13 +4,14 @@
 #include "content_manager.hpp"
 #include "../tooling/buttons.hpp"
 #include "../constants.hpp"
-#include "gameloop.hpp"
+#include "../GameManagers/gameloop.hpp"
 #include <memory>
 #include <string>
 
 class LevelSelect: public WindowContents {
     private:
         unsigned selected_level = 1;
+        unsigned max_level = 9;
 
         ActionButton increase_lvl {
             constants::buttons::INC_X,
@@ -58,7 +59,7 @@ class LevelSelect: public WindowContents {
         }
 
         void manageButtonPush(int x, int y) override {
-            increase_lvl.manageClick(x, y);
+            if (selected_level < max_level) increase_lvl.manageClick(x, y);
             reduce_lvl.manageClick(x, y);
             play_game.manageClick(x, y);
         }

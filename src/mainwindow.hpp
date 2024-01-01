@@ -4,7 +4,7 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl.H>
 
-#include "ContentManagers/gameloop.hpp"
+#include "GameManagers/gameloop.hpp"
 #include "ContentManagers/content_manager.hpp"
 
 #include "constants.hpp"

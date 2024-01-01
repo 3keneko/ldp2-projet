@@ -5,6 +5,7 @@
 #include "../constants.hpp"
 #include "../tooling/buttons.hpp"
 #include "level_select.hpp"
+#include "../GameManagers/gameloop.hpp"
 
 class WelcomeScreen: public WindowContents {
     private:

@@ -1,8 +1,8 @@
 #ifndef CONTENT_MANAGER_H_
 #define CONTENT_MANAGER_H_
 
-#include "boardfromfile.hpp"
-#include "gameloop.hpp"
+#include "../GameManagers/boardfromfile.hpp"
+#include "../GameManagers/gameloop.hpp"
 #include <memory>
 
 class WindowContents;

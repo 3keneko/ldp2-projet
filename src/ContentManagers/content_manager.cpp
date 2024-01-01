@@ -1,6 +1,4 @@
-#include "content_manager.hpp"
 #include "level_select.hpp"
-
 #include <memory>
 
 

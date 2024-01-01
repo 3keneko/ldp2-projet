@@ -1,5 +1,4 @@
 #include "welcome_screen.hpp"
-#include "gameloop.hpp"
 
 void WelcomeScreen::draw() {
     start_game_button.draw();

@@ -24,7 +24,7 @@ Fl_Color colors::color_convert(const Color& color) {
         case Color::TEXT:
             return FL_BLACK;
         case Color::MENURECTANGLE:
-            return FL_GRAY;
+            return FL_NUM_BLUE;
         case Color::UNKNOWN:
         default:
             return fl_rgb_color(255, 255, 255); // Very white

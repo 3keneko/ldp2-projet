@@ -26,7 +26,7 @@ namespace constants {
         const int SIZE = 40;
     }
     namespace buttons {
-        const int WIDTH = 100;
+        const int WIDTH = 150;
         const int HEIGHT = 40;
         constexpr int START_Y = 40;
         constexpr int INC_X = 400;
