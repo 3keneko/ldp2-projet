@@ -1,37 +1,38 @@
-#include <memory>
-#include <algorithm>
-
-
 #include "boardmodel.hpp"
+
 #include "frog.hpp"
-#include "lanes.hpp"
+#include "movingobjects.hpp"
+#include "score.hpp"
 #include "waterlilies.hpp"
 
-/// THIS MACRO IS DEFINED FOR DEBUGGING, IT HELPS
-/// PRINT OUT THE TUPLE V MORE EASILY
-/// IT IS TO BE DELETED BEFORE WE SEND THE PROJECT BACK TO MR. IACONO
-#define PRINTTUP(V) std::get<0>(V) << " " << std::get<1>(V)
+BoardModel::BoardModel(std::vector<std::shared_ptr<Lane>> lanes): lanes(lanes) {
+    for (auto& lane: lanes) {
+        auto try_fl = std::dynamic_pointer_cast<FinishLane>(lane);
+        if (try_fl != nullptr) {
+            the_finish_lane = try_fl;
+            break;
+        }
+    }
+}
 
 void BoardModel::update_turtles(std::shared_ptr<Lane> lane) {
-    // auto test = std::static_pointer_cast<TurtleLane>(lane);
-    // if (test) 
     lane->dive_update();
 }
 
-// Returns False if frog is outside of the board
+void BoardModel::update() {
+    time++;
+    for (auto& c: lanes) {
+        auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(c);
+        if (try_mvl != nullptr) {
+            for (auto& mov_obj: try_mvl->getMovingObjects()) { mov_obj->move(); }
+        }
+    update_turtles(c);
+      }
+}
+
 bool BoardModel::isOutOfBoard(Frog& frog) {
     return !frog.inBoard();
 }
-
-/*
-bool BoardModel::collidesWithAuto(Frog& frog, RoadLane& rl) {
-    auto car_list = rl.getCars();
-    return std::any_of(car_list.begin(), car_list.end(),
-                        [&frog](std::shared_ptr<Car> car) {
-                                    return car->collide(frog); 
-                                }); 
-}
-*/
 
 bool BoardModel::gameWon() {
     auto lilies = the_finish_lane->getLilies();
@@ -48,27 +49,14 @@ bool BoardModel::frogOnLily(Frog& frog) {
     }
     return false;
 }
-/*
-bool BoardModel::isOnLog(Frog& frog, LogLane& ll) {
-    auto log_list = ll.getLogs();
-    return std::any_of(log_list.begin(), log_list.end(),
-                        [&frog](std::shared_ptr<Log> log) {
-                                    return log->collide(frog); 
-                                });     
+
+void BoardModel::addLane(std::shared_ptr<Lane> lane) {
+    lanes.push_back(lane);
 }
 
-bool BoardModel::isOnTurtle(Frog& frog, TurtleLane& tl) {
-    auto turtle_list = tl.getTurtles();
-    return std::any_of(turtle_list.begin(), turtle_list.end(),
-                        [&frog](std::shared_ptr<Turtle> turtle) {
-                                    return turtle->collide(frog); 
-                                }); 
+std::vector<std::shared_ptr<Lane>> BoardModel::getLanes() {
+    return lanes;
 }
-*/
-// To do with upper functions
-// bool BoardModel::isDrowning(Frog& frog, WaterLane& wl) {return false;}
-
-
 
 bool BoardModel::any_collision(Frog& frog) {
     for (auto& lane: lanes) {
@@ -81,8 +69,7 @@ bool BoardModel::any_collision(Frog& frog) {
                                 });    
         }
     }
-    return false;
-    
+    return false;    
 }
 
 void BoardModel::handle_collision(Frog& frog) {

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <memory>
 #include <type_traits>
 
@@ -18,10 +17,6 @@ void init() {}
 
 int main(int argc, char *argv[]) {
   std::srand(static_cast<unsigned>(time(nullptr)));
-  // MainInit m {};
-  // m.welcomeUser();
-  //m.init_from_file("levels/sure_win.csv");
-  //m.classic_init();
   auto c = std::make_shared<ContentManager>(nullptr);
   // c->start_game(std::move(g));
   auto ws = std::make_unique<WelcomeScreen>(c);

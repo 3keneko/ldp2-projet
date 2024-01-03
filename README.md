@@ -98,6 +98,9 @@ la syntaxe (plutôt cool) est ainsi:
 - [x] Changer les collisions des frogs
 Actuellement, on peut être au bord de la frog sans tomber dans l'eau. Il suffit de faire la même implémentation de collide que pour les logs.
 
+- [x] Rendre les niveaux un peu plus faciles quand même ...
+Juste modifier un peu les fichiers .csv
+
 ``` cpp
 enum class Directions {
   North,
@@ -117,3 +120,10 @@ We got this! -- C'est en cours
 - [ ] Idées pour faire un éditeur de niveau facile
 1. N'autoriser que l'édition de niveaux, pas la création
 2. Quand on edit, on ne fait que rajouter une ligne à la file
+
+
+#### Fichiers mis au propre
+- main.hpp
+- mainwindow.hpp (et .cpp)
+- constants.hpp
+- boardmodel.hpp (et .cpp)

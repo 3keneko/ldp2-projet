@@ -50,7 +50,6 @@ namespace paths {
     const std::string scores = "levels/scores.csv";
 }
 
-
 enum class actions {
     STARTGAME,
     NOTHING,
@@ -60,6 +59,5 @@ enum class actions {
     DIMIN,
     STARTAFTERSEL,
 };
-
 
 #endif // CONSTANTS_H_
