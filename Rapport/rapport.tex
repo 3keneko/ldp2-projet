@@ -18,6 +18,7 @@
 \renewcommand*\contentsname{Table des matières}
 
 \begin{document}
+\setlength{\parindent}{0em}
 
 \maketitle
 
@@ -29,10 +30,9 @@ Ce rapport vise a documenter le projet "Frogger" que nous avons réaliser. Nous 
 
 \section{Résumé des tâches réalisées et fonctionnement du jeu}
 % Résumer comment le jeu marche et listes les tâches réalisées
-Nous avons réalisé les tâches principales et toutes les tâches additionnelles, sauf la tâches de l'éditeur de niveau. \\
+Nous avons réalisé les tâches principales et toutes les tâches additionnelles, sauf la tâches de l'éditeur de niveau. 
 Ouvrons le jeu et voyons ce qui se passe. 
 % Parler du fonctionnement du jeu quand tout sera fini
-
 
 \section{Structure des fichiers: Utilisation du MVC}
 % Parler de l'orga des fichiers
@@ -43,7 +43,7 @@ La structure des fichiers peut se diviser en plusieurs parties: les fichiers du 
 \includegraphics[width=3cm]{Images/folders.jpg}
 \end{wrapfigure}
 
-Le dossier \texttt{ContentManagers} contient tout les fichiers de code en rapport avec la gestion des menus du jeu. \\
+Le dossier \texttt{ContentManagers} contient tout les fichiers de code en rapport avec la gestion des menus du jeu.\\
 
 Les dossiers \texttt{Controller}, \texttt{Model} et \texttt{View} contiennent le code parmettant de faire tourner le jeu (la partie plateau, qui ne compte pas le menu).
 Cette disposition met en évidence l'utilisation du MVC. Prenons la gestion de la grenouille comme exemple. 
@@ -55,27 +55,25 @@ Le dossier \texttt{tooling} contient tout les outils construits grâce aux outil
 
 Le fichiers \texttt{constants.hpp} contient toutes les constantes utilisées dans le projet, comme par exemple la taille des bouttons dans le menu. \\
 
-Enfin, les fichiers \texttt{main.cpp} et \texttt{mainwindow.hpp} s'occupent d'assembler le tout, pour obtenir l'application Frogger au complet.
-
-
-
-
-
-
-
-\section{Fichiers et classes principales}
-% Parler des fichiers mains et du gameinit/gameloop.
-% Peut-être parler des classes et fichiers principaux pour les menus après?
+Enfin, les fichiers \texttt{main.cpp} et \texttt{mainwindow.hpp} s'occupent d'assembler toutes les classes et fonctions ensemble, pour obtenir l'application Frogger au complet. 
 
 \section{Réalisation de la base du jeu (Tâches de base)}
 % On parle du tout début juste avec les roadlanes
+Bien sûr, pour cette tâche, la première chose à faite a été de faire un support pour utiliser fltk. C'est là que les fichiers \texttt{main.cpp} et \texttt{MainWindow.hpp} rentrent en jeu.
+
+\subsection{Modèle}
+
+Il nous faut maintenant un modèle fonctionnel. Le but est de d'abord faire un plateau de jeu. Ceci se fait principalement dans la classe \texttt{BoardModel} du fichier \texttt{boardmodel.hpp}. \\
+
+Les rangées sont des objets de classe \texttt{Lane}, classe qui est définie dans le fichier \texttt{lanes.hpp}. La classe \texttt{BoardModel} contient alors un vecteur de pointeurs vers des objets \texttt{Lane}. 
+% To be continued
 
 \section{Réalisation des tâches additionnelles}
 Maintenant que les tâches principales sont réalisées et que nous avons une bonne base, nous pouvons implémenter les fonctionnalités supplémentaires.
 
 \subsection{Rangées d'eau, buches et tortues}
 
-\subsection{Nénuphars et rangée 13}
+\subsection{Nénuphars}
 
 \subsection{Vies de la grenouille}
 
