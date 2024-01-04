@@ -127,3 +127,5 @@ We got this! -- C'est en cours
 - mainwindow.hpp (et .cpp)
 - constants.hpp
 - boardmodel.hpp (et .cpp)
+- lanes.hpp (et .cpp)
+- movingobjects.hpp (et .cpp)
