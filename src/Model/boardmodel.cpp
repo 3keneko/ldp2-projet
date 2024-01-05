@@ -1,9 +1,11 @@
 #include "boardmodel.hpp"
-
 #include "frog.hpp"
 #include "movingobjects.hpp"
 #include "score.hpp"
 #include "waterlilies.hpp"
+#include "../constants.hpp"
+
+#include <algorithm>
 
 BoardModel::BoardModel(std::vector<std::shared_ptr<Lane>> lanes): lanes(lanes) {
     for (auto& lane: lanes) {

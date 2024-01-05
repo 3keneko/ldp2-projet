@@ -1,5 +1,6 @@
 #include "waterlilies.hpp"
-#include "frog.hpp"
+#include "../constants.hpp"
+
 
 bool WaterLilies::collide(Frog& frog) {
             using namespace constants;
