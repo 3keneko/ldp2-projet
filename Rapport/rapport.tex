@@ -63,23 +63,49 @@ Bien sûr, pour cette tâche, la première chose à faite a été de faire un su
 
 \subsection{Modèle}
 
-Il nous faut maintenant un modèle fonctionnel. Le but est de d'abord faire un plateau de jeu. Ceci se fait principalement dans la classe \texttt{BoardModel} du fichier \texttt{boardmodel.hpp}. \\
+Il nous faut maintenant un modèle fonctionnel. Le but est de d'abord faire un plateau de jeu. \\
 
-Les rangées sont des objets de classe \texttt{Lane}, classe qui est définie dans le fichier \texttt{lanes.hpp}. La classe \texttt{BoardModel} contient alors un vecteur de pointeurs vers des objets \texttt{Lane}. 
+Les rangées sont des objets de classe \texttt{Lane}, classe qui est définie dans le fichier \texttt{lanes.hpp}. La classe \texttt{BoardModel} contient alors un vecteur de pointeurs vers des objets \texttt{Lane}. Pour avoir différents types de rangées, il suffit alors de définir ces types grâce à de l'héritage sur la classe \texttt{Lane}. Nous définissons alors dans le fichier \texttt{lane.hpp} les classes \texttt{FinnishLane} (nous en parlons dans le chapitre \ref{lilies}), \texttt{SafeLane} et \texttt{RoadLane}. \\
+
+La classe \texttt{SafeLane} représente une rangée basique sans aucun obstacle. La classe \texttt{RoadLane} est par contre un peu plus complexe. Nous voulons d'abord définir ce qu'est une voiture, ceci se passe dans le fichier \texttt{movingobjects.hpp}. Une voiture est un objet de classe \texttt{Car} qui contient quelques getters et une méthode \texttt{collide} qui servira à voir s'il y a une collision avec la grenouille. Cette classe hérite de la classe abstraite \texttt{MovingObject}. Cela nous permet de créer une classe abstraite appelée \texttt{MovingObjectLane} qui hérite de \texttt{Lane} et qui possède en instance un vecteur de pointeurs vers des objets de classe \texttt{MovingObject}. Cette classe possède une méthode qui permet de regarder s'il y a collision entre la grenouille et au moins un objet. La classe \texttt{RoadLane} est alors juste un successeur de la classe \texttt{MovingObjectLane}. \\
+
+Toutes les classes et méthodes sont après assemblées dans la classe \texttt{BaordModel} pour faire un plateau fonctionnel.
+
+Parlons maintenant de la grenouille. Elle sera définie par un objet de classe \texttt{Frog}, classe qui est définie dans le fichier \texttt{frog.hpp}. Les collisions entre celle-ci et les objets sont gérées par les objets qui possèdent des méthodes qui prennent un référence vers la grenouille en paramêtre. La classe \texttt{Frog} possède alors un getter vers la rangée à laquelle elle se trouve, et un autre vers sa position x (en pixels). Cette classe possède tout de même une méthode \texttt{inBaord} qui vérifie si la grenouille ne sort pas du plateau. C'est aussi dans cette classe que sont gérés la mort, mais nous parlerons de cela dans le chapitre \ref{lives}. L'utilité des autres méthodes de cette classe sera abordée plus tard.
+
+\subsection{Controlleur}
+
+Les contrôles de la grenouille se passent dans la classe \texttt{Controller} qui se trouve quand le fichier \texttt{controller.hpp} qui est contenu dans le dossier \texttt{Controller}.
+La classe \texttt{Frog} possède déjà des méthodes permettant de changer sa position sur le plateau, il faut alors juste les utiliser quand nous appuyons sur une touche. La méthode \texttt{processKey} sert à gérer ces actions. Les contrôles se font avec les touches zqsd comme pour beaucoup de jeux. 
+
+\subsection{Vue}
+
+Tout ce dont nous allons parler dans ce sous-chapitre se passe dans le dossier \texttt{View}. Pour résumer, pour presque chaque classe de la partie modèle, il y a une classe de la partie vue qui s'occupe de l'affichage de ce modèle. \\
+
+D'abord, nous avons un fichier \texttt{movingobjectview.hpp} qui contient la classe \texttt{CarView} qui hérite de la classe \texttt{MovingObjectView}. L'intérêt de ces classes est de pouvoir utiliser la méthode \texttt{draw} pour afficher l'objet sur la plateau. Les couleurs sont choisies dans le constructeur et les tailles sont données par l'objet de classe \texttt{MovingObject} qu'elle prennent en paramêtre dans le constructeur. \\
+
+Ensuite, nous avons un fichier \texttt{laneview.hpp} qui possède la classe abstraite \texttt{LaneView} et les classes héritantes \texttt{SafeLaneView}, \texttt{FinishLaneView} et \texttt{RoadLaneView}. Leur intérêt est aussi de pouvoir utiliser la méthode draw pour les afficher sur le plateau. La classe \texttt{RoadLaneView} possède en plus un vecteur de pointeurs vers des objets de type \texttt{CarView} pour pouvoir dessiner les voitures sur les rangées concernées. La méthode \texttt{draw} de \texttt{CarView} est alors appelée dans la méthode \texttt{draw} de \texttt{RoadLaneView}. \\
+
+Nous parlerons de l'affichage de la grenouille dans le chapitre \ref{frogview}
+
+Enfin, à l'aide de toutes ces méthodes \texttt{draw} (il y en a aussi une pour la grenouille, nous pouvons créer une classe \texttt{BoardView} dans le fichier \texttt{boardview.hpp} contenant une méthode \texttt{draw} elle même et qui va dessiner le plateau selon l'instance de classe \texttt{BoardModel} (sous forme de pointeur) qui lui sera donnée.
+
+\subsection{Assemblage pour faire un jeu fonctionnel}
+
 % To be continued
 
 \section{Réalisation des tâches additionnelles}
-Maintenant que les tâches principales sont réalisées et que nous avons une bonne base, nous pouvons implémenter les fonctionnalités supplémentaires.
+Maintenant que les tâches principales sont réalisées et que nous avons une bonne base, nous pouvons implémenter les fonctionnalités supplémentaires. 
 
 \subsection{Rangées d'eau, buches et tortues}
 
-\subsection{Nénuphars}
+\subsection{Nénuphars} \label{lilies}
 
-\subsection{Vies de la grenouille}
+\subsection{Vies de la grenouille} \label{lives}
 
 \subsection{Tortues plongeantes}
 
-\subsection{Directions de la grenouille}
+\subsection{Directions de la grenouille} \label{frogview}
 
 \subsection{Score}
 
