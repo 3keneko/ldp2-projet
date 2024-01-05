@@ -1,28 +1,12 @@
 #include "laneview.hpp"
 #include "../constants.hpp"
-#include <memory>
 #include "../utils.hpp"
+#include "../tooling/colors.hpp"
 
 using namespace constants::lanes;
 
-// LaneView::LaneView(std::shared_ptr<Lane> l) {
-//     for (auto& obj: l->getObjects()) {
-
-//     }
-// }
-
-// void LaneView::draw() {
-//     for (auto& object: viewable) {
-//         object->draw();
-//     }
-// }
-
-// void WaterLaneView::draw() {
-//     fl_draw_box(FL_FLAT_BOX, 0, HEIGHT * (NUMBER - lane->getId()),
-//                 constants::window::WIDTH, HEIGHT, FL_BLUE);
-//     for (auto& object: viewable)
-//         object->draw();
-// }
+LaneView::LaneView(std::shared_ptr<Lane> lane)
+    : lane(lane), ld(LaneDrawer(getLanePos(lane->getId()), Color::UNKNOWN)) {}
 
 std::shared_ptr<LaneView> LaneView::makeView(std::shared_ptr<Lane> l) {
   auto try_safe = std::dynamic_pointer_cast<SafeLane>(l);
@@ -52,9 +36,35 @@ void SafeLaneView::draw() {
     ld.draw();
 }
 
+SafeLaneView::SafeLaneView(std::shared_ptr<SafeLane> sfl): LaneView(sfl) {
+    ld.colorSwitch(Color::SAFE);
+}
+
+FinishLaneView::FinishLaneView(std::shared_ptr<FinishLane> fl): LaneView(fl) {
+    ld.colorSwitch(Color::WATER);
+    for (auto& _lily: fl->getLilies()) {
+        auto lily_view = std::make_shared<LiliesView>(_lily);
+        lilies.push_back(lily_view);
+    }
+}
+
+RoadLaneView::RoadLaneView(std::shared_ptr<RoadLane> rl): LaneView(rl) {
+    ld.colorSwitch(Color::ROAD);
+    for (auto& car: rl->getMovingObjects()) {
+        cv.push_back(std::make_shared<CarView>(std::static_pointer_cast<Car>(car)));
+    }
+}
+
 void RoadLaneView::draw() {
     ld.draw();
     for (auto& car: cv) {car->draw();}
+}
+
+LogLaneView::LogLaneView(std::shared_ptr<LogLane> ll): LaneView(ll) {
+    ld.colorSwitch(Color::WATER);
+    for (auto& _log: ll->getMovingObjects()) {
+        lv.push_back(std::make_shared<LogView>(std::static_pointer_cast<Log>(_log)));
+    }
 }
 
 void LogLaneView::draw() {
@@ -62,14 +72,18 @@ void LogLaneView::draw() {
     for (auto& _log: lv) {_log->draw();}
 }
 
+TurtleLaneView::TurtleLaneView(std::shared_ptr<TurtleLane> tl): LaneView(tl) {
+    ld.colorSwitch(Color::WATER);
+    for (auto& turtle: tl->getMovingObjects()) {
+        tv.push_back(std::make_shared<TurtleView>(std::static_pointer_cast<Turtle>(turtle)));
+    }
+}
+
 void TurtleLaneView::draw() {
     ld.draw();
     for (auto& object: tv)
         object->draw();
 }
-
-// TODO
-// void FinishLaneView::draw() {}
 
 void FinishLaneView::draw() {
     ld.draw();

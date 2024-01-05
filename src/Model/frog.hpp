@@ -2,8 +2,6 @@
 #define FROG_H_
 
 #include <memory>
-
-#include "../constants.hpp"
 #include "score.hpp"
 
 enum class FrogDirection {
@@ -19,8 +17,7 @@ class Frog {
         int lives;
         std::shared_ptr<Score> score;
    public:
-        Frog(unsigned int lane_number, int x, std::shared_ptr<Score> score):
-                lane_number(lane_number), x(x), lives(3), score(score) {}
+        Frog(unsigned int lane_number, int x, std::shared_ptr<Score> score);
 
         // Standard getters
         unsigned int getLane() const ;
@@ -41,7 +38,7 @@ class Frog {
 
         // Methods in charge of life and death of the frog
         void resetPos();
-        bool alive() {return lives > 0;}
+        bool alive();
         void kill();
         void inWaterLilies();
 

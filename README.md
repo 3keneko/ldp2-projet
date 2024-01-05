@@ -129,3 +129,8 @@ We got this! -- C'est en cours
 - boardmodel.hpp (et .cpp)
 - lanes.hpp (et .cpp)
 - movingobjects.hpp (et .cpp)
+- frog.hpp (et .cpp)
+- control.hpp (et .cpp)
+- movingobjectview.hpp (et .cpp)
+- laneview.hpp (et .cpp)
+- boardview.hpp (et .cpp)

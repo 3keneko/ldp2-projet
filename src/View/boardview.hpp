@@ -4,7 +4,6 @@
 #include <memory>
 #include "../Model/boardmodel.hpp"
 #include "laneview.hpp"
-#include "movingobjectview.hpp"
 
 class BoardView {
   private:
@@ -12,9 +11,9 @@ class BoardView {
     std::shared_ptr<BoardModel> b;
   public:
     BoardView(std::vector<std::shared_ptr<LaneView>> lanes,
-              std::shared_ptr<BoardModel> b): lanes(lanes), b(b) {}
+              std::shared_ptr<BoardModel> b);
     void draw();
-    std::vector<std::shared_ptr<LaneView>> getLaneList() { return lanes; }
+    std::vector<std::shared_ptr<LaneView>> getLaneList();
     ~BoardView() {}
 };
 

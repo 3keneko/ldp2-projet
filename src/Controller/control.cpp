@@ -1,12 +1,9 @@
-/*
-This is the code containing the functions and the classes that are used
-with FLTK to let the user control the game
-*/
-
 #include "control.hpp"
 #include <FL/Fl.H>
-#include <iostream>
-#include <algorithm>
+
+
+Controller::Controller(std::shared_ptr<Frog> f)
+    : f(f), is_pressed({{'z', false}, {'d', false}, {'q', false}, {'s', false}}) {}
 
 void Controller::decrement() {
     if (count > 0) count--;
@@ -20,7 +17,6 @@ void Controller::updatePressedKeys(const char&& last_key_pressed) {
         last_pressed = key == last_key_pressed;
     }
 }
-
 
 void Controller::processKey(char& c) {
     const unsigned int delay_between_moves = 10;

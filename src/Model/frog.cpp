@@ -1,7 +1,10 @@
 #include "frog.hpp"
-#include <iostream>
+#include "../constants.hpp"
 
 using namespace constants::frog;
+
+Frog::Frog(unsigned int lane_number, int x, std::shared_ptr<Score> score):
+                lane_number(lane_number), x(x), lives(3), score(score) {}
 
 // Getters
 unsigned int Frog::getLane() const {
@@ -60,6 +63,7 @@ void Frog::resetPos() {
     score->reset_best_lane();
 }
 
+bool Frog::alive() {return lives > 0;}
 
 // In charge of life and death of the Frog
 void Frog::kill() {
