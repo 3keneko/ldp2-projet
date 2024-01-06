@@ -134,3 +134,4 @@ We got this! -- C'est en cours
 - movingobjectview.hpp (et .cpp)
 - laneview.hpp (et .cpp)
 - boardview.hpp (et .cpp)
+- gameloop.hpp (et .cpp)
