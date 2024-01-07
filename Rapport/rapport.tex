@@ -293,9 +293,33 @@ Dans le modèle, une tortue plonge si son instance \texttt{diving} est à \textt
 Nous changons forcément commment est affichée la tortue quand elle plonge. Pour cela, nous faisons en sorte que la méthode \texttt{TurtleView::draw()} ne marche que quand la tortue est à la surface.
 
 \subsection{Directions de la grenouille} \label{frogview}
-
+Les directions sont gérées avec l'enum class suivant:
+\begin{lstlisting}
+enum class FrogDirection {
+    North, South, East, West
+};
+\end{lstlisting}
 \subsection{Score}
+\begin{lstlisting}
+class Score {
+    private:
+        unsigned the_score = 0;
+        int max_lane = 0;
+    public:
+        Score() = default;
+        Score(unsigned score): the_score(score) {}
 
+        void reachedWaterlily();
+        void update(int new_lane_id);
+        unsigned getScore() const;
+        void resetBestLane();
+
+        friend bool operator<(Score const& s1, Score const& s2);
+        friend bool operator>(Score const& s1, Score const& s2);
+        friend bool operator==(Score const& s1, Score const& s2);
+        ~Score() = default;
+};
+\end{lstlisting}
 \subsection{Meilleur score}
 
 \subsection{Gestion des menus et écran d'accueil}
