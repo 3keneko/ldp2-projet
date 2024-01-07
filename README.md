@@ -135,3 +135,4 @@ We got this! -- C'est en cours
 - laneview.hpp (et .cpp)
 - boardview.hpp (et .cpp)
 - gameloop.hpp (et .cpp)
+- waterlilies.hpp (et .cpp)

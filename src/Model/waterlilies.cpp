@@ -1,6 +1,9 @@
 #include "waterlilies.hpp"
 #include "../constants.hpp"
 
+WaterLilies::WaterLilies(int x): x(x) {}
+
+int WaterLilies::getX() {return x;}
 
 bool WaterLilies::collide(Frog& frog) {
             using namespace constants;
@@ -13,3 +16,7 @@ bool WaterLilies::collide(Frog& frog) {
 
             return !visited && sameLane && (in_by_left_side || in_by_right_side);
 }
+
+bool WaterLilies::hasBeenVisited() { return visited; }
+
+void WaterLilies::visit() { visited=true; }

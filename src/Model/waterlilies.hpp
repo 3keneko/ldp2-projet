@@ -8,17 +8,11 @@ class WaterLilies {
         int x;
         bool visited=false;
     public:
-        WaterLilies(int x): x(x) {}
-
-        int getX() {
-            return x;
-        }
-
+        WaterLilies(int x);
+        int getX();
         bool collide(Frog& frog);
-
-        bool hasBeenVisited() { return visited; }
-        void visit() { visited=true; }
-
+        bool hasBeenVisited();
+        void visit();
         ~WaterLilies() {}
 };
 
