@@ -321,7 +321,24 @@ class Score {
 };
 \end{lstlisting}
 \subsection{Meilleur score}
+Le meilleur score et l'interaction avec les fichiers est gérée par la classe ScoreSaver
+\begin{lstlisting}
+class ScoreSaver {
+    private:
+        unsigned lvl;
+        const std::string file_name { paths::scores };
+        std::map<unsigned, unsigned> scores;
+    public:
+        ScoreSaver(unsigned level): lvl(level) {}
+        void writeToFile();
+        void getFromFile();
 
+        Score getHighScore();
+        void setNewScore(Score const& score);
+        void resetHighScore();
+        ~ScoreSaver() {}
+};
+\end{lstlisting}
 \subsection{Gestion des menus et écran d'accueil}
 
 \subsection{Niveaux et sélection de niveau}

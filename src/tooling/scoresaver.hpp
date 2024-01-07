@@ -19,6 +19,7 @@ class ScoreSaver {
 
         Score getHighScore() { return Score(scores.at(lvl)); }
         void setNewScore(Score const& score);
+        void resetHighScore();
         ~ScoreSaver() {}
 };
 

@@ -34,3 +34,8 @@ void ScoreSaver::setNewScore(Score const& score) {
         scores[lvl] = score.getScore();
     }
 }
+
+void ScoreSaver::resetHighScore() {
+    Score new_score { 0 };
+    setNewScore(new_score);
+}
