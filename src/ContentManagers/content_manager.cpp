@@ -16,7 +16,6 @@ void ContentManager::show() {
 
 
 void ContentManager::manageButtonPush(int x, int y) {
-    std:: cout << x << " " << y << std::endl;
     if (gl != nullptr) {
             return;
         }
