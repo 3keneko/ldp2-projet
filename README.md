@@ -136,3 +136,4 @@ We got this! -- C'est en cours
 - boardview.hpp (et .cpp)
 - gameloop.hpp (et .cpp)
 - waterlilies.hpp (et .cpp)
+- image_classes.hpp (et .cpp) 

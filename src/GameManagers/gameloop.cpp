@@ -59,7 +59,7 @@ void GameLoop::update() {
 
     if (s == FL_KEYUP) c->resetPressedKeys();
     } else {
-        FullScreenJPEGImage lost_screen {"../imgs/Untitled.jpeg" };
+        FullScreenJPEGImage lost_screen {"../imgs/lose.jpeg" };
         lost_screen.draw();
         ssv->setNewScore(*best_score);
         ssv->writeToFile();
