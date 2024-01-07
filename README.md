@@ -137,3 +137,4 @@ We got this! -- C'est en cours
 - gameloop.hpp (et .cpp)
 - waterlilies.hpp (et .cpp)
 - image_classes.hpp (et .cpp) 
+- frogview.hpp (et .cpp)

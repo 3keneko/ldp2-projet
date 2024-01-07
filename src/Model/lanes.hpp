@@ -58,8 +58,7 @@ class LogLane: public MovingObjectLane {
         std::vector<std::shared_ptr<Log>> getLogs() const;
         ~LogLane() {}
 };
-
-
+ 
 class TurtleLane: public MovingObjectLane {
     unsigned int turtle_by_pack;
     unsigned int diving_pack_id;
