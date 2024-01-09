@@ -31,30 +31,12 @@ class WelcomeScreen: public WindowContents {
             Color::CAR
         };
 
-        actions to_take = actions::NOTHING;
         Text welcome { "Lenny & Lucas prod", 100, 200 };
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
-        void manageButtonPush(int x, int y) override {
-             start_game_button.manageClick(x, y);
-             go_to_levels.manageClick(x, y);
-        }
-        void manageAction(actions& action) override {
-            if (action == actions::STARTGAME) {
-                if (auto cm_lock = cm.lock()) {
-                    auto new_game = std::make_unique<GameLoop>(1);
-                    cm_lock->start_game(std::move(new_game));
-                }
-            } else if (action == actions::LEVELS) {
-                auto lev_sel = std::make_unique<LevelSelect>( cm );
-                if (auto cm_lock  = cm.lock()) {
-                    cm_lock->changeContents(std::move(lev_sel));
-                }
-            }
-        }
+        void manageButtonPush(int x, int y) override;
+        void manageAction(actions& action) override;
         void draw() override;
-        // void informManager() override;
-        // void action() override;
         ~WelcomeScreen() {}
 
 };

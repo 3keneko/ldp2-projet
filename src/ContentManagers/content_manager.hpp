@@ -21,10 +21,7 @@ class ContentManager {
 
         void contentManageAction(actions& action);
 
-        void start_game(std::unique_ptr<GameLoop> g) {
-            gl = std::move(g);
-        }
-
+        void startGame(std::unique_ptr<GameLoop> g);
         void show();
 
         static void updateWithAction(std::shared_ptr<ContentManager> cm, actions& action);
@@ -39,17 +36,12 @@ class WindowContents {
         WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
         WindowContents(std::weak_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
-        // virtual void informManager() = 0;
         virtual void manageButtonPush(int x, int y) = 0;
         virtual void manageAction(actions& action) = 0;
-        // virtual void action() = 0;
         std::weak_ptr<ContentManager> getCM() {
             return cm;
         }
 
-        // void setContentManager(ContentManager& new_cm) {
-        //    cm = std::shared_ptr<ContentManager>(&new_cm);
-        // }
         virtual ~WindowContents() {}
 };
 

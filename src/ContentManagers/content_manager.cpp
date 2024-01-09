@@ -1,6 +1,11 @@
+#include "content_manager.hpp"
 #include "level_select.hpp"
 #include <memory>
 
+
+void ContentManager::startGame(std::unique_ptr<GameLoop> g) {
+    gl = std::move(g);
+}
 
 void ContentManager::changeContents(std::unique_ptr<WindowContents> new_contents) {
     contents = std::move(new_contents);

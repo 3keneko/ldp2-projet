@@ -111,7 +111,7 @@ class LevelSelect: public WindowContents {
             if (action == actions::STARTAFTERSEL) {
                 if (auto cm_lock = cm.lock()) {
                     auto new_game = std::make_unique<GameLoop>(selected_level);
-                    cm_lock->start_game(std::move(new_game));
+                    cm_lock->startGame(std::move(new_game));
                 }
             }
         }

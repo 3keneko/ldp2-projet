@@ -336,11 +336,74 @@ class ScoreSaver {
         Score getHighScore();
         void setNewScore(Score const& score);
         void resetHighScore();
+        void setLevel(unsigned& level);
         ~ScoreSaver() {}
 };
 \end{lstlisting}
 \subsection{Gestion des menus et écran d'accueil}
+La majorité des fichiers chargés de la gestion de smenus se trouvent dans ContentManagers.
+\begin{lstlisting}
+class WindowContents;
 
+class ContentManager {
+    private:
+        std::unique_ptr<WindowContents> contents;
+        std::unique_ptr<GameLoop> gl;
+    public:
+        ContentManager(std::unique_ptr<WindowContents> first_contents):
+            contents(std::move(first_contents)), gl(nullptr) {}
+
+        void changeContents(std::unique_ptr<WindowContents> new_contents);
+
+        void manageButtonPush(int x, int y);
+
+        void contentManageAction(actions& action);
+
+        void startGame(std::unique_ptr<GameLoop> g);
+        void show();
+
+        static void updateWithAction(std::shared_ptr<ContentManager> cm, actions& action);
+
+        ~ContentManager() { }
+};
+
+class WindowContents {
+   protected:
+        std::weak_ptr<ContentManager> cm; // Observer
+    public:
+        WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
+        WindowContents(std::weak_ptr<ContentManager> cm): cm(cm) {}
+        virtual void draw() = 0;
+        virtual void manageButtonPush(int x, int y) = 0;
+        virtual void manageAction(actions& action) = 0;
+        std::weak_ptr<ContentManager> getCM() {
+            return cm;
+        }
+
+        virtual ~WindowContents() {}
+};
+\end{lstlisting}
+En clair, ces classes fonctionnent de la manière suivante:
+Ce qui est affiché dans la fenêtre hérite de WindowContents, ainsi, nos menus, et la sélection de niveau héritera de WindowContents, ContentManager est la classe se chargeant d'alterner les différents contenus que l'on affiche à l'écran,
+par exemple, si je décide d'appuyer sur le bouton pour aller au menu de sélection de niveau, le menu de sélection de niveau et le menu de base sont tous les deux des WindowContents, et ce qui permet de changer entre les deux est l'instance de ContentManager.
+
+L'écran d'accueil est représenté par la classe suivante
+\begin{lstlisting}
+class WelcomeScreen: public WindowContents {
+    private:
+        ActionButton start_game_button;
+        ActionButton go_to_levels;
+        Text welcome;
+   public:
+        WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
+        void manageButtonPush(int x, int y) override;
+        void manageAction(actions& action) override;
+        void draw() override;
+        ~WelcomeScreen() {}
+
+};
+
+\end{lstlisting}
 \subsection{Niveaux et sélection de niveau}
 
 \subsection{Vies}
