@@ -402,10 +402,27 @@ class WelcomeScreen: public WindowContents {
         ~WelcomeScreen() {}
 
 };
-
 \end{lstlisting}
 \subsection{Niveaux et sélection de niveau}
+\begin{lstlisting}
+class LevelSelect: public WindowContents {
+    public:
+        LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
+            ss.getFromFile();
+            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
+        }
+        LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {
+            ss.getFromFile();
+            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
+        }
+        void draw() override;
+        void manageButtonPush(int x, int y) override;
+        unsigned getLevel();
+        void manageAction(actions& action) override;
+        ~LevelSelect() {}
 
+};
+\end{lstlisting}
 \subsection{Vies}
 
 
