@@ -76,7 +76,7 @@ class TurtleLane: public MovingObjectLane {
                    , const int& speed=1
                    , const unsigned int diving_pack_id = 0
                    , const unsigned int diving_time = 180
-                   , const unsigned int undiving_time = 180);
+                   , const unsigned int undiving_time = 360);
         std::vector<std::shared_ptr<Turtle>> getTurtles() const;
         void handle_after_collision(Frog& frog) override;
         bool water_lane() const override { return 1; }
