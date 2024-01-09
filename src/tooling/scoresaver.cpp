@@ -36,6 +36,9 @@ void ScoreSaver::setNewScore(Score const& score) {
 }
 
 void ScoreSaver::resetHighScore() {
-    Score new_score { 0 };
-    setNewScore(new_score);
+    scores[lvl] = 0;
+}
+
+void ScoreSaver::setLevel(unsigned& level) {
+    lvl = level;
 }

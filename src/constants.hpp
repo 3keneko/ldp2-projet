@@ -58,6 +58,7 @@ enum class actions {
     INCR,
     DIMIN,
     STARTAFTERSEL,
+    RESET,
 };
 
 #endif // CONSTANTS_H_
