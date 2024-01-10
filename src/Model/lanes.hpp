@@ -42,7 +42,7 @@ class MovingObjectLane: public Lane {
         bool frog_collide(Frog& frog);
         std::vector<std::shared_ptr<MovingObject>> getMovingObjects();
         virtual void handle_after_collision(Frog& frog) = 0;
-        virtual bool water_lane() const = 0 ;
+        virtual bool waterLane() const = 0 ;
         virtual ~MovingObjectLane() {}
 };
 
@@ -53,7 +53,7 @@ class LogLane: public MovingObjectLane {
                 const unsigned& space_between_packs,
                 const int& first_log_placement,
                 const unsigned int& size_log, const int& speed=0);
-        bool water_lane() const override { return 1; }
+        bool waterLane() const override { return 1; }
         void handle_after_collision(Frog& frog) override;
         std::vector<std::shared_ptr<Log>> getLogs() const;
         ~LogLane() {}
@@ -79,7 +79,7 @@ class TurtleLane: public MovingObjectLane {
                    , const unsigned int undiving_time = 360);
         std::vector<std::shared_ptr<Turtle>> getTurtles() const;
         void handle_after_collision(Frog& frog) override;
-        bool water_lane() const override { return 1; }
+        bool waterLane() const override { return 1; }
         void pack_dive();
         void pack_undive();
         void dive_update() final override;
@@ -95,7 +95,7 @@ class RoadLane: public MovingObjectLane {
                 , const int& first_car_placement
                 , const unsigned int& size_car
                 , const int& speed=1);
-        bool water_lane() const override { return 0; }
+        bool waterLane() const override { return 0; }
         void handle_after_collision(Frog& frog) override;
         std::vector<std::shared_ptr<Car>> getCars() const;
         ~RoadLane() {}

@@ -91,7 +91,7 @@ void BoardModel::handle_collision(Frog& frog) {
                 if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
                     try_mvl->handle_after_collision(frog);
                 // In water lane but not in object means instant death...
-                } else if (try_mvl != nullptr && try_mvl->water_lane()) {
+                } else if (try_mvl != nullptr && try_mvl->waterLane()) {
                     frog.kill();
                 }
             }
