@@ -70,7 +70,7 @@ class TurtleLane: public MovingObjectLane {
         TurtleLane(const unsigned int id_num
                    , const unsigned int& turtle_by_pack
                    , const unsigned int& space_between_turtles
-                   , const unsigned& space_between_packs
+                   , const unsigned& space_between_packsOui
                    , const int& first_turtle_placement
                    , const unsigned int& size_turtle
                    , const int& speed=1
