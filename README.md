@@ -95,7 +95,7 @@ Actuellement, on a juste une image de victoire, un message de victoire fait part
 On utilisera `enum class` pour avoir les différentes possibilités d'orientation de la grenouille,
 la syntaxe (plutôt cool) est ainsi:
 
-- [x] Changer les collisions des frogs
+zzz- [x] Changer les collisions des frogs
 Actuellement, on peut être au bord de la frog sans tomber dans l'eau. Il suffit de faire la même implémentation de collide que pour les logs.
 
 - [x] Rendre les niveaux un peu plus faciles quand même ...
@@ -138,3 +138,7 @@ We got this! -- C'est en cours
 - waterlilies.hpp (et .cpp)
 - image_classes.hpp (et .cpp) 
 - frogview.hpp (et .cpp)
+- content_manager.hpp (et .cpp)
+- level_select.hpp (et .cpp)
+- welcome_screen.hpp (et .cpp)
+- boardfromfile.hpp (et .cpp=

@@ -4,8 +4,6 @@
 #include "content_manager.hpp"
 #include "../constants.hpp"
 #include "../tooling/buttons.hpp"
-#include "level_select.hpp"
-#include "../GameManagers/gameloop.hpp"
 
 class WelcomeScreen: public WindowContents {
     private:
@@ -33,12 +31,11 @@ class WelcomeScreen: public WindowContents {
 
         Text welcome { "Lenny & Lucas prod", 100, 200 };
    public:
-        WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
+        WelcomeScreen(std::shared_ptr<ContentManager> cm);
         void manageButtonPush(int x, int y) override;
         void manageAction(actions& action) override;
         void draw() override;
         ~WelcomeScreen() {}
-
 };
 
 #endif // WELCOME_SCREEN_H_

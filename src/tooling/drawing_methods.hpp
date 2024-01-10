@@ -17,7 +17,7 @@ class ToDraw {
     virtual ~ToDraw() = default;
 };
 
-class LaneDrawer: public ToDraw{
+class LaneDrawer: public ToDraw {
     private:
         int pos_y;
         Fl_Color fl_color;

@@ -11,7 +11,6 @@
 class LevelSelect: public WindowContents {
     private:
         unsigned selected_level = 1;
-        unsigned max_level = 9;
         ScoreSaver ss {selected_level};
 
         ActionButton increase_lvl {
@@ -22,7 +21,7 @@ class LevelSelect: public WindowContents {
             "+",
             actions::INCR,
             this
-    };
+        };
 
         ActionButton reduce_lvl {
             constants::buttons::MIN_X,
@@ -32,13 +31,13 @@ class LevelSelect: public WindowContents {
             "-",
             actions::DIMIN,
             this
-    };
+        };
 
         Text lvl_show { "Selected level: " + std::to_string(selected_level),
             constants::window::WIDTH / 2,
             constants::window::HEIGHT / 2,
             50
-    };
+        };
         ActionButton play_game {
             constants::window::WIDTH/2,
             100,
@@ -47,13 +46,13 @@ class LevelSelect: public WindowContents {
             "START GAME",
             actions::STARTAFTERSEL,
             this
-    };
+        };
 
         Text best_score_show { "Highest Score: ",
            constants::window::WIDTH/4,
            constants::window::HEIGHT * 4/5,
            30,
-    };
+        };
 
         ActionButton reset_score {
         constants::window::WIDTH/4,
@@ -63,23 +62,16 @@ class LevelSelect: public WindowContents {
         "Reset Score",
         actions::RESET,
         this
-    };
+        };
 
     public:
-        LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
-            ss.getFromFile();
-            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
-        }
-        LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {
-            ss.getFromFile();
-            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
-        }
+        LevelSelect(std::shared_ptr<ContentManager> cm);
+        LevelSelect(std::weak_ptr<ContentManager> cm);
         void draw() override;
         void manageButtonPush(int x, int y) override;
         unsigned getLevel();
         void manageAction(actions& action) override;
         ~LevelSelect() {}
-
 };
 
 #endif // LEVEL_SELECT_H_

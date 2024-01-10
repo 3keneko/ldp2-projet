@@ -1,4 +1,8 @@
 #include "welcome_screen.hpp"
+#include "level_select.hpp"
+#include "../GameManagers/gameloop.hpp"
+
+WelcomeScreen::WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
 
 void WelcomeScreen::draw() {
     start_game_button.draw();

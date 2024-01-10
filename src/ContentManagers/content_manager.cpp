@@ -2,6 +2,8 @@
 #include "level_select.hpp"
 #include <memory>
 
+ContentManager::ContentManager(std::unique_ptr<WindowContents> first_contents):
+            contents(std::move(first_contents)), gl(nullptr) {}
 
 void ContentManager::startGame(std::unique_ptr<GameLoop> g) {
     gl = std::move(g);
@@ -19,7 +21,6 @@ void ContentManager::show() {
     }
 }
 
-
 void ContentManager::manageButtonPush(int x, int y) {
     if (gl != nullptr) {
             return;
@@ -27,7 +28,13 @@ void ContentManager::manageButtonPush(int x, int y) {
     contents->manageButtonPush(x, y);
 }
 
-
 void ContentManager::contentManageAction(actions& action) {
     contents->manageAction(action);
+}
+WindowContents::WindowContents(std::shared_ptr<ContentManager> cm): cm(cm) {}
+
+WindowContents::WindowContents(std::weak_ptr<ContentManager> cm): cm(cm) {}
+
+std::weak_ptr<ContentManager> WindowContents::getCM() {
+    return cm;
 }

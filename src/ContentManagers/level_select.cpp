@@ -1,4 +1,15 @@
 #include "level_select.hpp"
+
+LevelSelect::LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
+    ss.getFromFile();
+    best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
+}
+
+LevelSelect::LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {
+    ss.getFromFile();
+    best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
+}
+
 void LevelSelect::draw() {
     increase_lvl.draw();
     reduce_lvl.draw();
@@ -10,6 +21,7 @@ void LevelSelect::draw() {
 
 
 void LevelSelect::manageButtonPush(int x, int y) {
+    const unsigned int max_level = 9;
     if (selected_level < max_level) increase_lvl.manageClick(x, y);
     reduce_lvl.manageClick(x, y);
     play_game.manageClick(x, y);

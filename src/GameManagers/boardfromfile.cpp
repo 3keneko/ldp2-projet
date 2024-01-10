@@ -1,14 +1,18 @@
+#include "boardfromfile.hpp"
+
 #include <fstream>
 #include <memory>
 #include <pthread.h>
 #include <sstream>
 #include <stdexcept>
-#include <string>
+#include <vector>
 
-#include "../Model/boardmodel.hpp"
+#include "../View/laneview.hpp"
+#include "../View/scoreview.hpp"
+
 #include "../Model/lanes.hpp"
+#include "../Model/score.hpp"
 
-#include "boardfromfile.hpp"
 
 template <class T>
 std::shared_ptr<T> init_big_from_stream(std::stringstream& ss) {
@@ -45,49 +49,53 @@ std::shared_ptr<Lane> processStringAsLane(std::stringstream& ss) {
 }
 
 std::vector<std::shared_ptr<Lane>> file_as_board(std::string const& path_to_file) {
-
     std::vector<std::shared_ptr<Lane>> lanes {};
-
-    // https://www.gormanalysis.com/blog/reading-and-writing-csv-files-with-cpp/
     std::ifstream myFile(path_to_file);
-
     if (!myFile.is_open()) throw std::runtime_error("Could not open " + path_to_file);
-
     std::string line;
-
     if (myFile.good()) {
         while (std::getline(myFile, line)) {
             std::stringstream ss(line);
             lanes.push_back(processStringAsLane(ss));
-            //processStringAsLane(ss);
         }
     }
-
     myFile.close();
-
     return lanes;
 }
 
 
 void BoardFromFile::init_from_file(std::string const& path_to_file) {
-
     auto lanes = file_as_board(path_to_file);
     std::vector<std::shared_ptr<LaneView>> v {};
-
     for (auto& lane: lanes) {
         v.push_back(LaneView::makeView(lane));
     }
-
-    /*
-    std::string file_name = path_to_file.substr(0, path_to_file.length() - 4);
-    std::ifstream myScore(file_name + "_score.csv");
-    std::string score_str;
-    if (myScore.good()) {
-        std::getline(myScore, score_str);
-        score = std::make_shared<Score>(std::stoi(score_str));
-    }
-    sv = std::make_shared<ScoreView>(score);
-    */
     bm = std::make_shared<BoardModel>(lanes);
     board = std::make_shared<BoardView>(v, bm);
+}
+
+void BoardFromFile::init_from_lvl(unsigned i) {
+    std::string path_file = "levels/level" + std::to_string(i) + ".csv";
+    this->init_from_file(path_file);
+    ssv = std::make_unique<ScoreSaver>(i);
+}
+
+std::shared_ptr<BoardView> BoardFromFile::getBoardView() {
+    return board;
+}
+
+std::shared_ptr<Frog> BoardFromFile::getFrog() {
+    return frg;
+}
+
+std::shared_ptr<BoardModel> BoardFromFile::getBoardModel() {
+    return bm;
+}
+
+std::shared_ptr<FrogView> BoardFromFile::getFrogView() {
+    return fv;
+}
+
+std::unique_ptr<ScoreSaver> BoardFromFile::getScoreSaver() {
+    return std::move(ssv);
 }
