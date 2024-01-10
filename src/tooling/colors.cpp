@@ -1,7 +1,7 @@
 #include "colors.hpp"
 #include <FL/Enumerations.H>
 
-Fl_Color colors::color_convert(const Color& color) {
+Fl_Color colors::colorConvert(const Color& color) {
     switch (color) {
         case Color::FROG:
             return FL_GREEN;

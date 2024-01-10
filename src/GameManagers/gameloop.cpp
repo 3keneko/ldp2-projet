@@ -53,7 +53,7 @@ void GameLoop::update() {
     char key = Fl::event_key();
     c->processKey(key);
     c->decrement();
-    bm->handle_collision(*frog);
+    bm->handleCollision(*frog);
 
     int s = Fl::event();
 

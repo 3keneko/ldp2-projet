@@ -23,9 +23,9 @@ class LaneDrawer: public ToDraw {
         Fl_Color fl_color;
     public:
         LaneDrawer(int pos_y, Color&& color):
-            pos_y(pos_y), fl_color(colors::color_convert(color)) {}
+            pos_y(pos_y), fl_color(colors::colorConvert(color)) {}
         void colorSwitch(const Color& new_col) {
-            fl_color = colors::color_convert(new_col);
+            fl_color = colors::colorConvert(new_col);
         }
         void draw() final override {
             fl_draw_box(FL_FLAT_BOX, 0, pos_y,
@@ -45,14 +45,14 @@ class SquareDrawer: public ToDraw{
     public:
         SquareDrawer(int x, int y, int size,
                      Color&& color): x(x), y(y), size(size),
-                                    fl_color(colors::color_convert(color)) {}
+                                    fl_color(colors::colorConvert(color)) {}
         SquareDrawer(int x, int y, int size, const Color& color):
-            x(x), y(y), size(size),  fl_color(colors::color_convert(color)) {}
+            x(x), y(y), size(size),  fl_color(colors::colorConvert(color)) {}
         void colorSwitch(const Color&& new_col) {
-            fl_color = colors::color_convert(new_col);
+            fl_color = colors::colorConvert(new_col);
         }
         void colorSwitch(const Color& new_col) {
-            fl_color = colors::color_convert(new_col);
+            fl_color = colors::colorConvert(new_col);
         }
         void updatePos(int x, int y) {
             x=x;

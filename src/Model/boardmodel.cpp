@@ -17,8 +17,8 @@ BoardModel::BoardModel(std::vector<std::shared_ptr<Lane>> lanes): lanes(lanes) {
     }
 }
 
-void BoardModel::update_turtles(std::shared_ptr<Lane> lane) {
-    lane->dive_update();
+void BoardModel::updateTurtles(std::shared_ptr<Lane> lane) {
+    lane->diveUpdate();
 }
 
 void BoardModel::update() {
@@ -28,7 +28,7 @@ void BoardModel::update() {
         if (try_mvl != nullptr) {
             for (auto& mov_obj: try_mvl->getMovingObjects()) { mov_obj->move(); }
         }
-    update_turtles(c);
+    updateTurtles(c);
       }
 }
 
@@ -60,7 +60,7 @@ std::vector<std::shared_ptr<Lane>> BoardModel::getLanes() {
     return lanes;
 }
 
-bool BoardModel::any_collision(Frog& frog) {
+bool BoardModel::anyCollision(Frog& frog) {
     for (auto& lane: lanes) {
         auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
         if (try_mvl != nullptr) {
@@ -74,7 +74,7 @@ bool BoardModel::any_collision(Frog& frog) {
     return false;    
 }
 
-void BoardModel::handle_collision(Frog& frog) {
+void BoardModel::handleCollision(Frog& frog) {
     if (frog.getLane() == constants::lanes::NUMBER) {
         // First we handle collisions with the waterlilies
         bool got_one = frogOnLily(frog);
@@ -88,8 +88,8 @@ void BoardModel::handle_collision(Frog& frog) {
         for (auto& lane: lanes) {
             if (lane->getId() == frog.getLane()) {
                 auto try_mvl = std::dynamic_pointer_cast<MovingObjectLane>(lane);
-                if (try_mvl != nullptr && try_mvl->frog_collide(frog)) {
-                    try_mvl->handle_after_collision(frog);
+                if (try_mvl != nullptr && try_mvl->frogCollide(frog)) {
+                    try_mvl->handleAfterCollision(frog);
                 // In water lane but not in object means instant death...
                 } else if (try_mvl != nullptr && try_mvl->waterLane()) {
                     frog.kill();

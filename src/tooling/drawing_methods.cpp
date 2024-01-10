@@ -1,7 +1,7 @@
 #include "drawing_methods.hpp"
 
 void Text::draw() {
-    fl_color(colors::color_convert(color));
+    fl_color(colors::colorConvert(color));
     fl_font(FL_HELVETICA, fontSize);
     int width = 0;
     int height = 0;

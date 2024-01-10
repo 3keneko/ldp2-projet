@@ -13,15 +13,15 @@ class BoardModel {
         unsigned time = 0;
     public:
         BoardModel(std::vector<std::shared_ptr<Lane>> lanes);
-        void update_turtles(std::shared_ptr<Lane> lane);
+        void updateTurtles(std::shared_ptr<Lane> lane);
         void update(); // moves the objects on the board
         bool gameWon();
         bool isOutOfBoard(Frog& frog);
         bool frogOnLily(Frog& frog);
         void addLane(std::shared_ptr<Lane> lane);
         std::vector<std::shared_ptr<Lane>> getLanes();
-        bool any_collision(Frog& frog);
-        void handle_collision(Frog& frog);
+        bool anyCollision(Frog& frog);
+        void handleCollision(Frog& frog);
         ~BoardModel() {}
         unsigned getTime() const  { return time; }
 };

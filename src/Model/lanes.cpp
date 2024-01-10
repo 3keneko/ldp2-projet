@@ -31,7 +31,7 @@ SafeLane::SafeLane(const unsigned int id): Lane(id) {}
 MovingObjectLane::MovingObjectLane(const unsigned int id, int lane_speed)
     : Lane(id), lane_speed(lane_speed) {}
 
-bool MovingObjectLane::frog_collide(Frog& frog) {
+bool MovingObjectLane::frogCollide(Frog& frog) {
     return std::any_of(mv.begin(), mv.end(), 
                         [&frog](std::shared_ptr<MovingObject> elems) {
                                     return elems->collide(frog);
@@ -160,22 +160,22 @@ std::vector<std::shared_ptr<Turtle>> TurtleLane::getTurtles() const {
 
 
 // handling after collisions take place
-void LogLane::handle_after_collision(Frog &frog) {
+void LogLane::handleAfterCollision(Frog &frog) {
     frog.go(lane_speed);
 }
 
-void TurtleLane::handle_after_collision(Frog& frog) {
+void TurtleLane::handleAfterCollision(Frog& frog) {
     frog.go(lane_speed);
 }
 
-void RoadLane::handle_after_collision(Frog &frog) {
+void RoadLane::handleAfterCollision(Frog &frog) {
     frog.kill();
 }
 
 
 // Methods that handle diving turtles
 
-void TurtleLane::pack_dive() {
+void TurtleLane::packDive() {
     for (unsigned int i= diving_pack_id * turtle_by_pack
             ; i <= (diving_pack_id + 1) * turtle_by_pack; i++) {
         mv.at(i)->dive();
@@ -183,7 +183,7 @@ void TurtleLane::pack_dive() {
     is_diving = true;
 }
 
-void TurtleLane::pack_undive() {
+void TurtleLane::packUndive() {
     for (unsigned int i= diving_pack_id * turtle_by_pack
             ; i <= (diving_pack_id + 1) * turtle_by_pack; i++) {
         mv.at(i)->undive();
@@ -191,13 +191,13 @@ void TurtleLane::pack_undive() {
     is_diving = false;
 }
 
-void TurtleLane::dive_update() {
+void TurtleLane::diveUpdate() {
     if (is_diving && diving_count == 0) {
-        pack_undive();
+        packUndive();
         diving_count += undiving_time;
     } 
     if (!is_diving && diving_count == 0) {
-        pack_dive();
+        packDive();
         diving_count += diving_time;
     }
     diving_count--;

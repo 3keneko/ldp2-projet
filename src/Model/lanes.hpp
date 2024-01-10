@@ -14,7 +14,7 @@ class Lane {
     public:
         Lane(const unsigned int id_num);
         unsigned int getId() const;
-        virtual void dive_update() {}
+        virtual void diveUpdate() {}
         virtual ~Lane() {}
 };
 
@@ -39,9 +39,9 @@ class MovingObjectLane: public Lane {
         int lane_speed;
     public:
         MovingObjectLane(const unsigned int id, int lane_speed=0);
-        bool frog_collide(Frog& frog);
+        bool frogCollide(Frog& frog);
         std::vector<std::shared_ptr<MovingObject>> getMovingObjects();
-        virtual void handle_after_collision(Frog& frog) = 0;
+        virtual void handleAfterCollision(Frog& frog) = 0;
         virtual bool waterLane() const = 0 ;
         virtual ~MovingObjectLane() {}
 };
@@ -54,7 +54,7 @@ class LogLane: public MovingObjectLane {
                 const int& first_log_placement,
                 const unsigned int& size_log, const int& speed=0);
         bool waterLane() const override { return 1; }
-        void handle_after_collision(Frog& frog) override;
+        void handleAfterCollision(Frog& frog) override;
         std::vector<std::shared_ptr<Log>> getLogs() const;
         ~LogLane() {}
 };
@@ -78,11 +78,11 @@ class TurtleLane: public MovingObjectLane {
                    , const unsigned int diving_time = 180
                    , const unsigned int undiving_time = 360);
         std::vector<std::shared_ptr<Turtle>> getTurtles() const;
-        void handle_after_collision(Frog& frog) override;
+        void handleAfterCollision(Frog& frog) override;
         bool waterLane() const override { return 1; }
-        void pack_dive();
-        void pack_undive();
-        void dive_update() final override;
+        void packDive();
+        void packUndive();
+        void diveUpdate() final override;
         ~TurtleLane() {}
 };
 
@@ -96,7 +96,7 @@ class RoadLane: public MovingObjectLane {
                 , const unsigned int& size_car
                 , const int& speed=1);
         bool waterLane() const override { return 0; }
-        void handle_after_collision(Frog& frog) override;
+        void handleAfterCollision(Frog& frog) override;
         std::vector<std::shared_ptr<Car>> getCars() const;
         ~RoadLane() {}
 };

@@ -21,7 +21,7 @@ enum class Color {
 
 
 namespace colors {
-    Fl_Color color_convert(const Color& color);
+    Fl_Color colorConvert(const Color& color);
 }
 
 
