@@ -149,3 +149,9 @@ We got this! -- C'est en cours
 - scoresaver.hpp (et .cpp)
 - liliesview.hpp (et .cpp)
 - scoreview.hpp (et .cpp)
+
+### Tâches à faire pour le rapport
+
+- [ ] Corriger les fautes de grammaires 
+- [ ] Faire une mise en page propre (pas du code qui se retrouve sur 2 pages quoi)
+
