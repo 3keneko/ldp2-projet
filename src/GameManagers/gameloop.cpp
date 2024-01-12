@@ -10,7 +10,6 @@
 #include "boardfromfile.hpp"
 
 
-
 GameLoop::GameLoop(unsigned int lvl) {
     BoardFromFile init {};
     init.init_from_lvl(lvl);
@@ -33,7 +32,7 @@ GameLoop::GameLoop(unsigned int lvl) {
 void GameLoop::update() {
 
     if (bm->gameWon()) {
-        FullScreenJPEGImage won_screen {"../imgs/won.jpeg"};
+        FullScreenJPEGImage won_screen {"imgs/won.jpeg"};
         won_screen.draw();
         ssv->setNewScore(*best_score);
         ssv->writeToFile();
@@ -59,7 +58,7 @@ void GameLoop::update() {
 
     if (s == FL_KEYUP) c->resetPressedKeys();
     } else {
-        FullScreenJPEGImage lost_screen {"../imgs/lose.jpeg" };
+        FullScreenJPEGImage lost_screen {"imgs/lose.jpeg" };
         lost_screen.draw();
         ssv->setNewScore(*best_score);
         ssv->writeToFile();

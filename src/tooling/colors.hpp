@@ -2,7 +2,6 @@
 #define COLORS_H_
 
 #include <FL/Enumerations.H>
-#include <Fl/fl_draw.H>
 
 enum class Color {
     TURTLE,
@@ -19,10 +18,8 @@ enum class Color {
     UNKNOWN,
 };
 
-
 namespace colors {
     Fl_Color colorConvert(const Color& color);
 }
-
 
 #endif // COLORS_H_

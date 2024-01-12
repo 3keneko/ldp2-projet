@@ -1,5 +1,5 @@
 #include "colors.hpp"
-#include <FL/Enumerations.H>
+
 
 Fl_Color colors::colorConvert(const Color& color) {
     switch (color) {

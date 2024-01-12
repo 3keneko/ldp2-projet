@@ -1,6 +1,5 @@
 #include "score.hpp"
-#include <iostream>
-#include <compare>
+
 
 void Score::reachedWaterlily() {
             the_score += 400;
@@ -22,10 +21,10 @@ void Score::resetBestLane() {
     max_lane = 0;
 }
 
-
 bool operator<(Score const& s1, Score const& s2) {
     return s1.the_score < s2.the_score;
 }
+
 bool operator>(Score const& s1, Score const& s2) {
     return s1.the_score > s2.the_score;
 }

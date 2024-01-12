@@ -141,4 +141,11 @@ We got this! -- C'est en cours
 - content_manager.hpp (et .cpp)
 - level_select.hpp (et .cpp)
 - welcome_screen.hpp (et .cpp)
-- boardfromfile.hpp (et .cpp=
+- boardfromfile.hpp (et .cpp)
+- score.hpp (et .cpp)
+- buttons.hpp (et .cpp)
+- color.hpp (et .cpp)
+- drawing_methods.hpp (et .cpp)
+- scoresaver.hpp (et .cpp)
+- liliesview.hpp (et .cpp)
+- scoreview.hpp (et .cpp)

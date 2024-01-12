@@ -1,8 +1,6 @@
 #ifndef SCORE_H_
 #define SCORE_H_
 
-#include <string>
-
 class Score {
     private:
         unsigned the_score = 0;

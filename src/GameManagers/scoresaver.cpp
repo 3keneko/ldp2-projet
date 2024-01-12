@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+ScoreSaver::ScoreSaver(unsigned level): lvl(level) {}
+
 void ScoreSaver::writeToFile() {
     std::ofstream myFile;
     myFile.open(file_name);
@@ -11,7 +13,6 @@ void ScoreSaver::writeToFile() {
     }
     myFile.close();
 }
-
 
 void ScoreSaver::getFromFile() {
     std::ifstream myFile;
@@ -28,6 +29,7 @@ void ScoreSaver::getFromFile() {
     myFile.close();
 }
 
+Score ScoreSaver::getHighScore() { return Score(scores.at(lvl)); }
 
 void ScoreSaver::setNewScore(Score const& score) {
     if (getHighScore() < score) {

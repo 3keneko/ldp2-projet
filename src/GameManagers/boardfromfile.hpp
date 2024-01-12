@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-#include "../tooling/scoresaver.hpp"
+#include "scoresaver.hpp"
 
 #include "../View/boardview.hpp"
 #include "../View/frogview.hpp"

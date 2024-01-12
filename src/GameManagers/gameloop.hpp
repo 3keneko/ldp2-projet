@@ -9,7 +9,7 @@
 #include "../Model/frog.hpp"
 #include "../Controller/control.hpp"
 #include "../View/scoreview.hpp"
-#include "../tooling/scoresaver.hpp"
+#include "scoresaver.hpp"
 
 class GameLoop {
   private:
