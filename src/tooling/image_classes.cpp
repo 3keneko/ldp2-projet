@@ -15,7 +15,7 @@ void FullScreenJPEGImage::changeImg(std::string const& new_path) {
     jpeg_img = std::make_unique<Fl_JPEG_Image>(new_path.c_str());
 }
 
-void FullScreenJPEGImage::draw() {
+void FullScreenJPEGImage::draw() const {
     if (jpeg_img->fail()) {
         std::cout << "Couldn't open the image, sorry :'(";
         return;
@@ -38,7 +38,7 @@ void JPEGDrawer::changePos(int new_x, int new_y) {
     y = new_y;
 }
 
-void JPEGDrawer::draw() {
+void JPEGDrawer::draw() const {
     if (jpeg_img->fail()) {
         std::cout << "Couldn't open the image, sorry :'(";
         return;

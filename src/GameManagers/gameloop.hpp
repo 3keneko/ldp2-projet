@@ -23,6 +23,9 @@ class GameLoop {
     std::unique_ptr<ScoreSaver> ssv;
     std::shared_ptr<Score> best_score;
     std::unique_ptr<ScoreView> bs_show;
+    const FullScreenJPEGImage lost_screen {"imgs/lose.jpeg" };
+    const FullScreenJPEGImage won_screen {"imgs/won.jpeg"};
+
   public:
     GameLoop(unsigned int lvl);
     void update();

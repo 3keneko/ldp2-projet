@@ -439,6 +439,9 @@ class GameLoop {
         std::unique_ptr<ScoreSaver> ssv;
         std::shared_ptr<Score> best_score;
         std::unique_ptr<ScoreView> bs_show;
+        const FullScreenJPEGImage lost_screen {"imgs/lose.jpeg" };
+        const FullScreenJPEGImage won_screen {"imgs/won.jpeg"};
+
     public:
         GameLoop(unsigned int lvl);
         void update();
@@ -837,7 +840,7 @@ class LevelSelect: public WindowContents {
 \end{lstlisting}
 \section{Notes}
 On pourra remarquer que ASAN nous signale des fuites de mémoire lors de l'arrêt du programme. \\
-Il s'agit de fuites de mémoire inhérentes à l'affichage de texte sur FLTK, utiliser valgrind permet de tirer la même conclusion et des questions-réponses sur les forum FLTK confirment bien cette hypothèse.
+Il s'agit de fuites de mémoire inhérentes à l'affichage de texte sur FLTK, utiliser valgrind permet de tirer la même conclusion et des questions-réponses sur les forums FLTK confirment bien cette hypothèse.
 \pagebreak
 
 \section{Logique du jeu}

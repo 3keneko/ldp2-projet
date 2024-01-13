@@ -15,7 +15,7 @@ class FullScreenJPEGImage {
         FullScreenJPEGImage(std::string const& path_to_img);
         void changeImg(std::string&& new_path);
         void changeImg(std::string const& new_path);
-        virtual void draw();
+        virtual void draw() const;
         virtual ~FullScreenJPEGImage() {}
 };
 
@@ -34,7 +34,7 @@ class JPEGDrawer: public FullScreenJPEGImage {
         void changePos(int new_x, int new_y);
 
         // Showing the image method
-        void draw() final override;
+        void draw() const final override;
         ~JPEGDrawer() {}
 };
 
