@@ -29,7 +29,7 @@ class WelcomeScreen: public WindowContents {
             Color::CAR
         };
 
-        Text welcome { "Lenny & Lucas prod", 100, 200 };
+        Text welcome { "Lenny Ransy & Lucas Lejeune", 250, 250 };
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm);
         void manageButtonPush(int x, int y) override;
