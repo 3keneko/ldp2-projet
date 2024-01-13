@@ -3,7 +3,7 @@
 \usepackage[left = 1cm,
             right = 1cm,
             top = 1cm,
-            bottom = 1cm,
+            bottom = 1.5cm,
             footskip = 0cm]{geometry}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{wrapfig}
@@ -46,39 +46,55 @@
 
 \maketitle
 
-Ce rapport vise a documenter le projet "Frogger" que nous avons réaliser. 
+Ce rapport vise à documenter le projet "Frogger" que nous avons réalisé. 
 Nous traiterons les tâches que nous avons réalisées et comment nous les avons réalisées. 
 Pour cela, nous parlerons des classes que nous avons codées pour faire ce projet, 
-comment elles sont réparties dans le code et comment elles intéragissent entre elles. 
-Nous justifierons aussi comment nous avons utilisé le modèle de conception MVC dans 
+comment elles sont réparties dans le code et comment elles interagissent entre elles. 
+Nous justifierons également comment nous avons utilisé le modèle de conception MVC dans 
 la partie jeu. \\
 
-Nous avons réalisé les tâches principales et toutes les tâches additionnelles, sauf la tâches de l'éditeur de niveau. 
-Ouvrons le jeu et voyons ce qui se passe. 
+Nous avons réalisé les tâches principales et toutes les tâches additionnelles, 
+sauf la tâche de l'éditeur de niveau. 
+
 
 \section{Structure des fichiers: Utilisation du MVC}
 % Parler de l'orga des fichiers
 \begin{wrapfigure}{r}{3cm}
-    \includegraphics[width=3cm]{Images/folders.png}
+    \centering
+    \vspace{-0.8cm}
+    \includegraphics[width=2.5cm]{Images/folders.png}
 \end{wrapfigure}
 
-La structure des fichiers peut se diviser en plusieurs parties: les fichiers du jeu, ceux des menus, les mains et les images du jeu. \\
+La structure des fichiers peut se diviser en plusieurs parties : les fichiers du jeu, 
+ceux des menus, les mains et les images du jeu. \\
 
-- Le dossier \texttt{ContentManagers} contient tout les fichiers de code en rapport avec la gestion des menus du jeu.\\
-- Les dossiers \texttt{Controller}, \texttt{Model} et \texttt{View} contiennent le code parmettant de faire tourner le jeu (la partie plateau, qui ne compte pas le menu).
-Cette disposition met en évidence l'utilisation du MVC. Prenons la gestion de la grenouille comme exemple. 
-Les fichiers gérant les contrôles de celle-ci se trouvent dans le dossier \texttt{Controller}, ceux qui gèrent ses propriétés dans le plateau se trouvent dans \texttt{Model} et enfin, ceux qui gèrent son affichage se trouvent dans \texttt{View}. Tout le code de ces fichiers est utilisé dans les fichiers de \texttt{GameManagers} pour avoir un jeu fonctionnel.\\
-- Le dossier \texttt{levels} contient les données des niveaux sauvegardés en fichiers \texttt{.csv}, et les scores obtenus sur ceux-ci. Plus de détails seront donnés dans les chapitres concernés. \\
-- Le dossier  \texttt{imgs} contient les images utilisées dans le programme//
-- Le dossier \texttt{tooling} contient tout les outils construits grâce aux outils venant la librairie FLTK qui sont surtout utilisés dans la partie \texttt{View} et \texttt{ContentManagers}. \\
-- Le fichiers \texttt{constants.hpp} contient toutes les constantes utilisées dans le projet, comme par exemple la taille des bouttons dans le menu. \\
-- Enfin, les fichiers \texttt{main.cpp} et \texttt{mainwindow.hpp} s'occupent d'assembler toutes les classes et fonctions ensemble, pour obtenir l'application Frogger au complet. 
+- Le dossier \texttt{ContentManagers} contient tous les fichiers de code en rapport 
+avec la gestion des menus du jeu. \\
+- Les dossiers \texttt{Controller}, \texttt{Model} et \texttt{View} 
+contiennent le code permettant de faire tourner le jeu 
+(la partie plateau, qui n'inclut pas le menu).
+Cette disposition met en évidence l'utilisation du MVC. 
+Tout le code de ces fichiers est utilisé dans les fichiers de \texttt{GameManagers} 
+pour avoir un jeu fonctionnel. \\
+- Le dossier \texttt{levels} contient les données des niveaux sauvegardés en fichiers 
+\texttt{.csv}, et les scores obtenus sur ceux-ci. \\
+- Le dossier  \texttt{imgs} contient les images utilisées dans le programme. \\
+- Le dossier \texttt{tooling} contient tous les outils construits grâce aux outils 
+venant de la librairie FLTK qui sont surtout utilisés dans la partie 
+\texttt{View} et \texttt{ContentManagers}. \\
+- Le fichiers \texttt{constants.hpp} contient toutes les constantes utilisées dans le projet,
+comme par exemple la taille des bouttons dans le menu. \\
+- Enfin, les fichiers \texttt{main.cpp} et \texttt{mainwindow.hpp} s'occupent 
+d'assembler toutes les classes et fonctions pour obtenir l'application Frogger 
+au complet. 
 
 \section{Réalisation de la base du jeu (Tâches de base)}
 % On parle du tout début juste avec les roadlanes
-Bien sûr, pour cette tâche, la première chose à faite a été de faire un support pour utiliser fltk. 
+Bien sûr, pour cette tâche, 
+la première chose à faire a été de faire un support pour utiliser tous nos objets.
 C'est là que les fichiers \texttt{main.cpp} et \texttt{MainWindow.hpp} rentrent en jeu. 
-Les classes et méthodes utiliseés dans les classes suivantes seront bien-sûr abordées dans la suite. 
+Les classes et méthodes utilisées dans les classes suivantes seront bien sûr 
+abordées dans la suite. 
 
 \begin{lstlisting}
 int main(int argc, char *argv[]) {
@@ -91,6 +107,8 @@ int main(int argc, char *argv[]) {
     return Fl::run();
 }
 \end{lstlisting}
+
+\pagebreak
 
 \begin{lstlisting}
 class MainWindow : public Fl_Window {
@@ -107,7 +125,7 @@ class MainWindow : public Fl_Window {
 \subsection{Modèle}
 
 Il nous faut maintenant un modèle fonctionnel. 
-Le but est de d'abord faire un plateau de jeu.
+Le but est d'abord de créer un plateau de jeu.
 Tout ceci se passe dans le dossier \texttt{Model}.
 
 Les rangées sont des objets de classe \texttt{Lane}, 
@@ -125,8 +143,7 @@ class Lane {
 };  
 \end{lstlisting}
 
-La classe \texttt{BoardModel} contient alors un vecteur de pointeurs 
-vers des objets \texttt{Lane}.
+La classe \texttt{BoardModel} représente le plateau de jeu.
 
 \begin{lstlisting}
 class BoardModel {
@@ -151,10 +168,13 @@ public:
 \end{lstlisting}
 
 Pour avoir différents types de rangées, 
-il suffit alors de définir ces types grâce à de l'héritage sur la classe \texttt{Lane}. 
+il suffit de définir ces types grâce à de l'héritage sur la classe \texttt{Lane}. 
 Nous définissons alors dans le fichier \texttt{lane.hpp} 
-les classes \texttt{FinnishLane} (nous en parlons dans le chapitre \ref{lilies}), 
-\texttt{SafeLane} et \texttt{RoadLane}.
+les classes \texttt{FinnishLane} (nous en parlerons dans le chapitre \ref{lilies}), 
+\texttt{SafeLane} et \texttt{RoadLane}, qui représentent respectivement 
+la ligne d'arrivée, 
+les rangées sans obstacle
+et les routes de voitures.
 
 \begin{lstlisting}
 class SafeLane: public Lane {
@@ -178,6 +198,8 @@ class MovingObjectLane: public Lane {
         virtual ~MovingObjectLane() {}
 };
 \end{lstlisting}
+
+\pagebreak
 
 \begin{lstlisting}
 class RoadLane: public MovingObjectLane {
@@ -236,9 +258,6 @@ public:
 };
 \end{lstlisting}
 
-Toutes les classes et méthodes sont après assemblées dans la classe \texttt{BaordModel} 
-pour faire un plateau fonctionnel.
-
 Parlons maintenant de la grenouille. 
 Elle sera définie par un objet de classe \texttt{Frog}, 
 classe qui est définie dans le fichier \texttt{frog.hpp}.
@@ -285,12 +304,12 @@ class Frog {
 \subsection{Controlleur}
 
 Les contrôles de la grenouille se passent dans la classe \texttt{Controller} 
-qui se trouve quand le fichier \texttt{controller.hpp} qui est contenu dans 
+qui se trouve dans le fichier \texttt{controller.hpp} qui est contenu dans 
 le dossier \texttt{Controller}.
 La classe \texttt{Frog} possède déjà des méthodes permettant de changer sa position 
-sur le plateau, il faut alors juste les utiliser quand nous appuyons sur une touche. 
+sur le plateau, il faut alors juste les utiliser lorsque nous appuyons sur une touche. 
 La méthode \texttt{processKey} sert à gérer ces actions. 
-Les contrôles se font avec les touches zqsd comme pour beaucoup de jeux. 
+Les contrôles se font avec les touches ZQSD comme pour beaucoup de jeux. 
 
 \begin{lstlisting}
 class Controller {
@@ -313,10 +332,10 @@ class Controller {
 Tout ce dont nous allons parler dans ce sous-chapitre se passe dans le dossier \texttt{View}. 
 Pour résumer, pour presque chaque classe de la partie modèle, 
 il y a une classe de la partie vue qui s'occupe de l'affichage des objets de cette classe.
-L'intérêt de ces classes est de pouvoir utiliser la méthode \texttt{draw} pour afficher 
-l'objet sur la plateau. 
+L'intérêt de ces classes est de pouvoir utiliser la méthode \texttt{draw} pour afficher les
+objets sur le plateau. 
 
-\underline{Dans movingobjectview.hpp:} \hspace{0.5cm}
+\underline{Dans movingobjectview.hpp:}
 
 \begin{lstlisting}
 class MovingObjectView {
@@ -339,75 +358,47 @@ class CarView: public MovingObjectView {
 };
 \end{lstlisting}
 
-\underline{Dans laneview.hpp:} \hspace{0.5cm}
+\underline{Dans laneview.hpp:}
 
 \begin{lstlisting}
-// An abstract class that helps model a lane
-class Lane {
-    private:
-        const unsigned int id_num;
-    public:
-        Lane(const unsigned int id_num);
-        unsigned int getId() const;
-        virtual void diveUpdate() {}
-        virtual ~Lane() {}
-};
-\end{lstlisting}
-
-\begin{lstlisting}
-class FinishLane: public Lane {
-    private:
-        std::vector<std::shared_ptr<WaterLilies>> lilies;
-    public:
-        FinishLane(const unsigned int id);
-        std::vector<std::shared_ptr<WaterLilies>> getLilies();
-        ~FinishLane() {}
-};
-\end{lstlisting}
-
-\begin{lstlisting}
-class SafeLane: public Lane {
-    public:
-        SafeLane(const unsigned int id);
-        ~SafeLane() {}
-};
-\end{lstlisting}
-
-\begin{lstlisting}
-class MovingObjectLane: public Lane {
+class LaneView {
     protected:
-        std::vector<std::shared_ptr<MovingObject>> mv;
-        int lane_speed;
+        std::shared_ptr<Lane> lane;
+        LaneDrawer ld;
     public:
-        MovingObjectLane(const unsigned int id, int lane_speed=0);
-        bool frogCollide(Frog& frog);
-        std::vector<std::shared_ptr<MovingObject>> getMovingObjects();
-        virtual void handleAfterCollision(Frog& frog) = 0;
-        virtual bool waterLane() const = 0 ;
-        virtual ~MovingObjectLane() {}
-};   
-\end{lstlisting}
-
-\begin{lstlisting}
-class RoadLane: public MovingObjectLane {
-    public:
-        RoadLane(const unsigned int id_num
-                , const unsigned int& car_by_pack
-                , const unsigned int& space_between_cars
-                , const unsigned& space_between_packs
-                , const int& first_car_placement
-                , const unsigned int& size_car
-                , const int& speed=1);
-        bool waterLane() const override { return 0; }
-        void handleAfterCollision(Frog& frog) override;
-        std::vector<std::shared_ptr<Car>> getCars() const;
-        ~RoadLane() {}
+        LaneView(std::shared_ptr<Lane> lane);
+        virtual void draw() = 0;
+        static std::shared_ptr<LaneView> makeView(std::shared_ptr<Lane> l);
+        virtual ~LaneView() {}
 };
 \end{lstlisting}
 
-Nous parlerons de l'affichage de la grenouille dans les chapitres \ref{lives} et \ref{frogview}.
+\begin{lstlisting}
+class SafeLaneView: public LaneView {
+    public:
+        SafeLaneView(std::shared_ptr<SafeLane> sfl);
+        void draw() final override;
+        ~SafeLaneView() {}
+};
+\end{lstlisting}
 
-\underline{Dans boardview.hpp:} \hspace{0.5cm}
+\begin{lstlisting}
+class RoadLaneView: public LaneView {
+    private:
+        std::vector<std::shared_ptr<CarView>> cv;
+    public:
+        RoadLaneView(std::shared_ptr<RoadLane> rl);
+        void draw() final;
+        ~RoadLaneView() {}
+};
+\end{lstlisting}
+
+Nous parlerons de l'affichage de la grenouille dans les chapitres 
+\ref{lives} et \ref{frogview}. \\
+
+\pagebreak
+
+\underline{Dans boardview.hpp:}
 
 \begin{lstlisting}
 class BoardView {
@@ -425,8 +416,8 @@ class BoardView {
 
 Les outils utilisés pour afficher les éléments du jeu avec FLTK se trouvent tous 
 dans le dossier \texttt{tooling}. 
-Comme ceux-ci ne soont que des outils et n'ont pas d'impact sur le fonctionnement 
-du jeu en lui même, 
+Comme ceux-ci ne sont que des outils et n'ont pas d'impact sur le fonctionnement 
+du jeu en lui-même, 
 nous n'en parlerons pas dans ce rapport.
 
 \subsection{Assemblage pour faire un jeu fonctionnel}
@@ -458,8 +449,11 @@ class GameLoop {
 };
 \end{lstlisting}
 
+
 \section{Réalisation des tâches additionnelles}
-Maintenant que les tâches principales sont réalisées et que nous avons une bonne base, nous pouvons implémenter les fonctionnalités supplémentaires. 
+
+Maintenant que les tâches principales sont réalisées et que nous avons une bonne base, 
+nous pouvons implémenter les fonctionnalités supplémentaires. 
 
 \subsection{Rangées d'eau, buches et tortues} \label{turtle_class}
 
@@ -489,7 +483,9 @@ class Log: public MovingObject {
         bool collide(Frog& frog) final override;
         ~Log() {}
 };
-\end{lstlisting} \hspace{0.5cm}
+\end{lstlisting} 
+
+\pagebreak
 
 Dans le fichier \texttt{lane.hpp}, nous implémentons deux nouvelles classes héritantes de \texttt{MovingObjectLane}.
 
@@ -535,7 +531,7 @@ class TurtleLane: public MovingObjectLane {
         void diveUpdate() final override;
         ~TurtleLane() {}
 };
-\end{lstlisting} \hspace{0.5cm}
+\end{lstlisting}
 
 \underline{\textbf{Vue:}} \\
 Les implémentations gérant la vue de ces deux nouvelles rangées est similaire que pour celle 
@@ -559,7 +555,7 @@ class TurtleView: public MovingObjectView {
 
 \subsection{Nénuphars} \label{lilies}
 
-Dans le fichier \texttt{Model/waterlilies.hpp}, 
+Dans le fichier \texttt{waterlilies.hpp}, 
 nous définissons une nouvelle classe \texttt{WaterLilies} qui va représenter les nénuphars. 
 
 \begin{lstlisting}
@@ -575,7 +571,7 @@ class WaterLilies {
         void visit();
         ~WaterLilies() {}
 };
-\end{lstlisting} \hspace{0.5cm}
+\end{lstlisting}
 
 Nous pouvons maintenant montrer l'implémentation de la classe \texttt{FinishLane}.
 
@@ -588,14 +584,25 @@ class FinishLane: public Lane {
         std::vector<std::shared_ptr<WaterLilies>> getLilies();
         ~FinishLane() {}
 };
-\end{lstlisting} \hspace{0.5cm}
+\end{lstlisting} 
+
+\begin{lstlisting}
+class FinishLaneView: public LaneView {
+    private:
+        std::vector<std::shared_ptr<LiliesView>> lilies;
+    public:
+        FinishLaneView(std::shared_ptr<FinishLane> fl);
+        void draw() final;
+        ~FinishLaneView() {}
+};
+\end{lstlisting}
 
 \subsection{Vies de la grenouille} \label{lives}
 
 Les vies de la grenouille sont représentées par l'instance \texttt{lives} de la classe 
 \texttt{Frog}. 
 A chaque exécution de \texttt{GameLoop::update()}, 
-on regarde si la grenouille respecte une des conditions pour perdre une vie. 
+on vérifie si la grenouille respecte une des conditions pour perdre une vie. 
 Si oui, alors on décrémente \texttt{lives} avec la méthode \texttt{kill()}. 
 Si \texttt{lives} est à 0, 
 alors on affiche un écran de défaite (avec le fichier \texttt{imgs/lose.jpeg}).
@@ -619,15 +626,13 @@ class FrogView {
 
 Dans le modèle, 
 une tortue plonge si son instance \texttt{diving} est à \texttt{True} (voir \ref{turtle_class}). 
-Ce statut change surtout le comportement des collisions avec les tortues dans le modèle. 
-Nous ordonnons à la tortue de plonger avec les méthodes \texttt{dive()} et \texttt{undive()}. 
-Ces ordres sont alors données dans la classe \texttt{TurtleLane} (voir \ref{turtle_class}). 
-Comme dans le jeu orginal, nous faisons plonger les tortues par paquets. 
+Ces ordres sont donnés dans la classe \texttt{TurtleLane} (voir \ref{turtle_class}). 
+Comme dans le jeu original, nous faisons plonger les tortues par paquets. 
 La méthode \texttt{dive\textunderscore update()} va alors se charger de faire plonger et 
-remonter les tortues en boucle avec les paramêtres choisis. 
-Cette méthode est exécutée à chaque frame dans la méthode \texttt{GameLoop::update()}.
+remonter les tortues en boucle selon les paramètres choisis. 
+Cette méthode est exécutée à chaque frame dans \texttt{GameLoop::update()}.
 
-Nous changons forcément commment est affichée la tortue quand elle plonge. Pour cela, nous faisons en sorte que la méthode \texttt{TurtleView::draw()} ne marche que quand la tortue est à la surface.
+Dans la vue, la tortue n'est dessinée que lorsqu'elle se trouve à la surface.
 
 \subsection{Directions de la grenouille} \label{frogview}
 
@@ -639,7 +644,7 @@ enum class FrogDirection {
 };
 \end{lstlisting}
 
-La grenouille est alors affichée selon la direction dans laquelle elle se trouve.
+La classe \texttt{FrogView} se charge alors d'afficher la grenouille dans la bonne direction.
 
 \subsection{Score}
 
@@ -666,17 +671,19 @@ class Score {
 };
 \end{lstlisting}
 
-Le score est calculé de la manière suivante: 
-Le score commence à 0. 
-A chaque fois que la grenouille avance d'une rangée vers le nord, le score monte de 100 points.
-Si la grenouille revient en arrière, 
-alors elle ne recommencera à gagner des points seulement quand elle aura réatteint la rangée 
-la plus haute qu'elle avait avant atteint.
-Si la grenouille meurt ou atteint la ligne d'arrivée, le score est conservé et le même système
-recommence (c'est à dire que si la grenouille est téléportée à la case départ, et qu'elle
-avance d'une rangée vers le nord, alors elle regagne 100 points). \\
+\pagebreak
 
-L'affichage du score sur le plateau se fait grâce à la classe \texttt{ScoreView}
+Le score est calculé de la manière suivante: 
+Il commence à 0.
+A chaque fois que la grenouille avance d'une rangée vers le nord, le score augmente de 100 points.
+Si la grenouille revient en arrière, 
+elle ne recommencera à gagner des points que lorsqu'elle aura réatteint la rangée 
+la plus haute qu'elle avait précédement atteinte.
+Si la grenouille meurt ou atteint la ligne d'arrivée, le score est conservé et le même système
+recommence (c'est-à-dire que si la grenouille est téléportée à la case départ et qu'elle
+avance d'une rangée vers le nord, elle regagne 100 points). \\
+
+L'affichage du score sur le plateau est géré par la classe \texttt{ScoreView}
 qui se trouve dans le fichier \texttt{scoreview.hpp}.
 
 \begin{lstlisting}
@@ -694,9 +701,9 @@ class ScoreView {
 
 \subsection{Meilleur score}
 
-Le meilleur score et l'interaction avec les fichiers est gérée par la classe ScoreSaver.
-Les meilleurs score sont alors stockés dans le fichier \texttt{scores.csv} du dossier
-\texttt{levels}.
+Le meilleur score et l'interaction avec les fichiers est gérée par la classe \texttt{ScoreSaver} 
+du fichier \texttt{scoresaver.hpp}.
+Les meilleurs score sont stockés dans le fichier \texttt{scores.csv}.
 
 \begin{lstlisting}
 class ScoreSaver {
@@ -722,33 +729,26 @@ mais aussi dans le menu de sélection des niveaux.
 
 \subsection{Gestion des menus et écran d'accueil}
 
-Les classes chargées de la gestion des menus se trouvent dans ContentManagers.
+Les classes chargées de la gestion des menus se trouvent 
+dans le fichier \texttt{content\textunderscore manager.hpp}.
 
 \begin{lstlisting}
-class WindowContents;
-
 class ContentManager {
     private:
         std::unique_ptr<WindowContents> contents;
         std::unique_ptr<GameLoop> gl;
     public:
-        ContentManager(std::unique_ptr<WindowContents> first_contents):
-            contents(std::move(first_contents)), gl(nullptr) {}
-
+        ContentManager(std::unique_ptr<WindowContents> first_contents);
         void changeContents(std::unique_ptr<WindowContents> new_contents);
-
         void manageButtonPush(int x, int y);
-
         void contentManageAction(actions& action);
-
         void startGame(std::unique_ptr<GameLoop> g);
         void show();
-
-        static void updateWithAction(std::shared_ptr<ContentManager> cm, actions& action);
-
         ~ContentManager() { }
 };
+\end{lstlisting}
 
+\begin{lstlisting}
 class WindowContents {
    protected:
         std::weak_ptr<ContentManager> cm; // Observer
@@ -758,24 +758,27 @@ class WindowContents {
         virtual void draw() = 0;
         virtual void manageButtonPush(int x, int y) = 0;
         virtual void manageAction(actions& action) = 0;
-        std::weak_ptr<ContentManager> getCM() {
-            return cm;
-        }
-
+        std::weak_ptr<ContentManager> getCM();
         virtual ~WindowContents() {}
 };
 \end{lstlisting}
-En clair, ces classes fonctionnent de la manière suivante:
-Ce qui est affiché dans la fenêtre hérite de WindowContents, 
-ainsi, nos menus, et la sélection de niveau héritera de WindowContents, 
-ContentManager est la classe se chargeant d'alterner les différents contenus 
-que l'on affiche à l'écran,
-par exemple, si je décide d'appuyer sur le bouton pour aller au menu de sélection de niveau,
-le menu de sélection de niveau et le menu de base sont tous les deux des WindowContents,
-et ce qui permet de changer entre les deux est l'instance de ContentManager. \\
 
-Les buttons sont des objets de la classe suivante, 
-classe qui se trouve aussi dans le ficher \texttt{content\textunderscore manager.hpp}
+\pagebreak
+
+En clair, 
+ces classes fonctionnent de la manière suivante : 
+ce qui est affiché dans la fenêtre hérite de \texttt{WindowContents}. 
+Ainsi, nos menus et la sélection de niveau héritent de \texttt{WindowContents}. 
+\texttt{ContentManager} est la classe chargée d'alterner les différents contenus 
+affichés à l'écran. 
+Par exemple, si je décide d'appuyer sur le bouton pour accéder au menu de sélection 
+de niveau, le menu de sélection de niveau et le menu de base sont tous les deux 
+des \texttt{WindowContents}, 
+et ce qui permet de changer entre les deux est l'instance de \texttt{ContentManager}.\\
+
+Les buttons des menus sont des objets de la classe suivante, 
+classe qui se trouve également dans le ficher \texttt{content\textunderscore manager.hpp}
+
 \begin{lstlisting}
 class ActionButton: public RectangleWithText, public Clickable {
     private:
@@ -794,7 +797,8 @@ class ActionButton: public RectangleWithText, public Clickable {
 \end{lstlisting}
 
 L'écran d'accueil est représenté par la classe suivante,
-qui se trouve dans le ficher \texttt{welcome\textunderscore screen.hpp}.
+qui se trouve dans le fichier \texttt{welcome\textunderscore screen.hpp}.
+
 \begin{lstlisting}
 class WelcomeScreen: public WindowContents {
     private:
@@ -807,7 +811,6 @@ class WelcomeScreen: public WindowContents {
         void manageAction(actions& action) override;
         void draw() override;
         ~WelcomeScreen() {}
-
 };
 \end{lstlisting}
 
@@ -817,15 +820,14 @@ De la même manière que pour l'écran d'accueil,
 nous faisons un menu s'occupant de la sélection des niveaux.
 \begin{lstlisting}
 class LevelSelect: public WindowContents {
+    private:
+        unsigned selected_level = 1;
+        ScoreSaver ss;
+        ActionButton increase_lvl, reduce_lvl, play_game, reset_score;
+        Text lvl_show, best_score_show;    
     public:
-        LevelSelect(std::shared_ptr<ContentManager> cm): WindowContents(cm) {
-            ss.getFromFile();
-            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
-        }
-        LevelSelect(std::weak_ptr<ContentManager> cm): WindowContents(cm) {
-            ss.getFromFile();
-            best_score_show.setString("Highest Score: " + std::to_string(ss.getHighScore().getScore()));
-        }
+        LevelSelect(std::shared_ptr<ContentManager> cm);
+        LevelSelect(std::weak_ptr<ContentManager> cm);
         void draw() override;
         void manageButtonPush(int x, int y) override;
         unsigned getLevel();
@@ -834,39 +836,63 @@ class LevelSelect: public WindowContents {
 };
 \end{lstlisting}
 
+\pagebreak
+
 \section{Logique du jeu}
 
-\underline{\textbf{Lancement du jeu:}}  \vspace{0.2cm}\\
-Lorsque nous lancons le jeu, un objet de classe \texttt{MainWindow} se créé 
+\underline{\textbf{Lancement du jeu:}}  \vspace{0.1cm}\\
+Lorsque nous lançons le jeu, un objet de classe \texttt{MainWindow} est créé 
 et est affiché. 
 Celui-ci contient un objet de classe \texttt{ContentManager} qui affiche en premier le
 menu principal, c'est à dire un objet de classe \texttt{WelcomeScreen}. \\
 
-\underline{\textbf{Intéractions avec le menu, lancement du premier niveau:}} \vspace{0.2cm} \\
-Nous avons deux buttons sur ce menu: "START GAME" et "GO TO LEVELS". 
-Appuyer sur "START GAME" nous envoie sur le premier niveau du jeu.
-Appuyer sur "GO TO LEVELS" nous envoie sur le sélectionneur de niveau.
+\underline{\textbf{Intéractions avec le menu, lancement du premier niveau:}} \vspace{0.1cm} \\
+Nous avons deux buttons sur ce menu: \texttt{START GAME} et \texttt{GO TO LEVELS}. 
+Appuyer sur \texttt{START GAME} nous envoie sur le premier niveau du jeu.
+Appuyer sur \texttt{GO TO LEVELS} nous envoie sur le sélectionneur de niveau.
 Nous pouvons par exemple sélectionner le niveau 1 en ajustant si besoin le 
-niveau sélectionné et en appuyant sur "START GAME". \\
+niveau sélectionné et en appuyant sur \texttt{START GAME}. \\
 Ce menu de sélection de niveau est en fait affiché graĉe à la classe 
 \texttt{LevelSeclect}.
 La transition se fait dans la classe \texttt{ContentManager}, 
 tout en restant dans MainWindow.
-Après, grâce au bouton "START GAME",
+Après, grâce au bouton \texttt{START GAME},
 La classe \texttt{ContentManager} fait marcher un objet de classe \texttt{GameLoop}
 qui se change de faire fonctionner le niveau donc les données ont été prises du
 fichier \texttt{level1.csv}. \\
 
-\underline{\textbf{Essayons d'avancer d'un rangée vers le nord:}} \vspace{0.2cm} \\
+\underline{\textbf{Essayons d'avancer d'une rangée vers le nord:}} \vspace{0.1cm} \\
 Maintenant que nous sommes dans le premier niveau, la classe \texttt{GameLoop} va 
 regarder à chaque instant si nous appuyons sur une touche, et en même temps va
 faire marcher les autres classes pour que le plateau soit animé, et 
 pour vérifier si la grenouille meurt ou atteint un nénuphar. \\
-Appuyons sur la touche "z". Cette information est envoyée au contrôleur.
+Appuyons sur la touche \textbf{z}. Cette information est envoyée au contrôleur.
 Celui-ci va alors changer la position et la direction de la grenouille dans le modèle.
 Le score sera aussi incrémenté de 100. \\
 Toute l'information nécéssaire à l'affichage du plateau est alors envoyée aux classes
 gérant la vue, qui vont alors afficher tout les éléments du plateau. La grenouille aura
 alors avancé d'une rangée vers l'avant. 
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{Images/welcomescreen.png}
+      \caption{Menu d'accueil}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \vspace{0.35cm}
+      \includegraphics[width=\linewidth]{Images/levelselector.png}
+      \caption{Menu de sélection des niveaux}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{Images/gamescreenshot.png}
+      \caption{Niveau 1}
+    \end{minipage}
+\end{figure}
 
 \end{document}

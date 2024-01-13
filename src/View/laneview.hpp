@@ -8,6 +8,7 @@
 #include "movingobjectview.hpp"
 #include "../tooling/drawing_methods.hpp"
 
+
 class LaneView {
     protected:
         std::shared_ptr<Lane> lane;

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.1.9)  13 JAN 2024 11:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.1.9)  13 JAN 2024 16:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -140,11 +140,11 @@ LaTeX Font Info:    ... okay on input line 44.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(28.45274pt, 540.60239pt, 28.45274pt)
-* v-part:(T,H,B)=(28.45274pt, 788.14136pt, 28.45274pt)
+* v-part:(T,H,B)=(28.45274pt, 773.91498pt, 42.67912pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=540.60239pt
-* \textheight=788.14136pt
+* \textheight=773.91498pt
 * \oddsidemargin=-43.81725pt
 * \evensidemargin=-43.81725pt
 * \topmargin=-80.81725pt
@@ -197,71 +197,91 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--55
 <Images/folders.png, id=1, 169.63374pt x 568.1225pt>
 File: Images/folders.png Graphic file (type png)
 <use Images/folders.png>
-Package pdftex.def Info: Images/folders.png  used on input line 62.
-(pdftex.def)             Requested size: 85.35826pt x 285.87233pt.
+Package pdftex.def Info: Images/folders.png  used on input line 65.
+(pdftex.def)             Requested size: 71.13188pt x 238.22838pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
+Underfull \hbox (badness 10000) in paragraph at lines 68--70
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Images/folders.png>] [2]
-Overfull \hbox (23.83504pt too wide) in paragraph at lines 287--294
-\OT1/cmr/m/n/12 Les contr^oles de la grenouille se passent dans la classe \OT1/cmtt/m/n/12 Controller \OT1/cmr/m/n/12 qui se trouve quand le fichier \OT1/cmtt/m/n/12 controller.hpp
+Overfull \hbox (15.74068pt too wide) in paragraph at lines 306--313
+\OT1/cmr/m/n/12 Les contr^oles de la grenouille se passent dans la classe \OT1/cmtt/m/n/12 Controller \OT1/cmr/m/n/12 qui se trouve dans le fichier \OT1/cmtt/m/n/12 controller.hpp
  []
 
 [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 319.
+(Font)              <12> on input line 338.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 319.
+(Font)              <8> on input line 338.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 319.
- [4] [5]
-Overfull \hbox (8.1538pt too wide) in paragraph at lines 562--564
-\OT1/cmr/m/n/12 Dans le fichier \OT1/cmtt/m/n/12 Model/waterlilies.hpp\OT1/cmr/m/n/12 , nous d^^Sefinissons une nou-velle classe \OT1/cmtt/m/n/12 WaterLilies \OT1/cmr/m/n/12 qui va repr^^Sesenter
- []
+(Font)              <6> on input line 338.
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 669--678
+Underfull \hbox (badness 10000) in paragraph at lines 396--398
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 768--776
+[4] [5] [6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 676--685
 
+ []
+
+
+Overfull \hbox (12.66002pt too wide) in paragraph at lines 686--688
+[]\OT1/cmr/m/n/12 L'affichage du score sur le plateau est g^^Ser^^Se par la classe \OT1/cmtt/m/n/12 ScoreView \OT1/cmr/m/n/12 qui se trouve dans le fichier \OT1/cmtt/m/n/12 scoreview.hpp\OT1/cmr/m/n/12 . 
+ []
+
+
+Overfull \hbox (13.52126pt too wide) in paragraph at lines 704--707
+\OT1/cmr/m/n/12 Le meilleur score et l'interaction avec les fichiers est g^^Ser^^See par la classe \OT1/cmtt/m/n/12 ScoreSaver \OT1/cmr/m/n/12 du fichier \OT1/cmtt/m/n/12 scoresaver.hpp\OT1/cmr/m/n/12 .
  []
 
 [8]
-Overfull \hbox (11.72803pt too wide) in paragraph at lines 777--779
-[]\OT1/cmr/m/n/12 Les but-tons sont des ob-jets de la classe suiv-ante, classe qui se trouve aussi dans le ficher \OT1/cmtt/m/n/12 content[]manager.hpp 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 839--844
+Underfull \hbox (badness 10000) in paragraph at lines 768--778
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 845--859
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 843--848
 
  []
 
-[9] [10] (./rapport.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--863
+
+ []
+
+<Images/welcomescreen.png, id=36, 512.91624pt x 540.0175pt>
+File: Images/welcomescreen.png Graphic file (type png)
+<use Images/welcomescreen.png>
+Package pdftex.def Info: Images/welcomescreen.png  used on input line 880.
+(pdftex.def)             Requested size: 162.18236pt x 170.74913pt.
+<Images/levelselector.png, id=37, 510.90875pt x 539.01375pt>
+File: Images/levelselector.png Graphic file (type png)
+<use Images/levelselector.png>
+Package pdftex.def Info: Images/levelselector.png  used on input line 887.
+(pdftex.def)             Requested size: 162.18236pt x 171.09795pt.
+<Images/gamescreenshot.png, id=38, 512.91624pt x 541.02126pt>
+File: Images/gamescreenshot.png Graphic file (type png)
+<use Images/gamescreenshot.png>
+Package pdftex.def Info: Images/gamescreenshot.png  used on input line 893.
+(pdftex.def)             Requested size: 162.18236pt x 171.0665pt.
+[10 <./Images/welcomescreen.png> <./Images/levelselector.png> <./Images/gamescreenshot.png>] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 4712 strings out of 478287
- 67601 string characters out of 5849290
- 645145 words of memory out of 5000000
- 22900 multiletter control sequences out of 15000+600000
+ 4762 strings out of 478287
+ 68546 string characters out of 5849290
+ 656149 words of memory out of 5000000
+ 22947 multiletter control sequences out of 15000+600000
  475071 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,69p,451b,1605s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,8n,69p,244b,1601s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on rapport.pdf (10 pages, 132226 bytes).
+Output written on rapport.pdf (10 pages, 190379 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
+ 61 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

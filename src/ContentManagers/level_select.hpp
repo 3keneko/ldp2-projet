@@ -49,9 +49,9 @@ class LevelSelect: public WindowContents {
         };
 
         Text best_score_show { "Highest Score: ",
-           constants::window::WIDTH/4,
+           constants::window::WIDTH/3,
            constants::window::HEIGHT * 4/5,
-           30,
+           20,
         };
 
         ActionButton reset_score {
