@@ -31,7 +31,7 @@ class WindowContents {
         WindowContents(std::weak_ptr<ContentManager> cm);
         virtual void draw() = 0;
         virtual void manageButtonPush(int x, int y) = 0;
-        virtual void manageAction(actions& action) = 0;
+        virtual void manageAction(actions const& action) = 0;
         std::weak_ptr<ContentManager> getCM();
         virtual ~WindowContents() {}
 };

@@ -70,7 +70,7 @@ class LevelSelect: public WindowContents {
         void draw() override;
         void manageButtonPush(int x, int y) override;
         unsigned getLevel();
-        void manageAction(actions& action) override;
+        void manageAction(actions const& action) override;
         ~LevelSelect() {}
 };
 

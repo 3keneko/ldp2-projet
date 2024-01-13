@@ -14,7 +14,7 @@ void WelcomeScreen::manageButtonPush(int x, int y) {
     start_game_button.manageClick(x, y);
     go_to_levels.manageClick(x, y);
 }
-void WelcomeScreen::manageAction(actions& action) {
+void WelcomeScreen::manageAction(actions const& action) {
     if (action == actions::STARTGAME) {
        // Se charge du cas où le joueur clique sur le bouton start game
         if (auto cm_lock = cm.lock()) {

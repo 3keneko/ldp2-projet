@@ -33,7 +33,7 @@ class WelcomeScreen: public WindowContents {
    public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm);
         void manageButtonPush(int x, int y) override;
-        void manageAction(actions& action) override;
+        void manageAction(actions const& action) override;
         void draw() override;
         ~WelcomeScreen() {}
 };

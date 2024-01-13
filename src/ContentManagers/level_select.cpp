@@ -32,7 +32,7 @@ void LevelSelect::manageButtonPush(int x, int y) {
 unsigned LevelSelect::getLevel() {
     return selected_level;
 }
-void LevelSelect::manageAction(actions& action) {
+void LevelSelect::manageAction(actions const& action) {
     if (action == actions::DIMIN && selected_level > 1) {
         selected_level--;
     } else if (action == actions::INCR) {
