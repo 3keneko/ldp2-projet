@@ -757,7 +757,7 @@ class WindowContents {
         WindowContents(std::weak_ptr<ContentManager> cm): cm(cm) {}
         virtual void draw() = 0;
         virtual void manageButtonPush(int x, int y) = 0;
-        virtual void manageAction(actions& action) = 0;
+        virtual void manageAction(actions const& action) = 0;
         std::weak_ptr<ContentManager> getCM();
         virtual ~WindowContents() {}
 };
@@ -808,7 +808,7 @@ class WelcomeScreen: public WindowContents {
     public:
         WelcomeScreen(std::shared_ptr<ContentManager> cm): WindowContents(cm) {}
         void manageButtonPush(int x, int y) override;
-        void manageAction(actions& action) override;
+        void manageAction(actions const& action) override;
         void draw() override;
         ~WelcomeScreen() {}
 };
@@ -831,11 +831,13 @@ class LevelSelect: public WindowContents {
         void draw() override;
         void manageButtonPush(int x, int y) override;
         unsigned getLevel();
-        void manageAction(actions& action) override;
+        void manageAction(actions const& action) override;
         ~LevelSelect() {}
 };
 \end{lstlisting}
-
+\section{Notes}
+On pourra remarquer que ASAN nous signale des fuites de mémoire lors de l'arrêt du programme. \\
+Il s'agit de fuites de mémoire inhérentes à l'affichage de texte sur FLTK, utiliser valgrind permet de tirer la même conclusion et des questions-réponses sur les forum FLTK confirment bien cette hypothèse.
 \pagebreak
 
 \section{Logique du jeu}
@@ -867,10 +869,10 @@ regarder à chaque instant si nous appuyons sur une touche, et en même temps va
 faire marcher les autres classes pour que le plateau soit animé, et 
 pour vérifier si la grenouille meurt ou atteint un nénuphar. \\
 Appuyons sur la touche \textbf{z}. Cette information est envoyée au contrôleur.
-Celui-ci va alors changer la position et la direction de la grenouille dans le modèle.
+Celui-ci va alors changer la position et la direction de la grenouille dans le modèle (en appelant la méthode goUp() de Frog).
 Le score sera aussi incrémenté de 100. \\
 Toute l'information nécéssaire à l'affichage du plateau est alors envoyée aux classes
-gérant la vue, qui vont alors afficher tout les éléments du plateau. La grenouille aura
+gérant la vue, qui vont alors afficher tous les éléments du plateau. La grenouille aura
 alors avancé d'une rangée vers l'avant. 
 
 \begin{figure}[h]
